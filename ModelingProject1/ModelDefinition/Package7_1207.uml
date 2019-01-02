@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="90fd61a3-f632-44bb-a594-5e22cec193c8"
+  name="Events"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="9e6ff749-8ae6-4cc3-8765-6f8f1268f8da"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DVATRP.Core.Events"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="e124d9ee-a18d-4794-b8d3-fdc3b568a2a7"
+        name="InfoEventBaseArgs"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="598496ce-d47a-4174-a04f-65b7624ef507"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.Core%2Fbin%2FDebug%2FACE.Core.dll Namespace%3DVATRP.Core.Events Type%3DInfoEventBaseArgs"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="56646cc1-11ee-426b-b2a9-44ba1450737e"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9d1da69e-ad4c-4927-9f46-2b1666c21f86">
+                <propertyInstance
+                  Id="785fbdad-59b6-4e28-82d5-5c081e03aaf5"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="adef9782-cc55-4432-bcef-c7883b44e93c">
+                <propertyInstance
+                  Id="d293ee56-3a05-4b79-994a-a57c5c918572"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="834f435e-f4ad-4209-9832-a82e28948ed9">
+                <propertyInstance
+                  Id="e9d7fcd6-8d16-4a25-8647-14086ec4b667"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6e14359a-522b-4480-aeb7-0af50e884809">
+                <propertyInstance
+                  Id="addcc2de-6f0c-41ba-8dc3-e495e183a84d"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e306c839-61d5-4036-a041-7d8f13d42c41">
+                <propertyInstance
+                  Id="040363db-b310-47c2-8b45-0c63f5f36eff"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="5c35f76d-72df-45d7-9cab-81ce8b9b2432"
+            isSubstitutable="false">
+            <classMoniker
+              Id="996febec-03ab-4ae3-b72c-7759b1f6dd9f"
+              LastKnownName="EventArgs"
+              LastKnownLocation="Package4_1206.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="eb5bd793-5989-4cfb-98f6-c3a733980e06"
+        name="DeclineMessageArgs"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="282ece84-f868-4be6-afc8-3c8cfc3aeef1"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.Core%2Fbin%2FDebug%2FACE.Core.dll Namespace%3DVATRP.Core.Events Type%3DDeclineMessageArgs"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="0d8f87ae-2521-42a1-a67c-dbd0355ae12b"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="982ced1c-4825-4c50-9cc9-f22fc255acee">
+                <propertyInstance
+                  Id="bdf49d55-3e0f-4bcc-a7f9-23940f8801ad"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="29e4e1cd-2120-405d-bc95-2aa66313df2b">
+                <propertyInstance
+                  Id="3286715a-ed99-4cc1-8e63-e7877963101e"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4d811e09-fb24-4a73-81ae-302736ec58f5">
+                <propertyInstance
+                  Id="1548ef3f-8cd7-483c-a129-4f918e0d0027"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="dc4a9fc5-aca5-4e4c-8e9a-ddf8dbdbf472">
+                <propertyInstance
+                  Id="43d616bc-a85d-49a1-8959-59c4455ab953"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="91b300a8-7a41-4939-a12b-163d91942a31">
+                <propertyInstance
+                  Id="5ca6c6e5-1637-47d1-93b7-6793920fba46"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="f7a8031c-123b-4e94-bad0-00d04416256b"
+            isSubstitutable="false">
+            <classMoniker
+              Id="996febec-03ab-4ae3-b72c-7759b1f6dd9f"
+              LastKnownName="EventArgs"
+              LastKnownLocation="Package4_1206.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="20f2cf9d-a8cf-42a0-b77e-9cd3c21fc354"
+        name="MWIEventArgs"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="95e71361-d9c8-42f8-8511-86d183c1ad50"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.Core%2Fbin%2FDebug%2FACE.Core.dll Namespace%3DVATRP.Core.Events Type%3DMWIEventArgs"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="1e1be5f4-8b59-420f-92fd-92dd0de99e27"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="22817aab-9308-40e6-b8b6-318a99f8daf3">
+                <propertyInstance
+                  Id="1ea8fa2c-ddba-46b5-887a-bd0569b5cf83"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="fb98b349-a602-4fb2-a3f5-1f4ed60483c2">
+                <propertyInstance
+                  Id="efe281f3-dca9-4e38-bce3-498ecd7f905d"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ac22d9d8-1f78-435a-8d0d-3938b7324912">
+                <propertyInstance
+                  Id="773d5d3c-a44b-4dae-8726-7e6beccd4da5"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5677d411-d59a-4174-b7a5-21168f4f18f0">
+                <propertyInstance
+                  Id="49c34310-fd21-4889-9cd3-4b1c47e62288"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4d608d0d-8f31-4bc7-b5f9-0a2846ac9883">
+                <propertyInstance
+                  Id="08b3cb34-74a1-4b66-ba98-42a84740f14a"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="7d87c403-82dd-4a76-9539-b62d8bc12afd"
+            isSubstitutable="false">
+            <classMoniker
+              Id="996febec-03ab-4ae3-b72c-7759b1f6dd9f"
+              LastKnownName="EventArgs"
+              LastKnownLocation="Package4_1206.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

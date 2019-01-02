@@ -1,0 +1,55 @@
+﻿<!-- 
+Copyright © The MITRE Corporation.
+ 
+This program is licensed under the terms of the GNU General Public License Version 2, as published by the Free Software Foundation. This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  Please see the
+GNU General Public License for more details.
+ 
+This program or code contains content developed by The MITRE Corporation. If this program is used in a deployment or embedded within another project, MITRE requests that you send an email to opensource@mitre.org to let us know where and how this program is being used.
+ 
+NOTICE
+This (software/technical data) was produced for the U. S. Government under Contract Number HHSM-500-2012-00008I, and is subject to Federal Acquisition Regulation Clause 52.227-14, Rights in Data-General. No other use other than that granted to the U. S. Government, or to those acting on behalf of the U. S. Government under that Clause is authorized without the express written permission of The MITRE Corporation. For further information, please contact The MITRE Corporation, Contracts Management Office, 7515 Colshire Drive, McLean, VA  22102-7539, (703) 983-6000. 
+-->
+
+<vm:CallHistoryViewModel
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:com.vtcsecure.ace.windows.ViewModel"
+    xmlns:core="clr-namespace:VATRP.Core.Model;assembly=VATRP.Core"
+    ActiveTab="0"
+    >
+    <vm:CallHistoryViewModel.Calls >
+        <vm:HistoryCallEventViewModel DisplayName="John Delofeu" >
+            <vm:HistoryCallEventViewModel.CallEvent>
+                <core:VATRPCallEvent Status="Outgoing" RemoteParty="Peter_4" StartTime="11/11/2015 13:05:20" EndTime="11/11/2015 14:00:00" />
+            </vm:HistoryCallEventViewModel.CallEvent>
+            <vm:HistoryCallEventViewModel.Contact>
+                <core:VATRPContact Fullname="Josh brausn" MobilePhone="217896874788" UnreadMsgCount="10"/>
+            </vm:HistoryCallEventViewModel.Contact>
+            <vm:HistoryCallEventViewModel.CallEventStateBrush>
+                <SolidColorBrush Color="#ffE9EFE9"/>
+            </vm:HistoryCallEventViewModel.CallEventStateBrush>
+
+        </vm:HistoryCallEventViewModel>
+        <vm:HistoryCallEventViewModel DisplayName="Maximus Rufus" >
+            <vm:HistoryCallEventViewModel.CallEvent>
+                <core:VATRPCallEvent Status="Missed" RemoteParty="Peter_5" StartTime="01/05/2015 22:05:20" EndTime="02/11/2015 14:00:00" />
+            </vm:HistoryCallEventViewModel.CallEvent>
+            <vm:HistoryCallEventViewModel.Contact>
+                <core:VATRPContact Fullname="Masha Di Caprio" UnreadMsgCount="0" MobilePhone="1237896544"/>
+            </vm:HistoryCallEventViewModel.Contact>
+            <vm:HistoryCallEventViewModel.CallEventStateBrush>
+                <SolidColorBrush Color="Tomato"/>
+            </vm:HistoryCallEventViewModel.CallEventStateBrush>
+
+        </vm:HistoryCallEventViewModel>
+        <vm:HistoryCallEventViewModel DisplayName="Fernan Montegue" >
+            <vm:HistoryCallEventViewModel.CallEvent>
+                <core:VATRPCallEvent Status="Incoming" RemoteParty="Vladilen" StartTime="01/02/2015 00:15:20" EndTime="01/11/2015 10:06:00" />
+            </vm:HistoryCallEventViewModel.CallEvent>
+            <vm:HistoryCallEventViewModel.CallEventStateBrush>
+                <SolidColorBrush Color="#ffE9EFE9"/>
+            </vm:HistoryCallEventViewModel.CallEventStateBrush>
+
+        </vm:HistoryCallEventViewModel>
+    </vm:CallHistoryViewModel.Calls>
+</vm:CallHistoryViewModel>

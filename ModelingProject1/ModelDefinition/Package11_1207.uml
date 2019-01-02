@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="bb40edd0-2b04-48ac-b99e-1f0c0bbb65f8"
+  name="Enums"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="bc368b11-c1ad-43c6-aa52-9054006e691b"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DVATRP.LinphoneWrapper.Enums"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <enumeration
+        Id="501dae9f-d1a4-4981-9abd-891b1564959e"
+        name="LinphoneGlobalState"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="e2748507-fee5-437b-a528-a8562deb6fa0"
+            handle="viewcode://./CodeSchema_Enum?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.LinphoneWrapper%2Fbin%2FDebug%2FACE.LinphoneWrapper.dll Namespace%3DVATRP.LinphoneWrapper.Enums Type%3DLinphoneGlobalState"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="efce1a0a-7045-4bd4-9d50-128d2005caa1"
+            name="enum"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0232c0b1-ded7-42d9-bfd4-20fc3a22d96f">
+                <propertyInstance
+                  Id="518ab1be-8fc8-46df-8798-e21366bfadb4"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="cb8d5613-1cf8-41e8-8f8c-9815fadfdae2">
+                <propertyInstance
+                  Id="e0f929cc-7804-4086-b420-f8c04ff6971b"
+                  name="BaseType"
+                  value="int" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3e5bef95-a239-4964-a5d2-6ed1c64c3147">
+                <propertyInstance
+                  Id="76847fe7-434e-4836-bb7c-cc0f8880fe06"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="98237782-a42b-4434-be24-8d49dcc507d0"
+        name="LinphoneRegistrationState"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="32fc2d3c-407e-44b9-bc12-cafbe1d357d2"
+            handle="viewcode://./CodeSchema_Enum?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.LinphoneWrapper%2Fbin%2FDebug%2FACE.LinphoneWrapper.dll Namespace%3DVATRP.LinphoneWrapper.Enums Type%3DLinphoneRegistrationState"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="f5411388-23d0-4998-8c5a-70953c7f5d55"
+            name="enum"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="dae58176-9a41-4664-8ea0-3e9d8770149a">
+                <propertyInstance
+                  Id="38e95453-504f-408e-b45b-34f2ce0123f4"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="19fc3e6c-b0f0-49e5-aea4-07a62f9ebb5d">
+                <propertyInstance
+                  Id="e74b124e-be9d-4133-be65-9c11d23497ff"
+                  name="BaseType"
+                  value="int" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8251474f-1777-442e-a0e4-cfc55713dd1b">
+                <propertyInstance
+                  Id="0c6b68e1-ef69-47cf-b6e8-11d2595189b0"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="ea31becd-0fc9-436c-b7f5-3a1a063e95f1"
+        name="LinphoneReason"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="6f8e715a-88ef-40a3-83f3-9e227ec5d84c"
+            handle="viewcode://./CodeSchema_Enum?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.LinphoneWrapper%2Fbin%2FDebug%2FACE.LinphoneWrapper.dll Namespace%3DVATRP.LinphoneWrapper.Enums Type%3DLinphoneReason"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="8ed44ed7-4147-47ba-8fc6-32c30a9b63e4"
+            name="enum"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="47e765ab-4923-4a41-94eb-fe7f961bd698">
+                <propertyInstance
+                  Id="c9701cee-3c2f-4627-a8fd-6aa4d9e534cf"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="84557c2b-2b04-4167-b4aa-da0a978fe6e0">
+                <propertyInstance
+                  Id="dd10f5cb-aa01-4b98-a863-867e4bcd6031"
+                  name="BaseType"
+                  value="int" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="53a7921d-b067-4fc5-a5d1-f3dc5b8b63a2">
+                <propertyInstance
+                  Id="4eafb710-d891-436f-9754-a6c643bf0e17"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </enumeration>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

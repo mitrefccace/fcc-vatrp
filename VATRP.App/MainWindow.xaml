@@ -1,0 +1,753 @@
+﻿<!-- 
+Copyright © The MITRE Corporation.
+ 
+This program is licensed under the terms of the GNU General Public License Version 2, as published by the Free Software Foundation. This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  Please see the
+GNU General Public License for more details.
+ 
+This program or code contains content developed by The MITRE Corporation. If this program is used in a deployment or embedded within another project, MITRE requests that you send an email to opensource@mitre.org to let us know where and how this program is being used.
+ 
+NOTICE
+This (software/technical data) was produced for the U. S. Government under Contract Number HHSM-500-2012-00008I, and is subject to Federal Acquisition Regulation Clause 52.227-14, Rights in Data-General. No other use other than that granted to the U. S. Government, or to those acting on behalf of the U. S. Government under that Clause is authorized without the express written permission of The MITRE Corporation. For further information, please contact The MITRE Corporation, Contracts Management Office, 7515 Colshire Drive, McLean, VA  22102-7539, (703) 983-6000. 
+-->
+
+<model:VATRPWindow x:Class="com.vtcsecure.ace.windows.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:model="clr-namespace:com.vtcsecure.ace.windows.Model"
+		xmlns:conv="clr-namespace:com.vtcsecure.ace.windows.Converters"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:customControls="clr-namespace:com.vtcsecure.ace.windows.CustomControls"
+		xmlns:unifiedSettings="clr-namespace:com.vtcsecure.ace.windows.CustomControls.UnifiedSettings"
+		xmlns:resourceControls="clr-namespace:com.vtcsecure.ace.windows.CustomControls.Resources"
+		mc:Ignorable="d"
+		d:DataContext="{d:DesignData Source=SampleData/MainViewSampleData.xaml}"
+
+		Title="{Binding AppTitle}" SizeToContent="WidthAndHeight" MaxHeight="700" ResizeMode="CanMinimize"
+				   Closing="OnClosing" Closed="OnClosed" 
+				   SourceInitialized="OnSourceInitialized" 
+				   Loaded="OnLoaded"
+				   StateChanged="OnStateChanged" 
+				   LocationChanged="Window_LocationChanged" 
+                   MinHeight="700"
+				   Unloaded="Window_Unloaded" Icon="Resources/vatrp.ico"
+				   Background="White"
+				   >
+	<model:VATRPWindow.Resources>
+		<conv:BoolToVisibilityConverter x:Key="bvc"/>
+		<conv:BoolToVisibilityConverter x:Key="ibvc" OppositeBooleanValue="True"/>
+        <conv:IntToVisibilityConverter x:Key="oivc" OppositeBooleanValue="True"/>
+        <Storyboard x:Key="SlideUpAnimation" BeginTime="0:0:0.1" Completed="SlideUpCompleted">
+            <DoubleAnimation Storyboard.TargetName="DialpadTransform" Storyboard.TargetProperty="Y" To="0"  
+                                 Duration="0:0:0.2" AccelerationRatio="0.7" DecelerationRatio="0.3"/>
+        </Storyboard>
+        <Storyboard x:Key="SlideDownAnimation" BeginTime="0:0:0.1" Completed="SlideDownCompleted">
+            <DoubleAnimation Storyboard.TargetName="DialpadTransform" Storyboard.TargetProperty="Y" To="350" 
+                                 Duration="0:0:0.2" AccelerationRatio="0.7" DecelerationRatio="0.3"/>
+        </Storyboard>
+        
+        <Storyboard x:Key="SlideMenuUpAnimation" BeginTime="0:0:0.1" Completed="SlideMenuUpCompleted">
+            <DoubleAnimation Storyboard.TargetName="MenuTransform" Storyboard.TargetProperty="Y" To="0"  
+                                 Duration="0:0:0.2" AccelerationRatio="0.7" DecelerationRatio="0.3"/>
+        </Storyboard>
+        <Storyboard x:Key="SlideMenuDownAnimation" BeginTime="0:0:0.1" Completed="SlideMenuDownCompleted">
+            <DoubleAnimation Storyboard.TargetName="MenuTransform" Storyboard.TargetProperty="Y" To="200" 
+                                 Duration="0:0:0.2" AccelerationRatio="0.7" DecelerationRatio="0.3"/>
+        </Storyboard>
+    </model:VATRPWindow.Resources>
+
+    <Grid x:Name="LayoutGrid" Background="{DynamicResource AppMainWindowBrush}">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="Auto"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="1"></RowDefinition>
+			<RowDefinition Height="Auto"></RowDefinition>
+		</Grid.RowDefinitions>
+		<Menu IsMainMenu="True" Height="27" HorizontalAlignment="Left" x:Name="WndMenu" VerticalAlignment="Top" Width="Auto" 
+			  Background="{DynamicResource AppMainWindowBrush}" Foreground="White" Grid.Column="0" 
+              Visibility="{Binding IsInCallFullScreen, Converter={StaticResource ibvc}}"
+              >
+			<MenuItem x:Name="VATRPItem" Header="_VATRP" Background="{DynamicResource AppMainWindowBrush}" Foreground="White" Click="VATRPItem_Click">
+                <MenuItem Header="_My Account" Name="MyAccountMenuItem" Background="{DynamicResource AppMainWindowBrush}" Foreground="White" Click="OnMyAccount" IsEnabled="False"/>
+<!--                <MenuItem Header="_Preferences" Background="{DynamicResource AppMainWindowBrush}" Foreground="White" Click="OnMyAccount"/>-->
+                <MenuItem Header="_Sync Contacts" Background="{DynamicResource AppMainWindowBrush}" Foreground="White" Click="OnSyncContacts"/>
+                <MenuItem Header="_Provide VATRP Feedback" Background="{DynamicResource AppMainWindowBrush}" Foreground="White" Click="OnProvideFeedback"/>
+				<MenuItem Header="_Check for Updates" Background="{DynamicResource AppMainWindowBrush}" Foreground="White" Click="OnCheckForUpdates"/>
+                <MenuItem Header="_Sign Out" Click="OnSignOutRequested" Background="{DynamicResource AppMainWindowBrush}" Foreground="White"/>
+                <MenuItem Header="_Hide VATRP" Background="{DynamicResource AppMainWindowBrush}" Foreground="White" Click="OnMinimize"/>
+				<!--<MenuItem Header="_Show All" Background="{DynamicResource AppMainWindowBrush}" Foreground="White"/> -->
+				<MenuItem Header="_Quit VATRP" Click="MQuit_Click" Background="{DynamicResource AppMainWindowBrush}" Foreground="White"/>
+			</MenuItem>
+			<MenuItem x:Name="ViewItem" Header="_View" Background="{DynamicResource AppMainWindowBrush}" Foreground="White">
+				<MenuItem Header="_Minimize" Background="{DynamicResource AppMainWindowBrush}" Foreground="White" Click="OnMinimize"/>
+				<MenuItem x:Name="SelfViewItem" Header="_Media Self-View" IsCheckable="True" Background="{DynamicResource AppMainWindowBrush}" 
+                          Foreground="White" Click="OnShowSelfView" IsEnabled="False"/>
+                <MenuItem Header="_Media Text Window" Background="{DynamicResource AppMainWindowBrush}" 
+                          Foreground="White" Name="ShowRTTView" Click="OnShowRTTView" IsCheckable="True" IsEnabled="{Binding IsRTTViewEnabled}" Visibility="Collapsed"/>
+                <MenuItem x:Name="ShowSelfPreviewItem" Header="_Show Self Preview" IsCheckable="True" Background="{DynamicResource AppMainWindowBrush}" 
+                          Foreground="White" Click="OnShowPreviewWindow" Visibility="Collapsed"/>
+                <MenuItem x:Name="ShowMessagingViewItem" Header="_Show Messaging View" IsCheckable="True" Background="{DynamicResource AppMainWindowBrush}" 
+                          Foreground="White" Click="OnShowMessagingWindow" IsEnabled="{Binding IsAccountLogged}" Visibility="Collapsed"/>
+
+                <!--<MenuItem Header="_" Background="{DynamicResource AppMainWindowBrush}" Foreground="White"/>-->
+				<!--<MenuItem x:Name="DialpadItem" Header="_DialPad Window" IsCheckable="True" Background="{DynamicResource AppMainWindowBrush}" Foreground="White"/>-->
+				<!--<MenuItem x:Name="RegistrationStatusItem" Header="_Registration Status" IsCheckable="True" Background="{DynamicResource AppMainWindowBrush}" Foreground="White"/>-->
+				<!--<MenuItem x:Name="ContactsWindowItem" Header="_Contact Window" IsCheckable="True" Background="{DynamicResource AppMainWindowBrush}" Foreground="White"/>-->
+			</MenuItem>
+			<MenuItem x:Name="VideoItem" Header="_Video" Background="{DynamicResource AppMainWindowBrush}" Foreground="White">
+				<MenuItem Header="_Hide Window" Background="{DynamicResource AppMainWindowBrush}" Foreground="White" Click="OnHideWindow"/>
+                <!-- removing for VATRP-1062
+				<MenuItem Header="_Volume" Background="{DynamicResource AppMainWindowBrush}" Foreground="White"/>
+                -->
+				<MenuItem Header="_Enter Full" Background="{DynamicResource AppMainWindowBrush}" Foreground="White" Click="OnEnterFullScreen" Name="EnterFullScreenCheckBox" IsCheckable="True"/>
+			</MenuItem>
+			<MenuItem x:Name="AudioItem" Header="_Audio" Background="{DynamicResource AppMainWindowBrush}" Foreground="White" SubmenuOpened="OnAudioMenuItemOpened">
+				<MenuItem Header="_Mute Microphone" Background="{DynamicResource AppMainWindowBrush}" Foreground="White"
+                          Click="OnMuteMicrophone" Name="MuteMicrophoneCheckbox" IsCheckable="True" IsEnabled="False"/>
+				<!-- Commenting these out instead of removing in case we put them back  in
+                <MenuItem Header="_Increase Volume" Background="{DynamicResource AppMainWindowBrush}" Foreground="White"/>
+				<MenuItem Header="_Decrease Volume" Background="{DynamicResource AppMainWindowBrush}" Foreground="White"/>
+				<MenuItem Header="_Speaker" Background="{DynamicResource AppMainWindowBrush}" Foreground="White"/>
+                -->
+			</MenuItem>
+			<MenuItem x:Name="EditItem" Header="_Edit"  Background="{DynamicResource AppMainWindowBrush}" Foreground="White" Visibility="Collapsed">
+                <MenuItem Header="_New"  Background="{DynamicResource AppMainWindowBrush}" Foreground="White" Visibility="Collapsed"/>
+                <MenuItem Header="_Edit Profile" Background="{DynamicResource AppMainWindowBrush}" Foreground="White" Visibility="Collapsed"/>
+                <MenuItem Header="_Close Window" Background="{DynamicResource AppMainWindowBrush}" Foreground="White" Visibility="Collapsed"/>
+                <MenuItem Header="_Change" Background="{DynamicResource AppMainWindowBrush}" Foreground="White" Visibility="Collapsed"/>
+
+			</MenuItem>
+			<MenuItem x:Name="HelpItem" Header="_Help"  Background="{DynamicResource AppMainWindowBrush}" Foreground="White">
+				<MenuItem Header="_About VATRP" Click="OnAboutClicked" Background="{DynamicResource AppMainWindowBrush}" Foreground="White"/>
+				<!-- Post Beta <MenuItem Header="_Learn about" Background="{DynamicResource AppMainWindowBrush}" Foreground="White"/> -->
+				<MenuItem Header="_Go to Support" Background="{DynamicResource AppMainWindowBrush}" Foreground="White" Click="OnGoToSupport"/>
+				<MenuItem Header="_Welcome Tour (Coming Soon)" Background="{DynamicResource AppMainWindowBrush}" Foreground="White" IsEnabled="False"/>
+				<MenuItem Header="_Privacy Policy" Background="{DynamicResource AppMainWindowBrush}" Foreground="White" IsEnabled="False"/>
+			</MenuItem>
+		</Menu>
+
+		<Grid x:Name="AccountServiceHolder" Grid.Row="1" 
+			  Visibility="{Binding IsAccountLogged, Converter={StaticResource ibvc}}"
+			  Grid.Column="0"
+			  >
+            <DockPanel x:Name="WizardPagepanel" Dock="Top" Visibility="{Binding ActivateWizardPage, Converter={StaticResource bvc}}" Grid.Row="0"/>
+			<StackPanel x:Name="ServiceSelector" Visibility="{Binding OfferServiceSelection, Converter={StaticResource bvc}}" Grid.Row="0">
+				<Label Content="VATRP" FontSize="28" FontWeight="Bold"  HorizontalAlignment="Center" Margin="0, 30,0, 0"/>
+				<Label Content="Let's Get Started..." FontSize="16"  HorizontalAlignment="Center" Margin="0, 10,0, 0"/>
+				<Label Content="Which Service do you use the most?" FontSize="16"  HorizontalAlignment="Center" Margin="0, 5,0, 0"/>
+				<Button Margin="20,5" Height="40" FontSize="18" Content="Video Relay Service" FontWeight="SemiBold" Click="OnVideoRelaySelect"/>
+				<Button Margin="20,5" Height="40" FontSize="18" Content="IP-Relay" FontWeight="SemiBold" Click="onIPRelaySelect"/>
+				<Button Margin="20,5, 20, 30" Height="40" FontSize="18" Content="IP-CTS" FontWeight="SemiBold" Click="onIPCTSSelect"/>
+			</StackPanel>
+		</Grid>
+
+        <Grid x:Name="ActivityViewHolder" Grid.Row="1" Grid.Column="0" Visibility="{Binding IsDashboardDocked, Converter={StaticResource bvc}}" >
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Border x:Name="LocalContactPanel" Grid.Row="0" Background="{DynamicResource AppMainWindowBrush}">
+				<customControls:LocalContactPanel x:Name="ctrlLocalContact" Height="Auto" Width="Auto" Margin="0"/>
+			</Border>
+
+			<Border x:Name="ContactsPaneHolder" Grid.Row="1" Visibility="{Binding IsContactDocked, Converter={StaticResource bvc}}"
+                    VerticalAlignment="Stretch">
+                <customControls:ContactListCtrl x:Name="ctrlContacts"  Margin="0" VerticalAlignment="Stretch"/>
+            </Border>
+            <Border x:Name="HistoryPaneHolder" Grid.Row="1"  Visibility="{Binding IsCallHistoryDocked, Converter={StaticResource bvc}}" 
+                    VerticalAlignment="Stretch" >
+                <customControls:CallLogCtrl x:Name="ctrlHistory"  Margin="0" VerticalAlignment="Stretch"/>
+			</Border>
+<!--            <Border x:Name="SettingsPaneHolder" Grid.Row="1"  Visibility="{Binding IsSettingsDocked, Converter={StaticResource bvc}}" 
+                    VerticalAlignment="Stretch" >
+                <unifiedSettings:UnifiedSettingsCtrl x:Name="ctrlSettings"  Margin="0" VerticalAlignment="Stretch"/>
+            </Border>-->
+            <Border x:Name="ResourcesPaneHolder" Grid.Row="1"  Visibility="{Binding IsResourceDocked, Converter={StaticResource bvc}}" 
+                    VerticalAlignment="Stretch" >
+                <resourceControls:ResourcePanel x:Name="ctrlResource"  Margin="0" VerticalAlignment="Stretch"/>
+            </Border>
+
+            <Grid x:Name="DialpadBackground" Grid.Row="2" Grid.Column="0" Height="{Binding DialpadHeight}"/>
+        </Grid>
+
+        <Grid x:Name="DialpadViewHolder" Grid.Row="1" Grid.Column="0" Visibility="{Binding IsDashboardDocked, Converter={StaticResource bvc}}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="DialpadHolder" Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom"
+		 Height="Auto">
+                <Grid.RenderTransform>
+                    <TranslateTransform x:Name="DialpadTransform" Y="350"/>
+                </Grid.RenderTransform>
+                <customControls:DialPadScreen x:Name="ctrlDialpad" Margin="0" />
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="MoreMenuViewHolder" Grid.Row="1" Grid.Column="0" Visibility="{Binding IsDashboardDocked, Converter={StaticResource bvc}}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="MoreMenuCtrl" Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" Width="220" HorizontalAlignment="Right"
+		 Height="Auto">
+                <Grid.RenderTransform>
+                    <TranslateTransform x:Name="MenuTransform" Y="200"/>
+                </Grid.RenderTransform>
+                <customControls:MoreMenuCtrl x:Name="ctrlMoreMenu" Margin="0" />
+            </Grid>
+        </Grid>
+
+        <!--Navigation panel-->
+        <Grid x:Name="NavPanel" Margin="0" Grid.Row="3" Grid.Column="0" Visibility="{Binding IsDashboardDocked, Converter={StaticResource bvc}}" Height="50" Background="{StaticResource AppMainWindowBrush}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="75" />
+				<ColumnDefinition Width="75" />
+				<ColumnDefinition Width="75" />
+                <!-- Hide Chat Button-->
+				<ColumnDefinition Width="0" />
+				<ColumnDefinition Width="75" />
+			</Grid.ColumnDefinitions>
+            <ToggleButton x:Name="BtnRecents" Grid.Column="0" IsChecked="{Binding IsCallHistoryDocked}"
+						  Click="btnRecents_Click" Height="60" Width="75" 
+						  HorizontalAlignment="Stretch" VerticalAlignment="Center">
+				<ToggleButton.Resources>
+					<Grid x:Key="RecentsHover" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Rectangle  Fill="{StaticResource NavigationBarPressedButtonBg}" Grid.Row="0" Grid.RowSpan="2">
+
+                        </Rectangle>
+                        <Rectangle Width="28" Height="28" Margin="0,10,0,0" Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="Resources\recents.png" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <TextBlock HorizontalAlignment="Center" Text="History" Grid.Row="1" FontSize="10" VerticalAlignment="Top" Margin ="0,7" Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+                    </Grid>
+                    <Grid x:Key="RecentsPressed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Rectangle  Fill="{StaticResource NavigationBarPressedButtonBg}" Grid.Row="0" Grid.RowSpan="2">
+
+                        </Rectangle>
+                        <Rectangle Width="28" Height="28" Margin="0,10,0,0" Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="Resources\recents.png" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <TextBlock HorizontalAlignment="Center" Text="History" Grid.Row="1" FontSize="10" VerticalAlignment="Top" Margin ="0,7" Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+                    </Grid>
+                    <Grid x:Key="RecentsNormal">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+						<Rectangle  Fill="{StaticResource NavigationBarNormalButtonBg}" Grid.Row="0" Grid.RowSpan="2">
+
+						</Rectangle>
+                        <Rectangle Width="28" Height="28" Margin="0,10,0,0" Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+							<Rectangle.OpacityMask>
+								<ImageBrush ImageSource="Resources\recents.png" />
+							</Rectangle.OpacityMask>
+						</Rectangle>
+                        <TextBlock HorizontalAlignment="Center" Text="History" Grid.Row="1" FontSize="10" VerticalAlignment="Top" Margin ="0,7" Foreground="{StaticResource NavigationBarNormalButtonFont}"></TextBlock>
+					</Grid>
+				</ToggleButton.Resources>
+				<ToggleButton.Style>
+					<Style TargetType="{x:Type ToggleButton}">
+						<Setter Property="Opacity" Value="1" />
+						<Setter Property="BorderThickness" Value="0" />
+						<Setter Property="Padding" Value="0" />
+						<Setter Property="Margin" Value="0" />
+						<Setter Property="SnapsToDevicePixels" Value="True"/>
+						<Setter Property="VerticalAlignment" Value="Center"/>
+						<Setter Property="HorizontalAlignment" Value="Center"/>
+						<Setter Property="Content" Value="{StaticResource RecentsNormal}" />
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="{x:Type ToggleButton}">
+									<Grid Background="Transparent">
+
+										<Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="0" Margin="0">
+											<ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+										</Border>
+									</Grid>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+						<Style.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Content" Value="{StaticResource RecentsHover}" />
+							</Trigger>
+							<Trigger Property="IsChecked" Value="True">
+								<Setter Property="Content" Value="{StaticResource RecentsPressed}" />
+							</Trigger>
+
+							<MultiDataTrigger>
+								<MultiDataTrigger.Conditions>
+									<Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
+									<Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True"/>
+								</MultiDataTrigger.Conditions>
+
+								<Setter Property="Opacity" Value="0.7"/>
+								<Setter Property="Content" Value="{StaticResource RecentsPressed}"/>
+							</MultiDataTrigger>
+						</Style.Triggers>
+					</Style>
+				</ToggleButton.Style>
+			</ToggleButton>
+            <Border Width="20" Height="20" CornerRadius="10" Grid.Column="0" HorizontalAlignment="Right" 
+                    VerticalAlignment="Top" Background="#ffFF0000" Margin="0,1,0,0" 
+                    Visibility="{Binding UIMissedCallsCount, Converter={StaticResource oivc}}" >
+                <TextBlock Text="{Binding UIMissedCallsCount}" 
+                           VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0"
+                           FontSize="12" Foreground="White" />
+            </Border>
+
+            <ToggleButton x:Name="BtnContacts" Grid.Column="1" Click="btnContacts_Click" Height="60" Width="75" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding IsContactDocked}">
+				<ToggleButton.Resources>
+					<Grid x:Key="ContactsHover" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Rectangle  Fill="{StaticResource NavigationBarPressedButtonBg}" Grid.Row="0" Grid.RowSpan="2">
+
+                        </Rectangle>
+                        <Rectangle Width="28" Height="28" Margin="0,10,0,0" Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="Resources\contacts.png" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <TextBlock Text="Contacts" HorizontalAlignment="Center" Grid.Row="1" FontSize="10" VerticalAlignment="Top" Margin ="0,7" Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+                    </Grid>
+					<Grid x:Key="ContactsPressed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Rectangle  Fill="{StaticResource NavigationBarPressedButtonBg}" Grid.Row="0" Grid.RowSpan="2">
+
+                        </Rectangle>
+                        <Rectangle Width="28" Height="28" Margin="0,10,0,0" Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="Resources\contacts.png" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <TextBlock Text="Contacts" HorizontalAlignment="Center" Grid.Row="1" FontSize="10" VerticalAlignment="Top" Margin ="0,7" Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+
+                    </Grid>
+					<Grid x:Key="ContactsNormal">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Rectangle  Fill="{StaticResource NavigationBarNormalButtonBg}" Grid.Row="0" Grid.RowSpan="2">
+
+                        </Rectangle>
+                        <Rectangle Width="28" Height="28" Margin="0,10,0,0" Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="Resources\contacts.png" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <TextBlock Text="Contacts" HorizontalAlignment="Center" Grid.Row="1" FontSize="10" VerticalAlignment="Top" Margin ="0,7" Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+
+                    </Grid>
+				</ToggleButton.Resources>
+				<ToggleButton.Style>
+					<Style TargetType="{x:Type ToggleButton}">
+						<Setter Property="Opacity" Value="1" />
+						<Setter Property="BorderThickness" Value="0" />
+						<Setter Property="Padding" Value="0" />
+						<Setter Property="Margin" Value="0" />
+						<Setter Property="SnapsToDevicePixels" Value="True"/>
+						<Setter Property="VerticalAlignment" Value="Center"/>
+						<Setter Property="HorizontalAlignment" Value="Center"/>
+						<Setter Property="Content" Value="{StaticResource ContactsNormal}" />
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="{x:Type ToggleButton}">
+									<Grid Background="Transparent">
+
+										<Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="0" Margin="0">
+											<ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+										</Border>
+									</Grid>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+						<Style.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Content" Value="{StaticResource ContactsHover}" />
+							</Trigger>
+							<Trigger Property="IsChecked" Value="True">
+								<Setter Property="Content" Value="{StaticResource ContactsPressed}" />
+							</Trigger>
+
+							<MultiDataTrigger>
+								<MultiDataTrigger.Conditions>
+									<Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
+									<Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True"/>
+								</MultiDataTrigger.Conditions>
+
+								<Setter Property="Opacity" Value="0.7"/>
+								<Setter Property="Content" Value="{StaticResource ContactsPressed}"/>
+							</MultiDataTrigger>
+						</Style.Triggers>
+					</Style>
+				</ToggleButton.Style>
+			</ToggleButton>
+            
+            <ToggleButton x:Name="BtnDialpad" Grid.Column="2" Click="btnDialpad_Click" Height="60" Width="75" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding IsDialpadDocked}">
+				<ToggleButton.Resources>
+					<Grid x:Key="DialpadHover" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Rectangle  Fill="{StaticResource NavigationBarPressedButtonBg}" Grid.Row="0" Grid.RowSpan="2">
+
+                        </Rectangle>
+                        <Rectangle Width="25" Height="31" Margin="0,10,0,0" Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="Resources\Dialpad.png" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <TextBlock Text="Dialpad" HorizontalAlignment="Center" Grid.Row="1" FontSize="10" VerticalAlignment="Top" Margin ="0,7" Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+                    </Grid>
+					<Grid x:Key="DialpadPressed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Rectangle  Fill="{StaticResource NavigationBarPressedButtonBg}" Grid.Row="0" Grid.RowSpan="2">
+
+                        </Rectangle>
+                        <Rectangle Width="25" Height="31" Margin="0,10,0,0" Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="Resources\Dialpad.png" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <TextBlock Text="Dialpad" HorizontalAlignment="Center" Grid.Row="1" FontSize="10" VerticalAlignment="Top" Margin ="0,7" Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+
+                    </Grid>
+					<Grid x:Key="DialpadNormal">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Rectangle  Fill="{StaticResource NavigationBarNormalButtonBg}" Grid.Row="0" Grid.RowSpan="2">
+
+                        </Rectangle>
+                        <Rectangle Width="25" Height="31" Margin="0,10,0,0" Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="Resources\Dialpad.png" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <TextBlock Text="Dialpad" HorizontalAlignment="Center" Grid.Row="1" FontSize="10" VerticalAlignment="Top" Margin ="0,7" Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+                    </Grid>
+				</ToggleButton.Resources>
+
+				<ToggleButton.Style>
+					<Style TargetType="{x:Type ToggleButton}">
+						<Setter Property="Opacity" Value="1" />
+						<Setter Property="BorderThickness" Value="0" />
+						<Setter Property="Padding" Value="0" />
+						<Setter Property="Margin" Value="0" />
+						<Setter Property="SnapsToDevicePixels" Value="True"/>
+						<Setter Property="VerticalAlignment" Value="Center"/>
+						<Setter Property="HorizontalAlignment" Value="Center"/>
+						<Setter Property="Content" Value="{StaticResource DialpadNormal}" />
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="{x:Type ToggleButton}">
+									<Grid Background="Transparent">
+
+										<Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="0" Margin="0">
+											<ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+										</Border>
+									</Grid>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+						<Style.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Content" Value="{StaticResource DialpadHover}" />
+							</Trigger>
+							<Trigger Property="IsChecked" Value="True">
+								<Setter Property="Content" Value="{StaticResource DialpadPressed}" />
+							</Trigger>
+
+							<MultiDataTrigger>
+								<MultiDataTrigger.Conditions>
+									<Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
+									<Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True"/>
+								</MultiDataTrigger.Conditions>
+
+								<Setter Property="Opacity" Value="0.7"/>
+								<Setter Property="Content" Value="{StaticResource DialpadPressed}"/>
+							</MultiDataTrigger>
+						</Style.Triggers>
+					</Style>
+				</ToggleButton.Style>
+
+			</ToggleButton>
+   
+            <ToggleButton x:Name="BtnChatView" Grid.Column="3" Click="btnShowChatClicked" Height="60" Width="60" 
+                          HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding IsChatViewEnabled}" TabIndex="-1">
+				<ToggleButton.Resources>
+					<Grid x:Key="ChatViewHover" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Rectangle  Fill="{StaticResource NavigationBarPressedButtonBg}" Grid.Row="0" Grid.RowSpan="2">
+
+                        </Rectangle>
+                        <Rectangle Width="32" Height="28" Margin="0,10,0,0" Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="Resources\chat.png" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <TextBlock Text="Chat" HorizontalAlignment="Center" Grid.Row="1" FontSize="10" VerticalAlignment="Top" Margin ="0,7" Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+
+                    </Grid>
+					<Grid x:Key="ChatViewPressed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Rectangle  Fill="{StaticResource NavigationBarPressedButtonBg}" Grid.Row="0" Grid.RowSpan="2">
+
+                        </Rectangle>
+                        <Rectangle Width="32" Height="28" Margin="0,10,0,0" Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="Resources\chat.png" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <TextBlock Text="Chat" HorizontalAlignment="Center" Grid.Row="1" FontSize="10" VerticalAlignment="Top" Margin ="0,7" Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+                    </Grid>
+					<Grid x:Key="ChatViewNormal">
+						<Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Rectangle  Fill="{StaticResource NavigationBarNormalButtonBg}" Grid.Row="0" Grid.RowSpan="2">
+
+                        </Rectangle>
+                        <Rectangle Width="32" Height="28" Margin="0,10,0,0" Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="Resources\chat.png" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <TextBlock Text="Chat" HorizontalAlignment="Center" Grid.Row="1" FontSize="10" VerticalAlignment="Top" Margin ="0,7" Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+
+                    </Grid>
+				</ToggleButton.Resources>
+
+				<ToggleButton.Style>
+					<Style TargetType="{x:Type ToggleButton}">
+						<Setter Property="Opacity" Value="1" />
+						<Setter Property="BorderThickness" Value="0" />
+						<Setter Property="Padding" Value="0" />
+						<Setter Property="Margin" Value="0" />
+						<Setter Property="SnapsToDevicePixels" Value="True"/>
+						<Setter Property="VerticalAlignment" Value="Center"/>
+						<Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="Content" Value="{StaticResource ChatViewNormal}" />
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="{x:Type ToggleButton}">
+									<Grid Background="Transparent">
+
+										<Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="0" Margin="0">
+											<ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+										</Border>
+									</Grid>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+						<Style.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Content" Value="{StaticResource ChatViewHover}" />
+							</Trigger>
+							<Trigger Property="IsChecked" Value="True">
+								<Setter Property="Content" Value="{StaticResource ChatViewPressed}" />
+							</Trigger>
+
+							<MultiDataTrigger>
+								<MultiDataTrigger.Conditions>
+									<Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
+									<Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True"/>
+								</MultiDataTrigger.Conditions>
+
+								<Setter Property="Opacity" Value="0.7"/>
+								<Setter Property="Content" Value="{StaticResource ChatViewPressed}"/>
+							</MultiDataTrigger>
+						</Style.Triggers>
+					</Style>
+				</ToggleButton.Style>
+			</ToggleButton>
+
+            <Border Width="20" Height="20" CornerRadius="10" Grid.Column="3" HorizontalAlignment="Right" 
+                    VerticalAlignment="Top" Background="#ffFF0000" Margin="0,1,0,0" 
+                    Visibility="{Binding HasUnreadMessages, Converter={StaticResource bvc}}" >
+                <TextBlock Text="!" FontWeight="Bold" 
+                           VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0"
+                           FontSize="12" Foreground="White" />
+            </Border>
+
+            <ToggleButton x:Name="BtnMoreMenu" Grid.Column="4" Click="btnMoreMenuClicked" Height="60" Width="75" HorizontalAlignment="Center" 
+                          VerticalAlignment="Center" IsChecked="{Binding IsMenuDocked}">
+				<ToggleButton.Resources>
+					<Grid x:Key="SettingsHover" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Rectangle  Fill="{StaticResource NavigationBarPressedButtonBg}" Grid.Row="0" Grid.RowSpan="2"/>
+                        <Rectangle Width="32" Height="9" Margin="0,20,0,0" Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="Resources\more.png" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <TextBlock Text="More" HorizontalAlignment="Center" Grid.Row="1" FontSize="10" 
+                                   VerticalAlignment="Top" Margin ="0,7" 
+                                   Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+                    </Grid>
+					<Grid x:Key="SettingsPressed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Rectangle  Fill="{StaticResource NavigationBarPressedButtonBg}" Grid.Row="0" Grid.RowSpan="2"/>
+                        <Rectangle Width="32" Height="9" Margin="0,20,0,0" Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="Resources\more.png" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <TextBlock Text="More" HorizontalAlignment="Center" Grid.Row="1" FontSize="10" VerticalAlignment="Top" Margin ="0,7" Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+                    </Grid>
+					<Grid x:Key="SettingsNormal">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Rectangle  Fill="{StaticResource NavigationBarNormalButtonBg}" Grid.Row="0" Grid.RowSpan="2">
+
+                        </Rectangle>
+                        <Rectangle Width="32" Height="9" Margin="0,20,0,0" Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="Resources\more.png" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        <TextBlock Text="More" HorizontalAlignment="Center" Grid.Row="1" FontSize="10" VerticalAlignment="Top" Margin ="0,7" Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+
+                    </Grid>
+				</ToggleButton.Resources>
+
+				<ToggleButton.Style>
+					<Style TargetType="{x:Type ToggleButton}">
+						<Setter Property="Opacity" Value="1" />
+						<Setter Property="BorderThickness" Value="0" />
+						<Setter Property="Padding" Value="0" />
+						<Setter Property="Margin" Value="0" />
+						<Setter Property="SnapsToDevicePixels" Value="True"/>
+						<Setter Property="VerticalAlignment" Value="Center"/>
+						<Setter Property="HorizontalAlignment" Value="Center"/>
+						<Setter Property="Content" Value="{StaticResource SettingsNormal}" />
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="{x:Type ToggleButton}">
+									<Grid Background="Transparent">
+
+										<Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="0" Margin="0">
+											<ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+										</Border>
+									</Grid>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+						<Style.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Content" Value="{StaticResource SettingsHover}" />
+							</Trigger>
+							<Trigger Property="IsChecked" Value="True">
+								<Setter Property="Content" Value="{StaticResource SettingsPressed}" />
+							</Trigger>
+
+							<MultiDataTrigger>
+								<MultiDataTrigger.Conditions>
+									<Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
+									<Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True"/>
+								</MultiDataTrigger.Conditions>
+
+								<Setter Property="Opacity" Value="0.7"/>
+								<Setter Property="Content" Value="{StaticResource SettingsPressed}"/>
+							</MultiDataTrigger>
+						</Style.Triggers>
+					</Style>
+				</ToggleButton.Style>
+			</ToggleButton>
+
+            <Image Width="20" Height="20" Grid.Column="4" HorizontalAlignment="Right" 
+                    VerticalAlignment="Top"  Margin="0,1,0,0" 
+                   Source="Resources/videomail.png"
+                    Visibility="{Binding ShowVideomailIndicator, Converter={StaticResource bvc}}" >
+            </Image>
+
+        </Grid>
+
+        <Border x:Name="CallViewBorder" Grid.Column="1" Grid.Row="0" Grid.RowSpan="4" BorderThickness="1,0,1,0" Margin="0" BorderBrush="{StaticResource AppMainBorderBrush}" 
+                Background="{StaticResource AppMainBorderBrush}" 
+                Visibility="{Binding IsCallPanelDocked, Converter={StaticResource bvc}}">
+        <DockPanel Dock="Top"  Background="{DynamicResource AppMainWindowBrush}" >
+                <customControls:CallViewCtrl x:Name="ctrlCall" Margin="0"/>
+            </DockPanel>
+        </Border>
+        <Border x:Name="MessageViewBorder" Grid.Column="2" Grid.Row="0" Grid.RowSpan="4" BorderThickness="1,0,1,0" Margin="0" BorderBrush="{StaticResource AppMainBorderBrush}" 
+                Background="{StaticResource AppMainBorderBrush}" 
+                Visibility="{Binding IsMessagingDocked, Converter={StaticResource bvc}}">
+            <DockPanel Dock="Top" Background="{DynamicResource AppMainWindowBrush}" >
+            <customControls:RTTCtrl x:Name="ctrlRTT" Margin="0"/>
+            </DockPanel>
+        </Border>
+<!--        <Border x:Name="ResourcePaneHolder" Grid.Row="1"  Visibility="{Binding IsResourceDocked, Converter={StaticResource bvc}}" 
+                    VerticalAlignment="Stretch" >
+<!- -            <Border Grid.Column="2" Grid.Row="0" Grid.RowSpan="4" BorderThickness="1,0,1,0" Margin="0" 
+                    BorderBrush="{StaticResource AppMainBorderBrush}" Background="{StaticResource AppMainBorderBrush}" Visibility="{Binding IsResourceDocked, Converter={StaticResource bvc}}">-  ->
+            <DockPanel Dock="Top" Background="{DynamicResource AppMainWindowBrush}" >
+                <customControls:ResourcePanel x:Name="ctrlResources" Margin="0"/>
+            </DockPanel>
+        </Border>
+-->
+    </Grid>
+</model:VATRPWindow>

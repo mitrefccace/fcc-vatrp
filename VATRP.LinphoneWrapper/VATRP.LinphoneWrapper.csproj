@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{29E0CC8F-232A-4CB6-89C1-C3F6C7453B36}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VATRP.LinphoneWrapper</RootNamespace>
+    <AssemblyName>VATRP.LinphoneWrapper</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Developer|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Developer\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net45\CommonServiceLocator.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism, Version=7.1.0.431, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.7.1.0.431\lib\net45\Prism.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=7.1.0.431, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.7.1.0.431\lib\net45\Prism.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.7.1.0.431\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enums\LinphoneFriendListStatus.cs" />
+    <Compile Include="Enums\LinphoneFriendListSyncStatus.cs" />
+    <Compile Include="Enums\LinphoneChatMessageState.cs" />
+    <Compile Include="Enums\LinphoneReason.cs" />
+    <Compile Include="Enums\LinphoneMediaEncryption.cs" />
+    <Compile Include="Enums\LinphoneIceState.cs" />
+    <Compile Include="Enums\LinphoneAVPFMode.cs" />
+    <Compile Include="Enums\LinphoneCallStatus.cs" />
+    <Compile Include="Enums\LinphoneCallDir.cs" />
+    <Compile Include="Enums\LinphoneFirewallPolicy.cs" />
+    <Compile Include="Enums\LinphoneMediaDirection.cs" />
+    <Compile Include="Enums\LinphoneGlobalState.cs" />
+    <Compile Include="Enums\LinphoneCallState.cs" />
+    <Compile Include="Enums\LinphoneRegistrationState.cs" />
+    <Compile Include="Enums\LinphoneRTCPMode.cs" />
+    <Compile Include="Enums\LinphoneSubscriptionState.cs" />
+    <Compile Include="Enums\LinphoneTransportType.cs" />
+    <Compile Include="Enums\MSVideoSize.cs" />
+    <Compile Include="Enums\OrtpLogLevel.cs" />
+    <Compile Include="LinphoneAPI.CardDav.cs">
+      <DependentUpon>LinphoneAPI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LinphoneAPI.Address.cs">
+      <DependentUpon>LinphoneAPI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LinphoneAPI.Contacts.cs">
+      <DependentUpon>LinphoneAPI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LinphoneAPI.cs" />
+    <Compile Include="LinphoneAPI.Content.cs">
+      <DependentUpon>LinphoneAPI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LinphoneAPI.Config.cs">
+      <DependentUpon>LinphoneAPI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LinphoneAPI.Info.cs">
+      <DependentUpon>LinphoneAPI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LinphoneAPI.MsList.cs">
+      <DependentUpon>LinphoneAPI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LinphoneAPI.Events.cs">
+      <DependentUpon>LinphoneAPI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LinphoneAPI.Error.cs">
+      <DependentUpon>LinphoneAPI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LinphoneAPI.QoS.cs">
+      <DependentUpon>LinphoneAPI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LinphoneAPI.Devices.cs">
+      <DependentUpon>LinphoneAPI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LinphoneAPI.VCard.cs">
+      <DependentUpon>LinphoneAPI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Structs\JitterStats.cs" />
+    <Compile Include="Structs\LCSipTransports.cs" />
+    <Compile Include="Structs\LinphoneCallStats.cs" />
+    <Compile Include="Structs\LinphoneCoreVTable.cs" />
+    <Compile Include="Structs\LinphoneVideoPolicy.cs" />
+    <Compile Include="Structs\MSList.cs" />
+    <Compile Include="Structs\MSVideoSizeDef.cs" />
+    <Compile Include="Structs\PayloadType.cs" />
+    <Compile Include="Structs\PayloadTypeAvpfParams.cs" />
+    <Compile Include="Structs\RtpStats.cs" />
+    <Compile Include="Structs\LinphoneCardDAVStats.cs" />
+    <Compile Include="Win32NativeAPI.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>set VERSION_FILE=$(ProjectDir)\..\VersionInfo.cs
+     if !%25vatrpVersion%25==! goto no_buildnumber_set
+     goto buildnumber_set
+     :no_buildnumber_set
+     set vatrpVersion=0.0.62.0
+     :buildnumber_set
+     if not exist %25VERSION_FILE%25 goto no_version_file
+     del /q %25VERSION_FILE%25
+     :no_version_file
+     echo using System.Reflection; &gt;&gt; %25VERSION_FILE%25
+     echo using System.Runtime.CompilerServices; &gt;&gt; %25VERSION_FILE%25
+     echo using System.Runtime.InteropServices; &gt;&gt; %25VERSION_FILE%25
+     echo [assembly: AssemblyVersion("%25vatrpVersion%25")] &gt;&gt; %25VERSION_FILE%25
+     echo [assembly: AssemblyFileVersion("%25vatrpVersion%25")] &gt;&gt; %25VERSION_FILE%25</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

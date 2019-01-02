@@ -1,0 +1,397 @@
+﻿<!-- 
+Copyright © The MITRE Corporation.
+ 
+This program is licensed under the terms of the GNU General Public License Version 2, as published by the Free Software Foundation. This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  Please see the
+GNU General Public License for more details.
+ 
+This program or code contains content developed by The MITRE Corporation. If this program is used in a deployment or embedded within another project, MITRE requests that you send an email to opensource@mitre.org to let us know where and how this program is being used.
+ 
+NOTICE
+This (software/technical data) was produced for the U. S. Government under Contract Number HHSM-500-2012-00008I, and is subject to Federal Acquisition Regulation Clause 52.227-14, Rights in Data-General. No other use other than that granted to the U. S. Government, or to those acting on behalf of the U. S. Government under that Clause is authorized without the express written permission of The MITRE Corporation. For further information, please contact The MITRE Corporation, Contracts Management Office, 7515 Colshire Drive, McLean, VA  22102-7539, (703) 983-6000. 
+-->
+
+<model:VATRPWindow x:Class="com.vtcsecure.ace.windows.Views.MediaTextWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:model="clr-namespace:com.vtcsecure.ace.windows.Model"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:prop="clr-namespace:com.vtcsecure.ace.windows.Properties"
+		xmlns:converters="clr-namespace:com.vtcsecure.ace.windows.Converters"
+		mc:Ignorable="d"
+		d:DataContext="{d:DesignData Source=../SampleData/MessageViewSampleData.xaml}"
+		Title="Messaging" Height="600" Width="850"
+				   Background="{StaticResource AppMainWindowBrush}"
+				   Activated="Window_Activated" 
+				   Closing="Window_Closing" 
+				   StateChanged="Window_StateChanged" 
+				   LocationChanged="Window_LocationChanged" 
+				   SourceInitialized="Window_Initialized"
+				   Unloaded="Window_Unloaded"
+				   Icon="/VATRP;component/Resources/messages.png"
+				   >
+    <Window.Resources>
+        <converters:ContactSelectionToBrushConverter x:Key="csbc"/>
+        <converters:IntToVisibilityConverter x:Key="oivc" OppositeBooleanValue="True"/>
+        <converters:BoolToVisibilityConverter x:Key="bvc" OppositeBooleanValue="False"/>
+        <converters:BoolToBubbleColorConverter x:Key="bcolorc"/>
+        <converters:BoolToBubbleCornerConverter x:Key="bcornerc0" Radius="6.0"/>
+        <converters:BoolToBubbleCornerConverter x:Key="bcornerc1" Radius="6.0" Row="1"/>
+        <converters:BoolToBubbleMarginConverter x:Key="bmarginc"/>
+        <converters:MessageDeliveryStatusToBrushConverter x:Key="mdsb"/>
+        <converters:MessageDateConverter x:Key="mdc"/>
+        <converters:BoolToBubbleAlignmentConverter x:Key="BtbaText" OppositeBooleanValue="True" />
+        <converters:BoolToBubbleAlignmentConverter x:Key="BtbaTime" TrueEquivalent="Right" FalseEquivalent="Left" OppositeBooleanValue="True"/>
+        <converters:DirectionToVisibilityConverter x:Key="dvc"/>
+        <converters:DirectionToVisibilityConverter x:Key="odvc" OppositeBooleanValue="True"/>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row ="0" Background="{DynamicResource AppMainWindowBrush}" BorderBrush="{StaticResource AppMainBorderBrush}" 
+		   BorderThickness="1">
+
+                <Grid Style="{StaticResource HintEntryFieldStyle}" Margin="0" >
+                    <TextBlock  Text="Enter searching text" Foreground="{StaticResource ChatPageComposeHintFont}" FontSize="9" VerticalAlignment="Center" 
+								   HorizontalAlignment="Left" Margin="10,0,0,0"
+					   Visibility="{Binding ShowSearchHint, Converter={StaticResource bvc}}" />
+
+                    <TextBox  BorderThickness="0" Height="32" TextAlignment="Left"  
+                              Foreground="{StaticResource AppMainBorderBrush}" CaretBrush="White" FontSize="14"
+								 HorizontalAlignment="Stretch" Text="{Binding ContactSearchCriteria , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center"
+								 Background="Transparent" BorderBrush="{StaticResource ChatPageSelectContactTextBorder}"/>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row ="1" Background="{DynamicResource AppMainWindowBrush}"  BorderBrush="{StaticResource AppMainBorderBrush}" 
+		   BorderThickness="1">
+                <Grid >
+
+                    <ListBox x:Name ="ContactsList" Grid.Column="0" BorderThickness="0" 
+                             ItemsSource= "{Binding ContactsListView}" Margin="0" 
+                             SelectionChanged="OnChatSelected" 
+                             Background="Transparent" 
+                             HorizontalContentAlignment="Stretch" IsSynchronizedWithCurrentItem="True" 
+                             >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Background="{Binding IsSelected, Converter={StaticResource csbc}}" Margin="-2">
+                                    <Grid >
+                                        <Grid.ColumnDefinitions >
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Border Grid.Column="0" Grid.Row="0" Width="30" Height="30"
+										Margin="5" VerticalAlignment="Top" CornerRadius="15" Background="#FFCCCCCC" BorderThickness="0">
+                                            <TextBlock x:Name="UserInitial" Text="{Binding Contact.Initials}" Foreground="#ff4c4c4c" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            </TextBlock>
+                                        </Border>
+
+                                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="10, 0,0,0">
+                                            <TextBlock   Text="{Binding ContactUI}"
+								FontSize="14"  Foreground="#ff5e6366" FontWeight="SemiBold" HorizontalAlignment="Left" />
+                                        </StackPanel>
+                                        <Border Grid.Column="2" Grid.Row="0" Width="22" Height="22" CornerRadius="11" 
+                                            Background="{StaticResource NavigationBarPressedButtonBg}" 
+                                                Visibility="{Binding UnreadMsgCount, Converter={StaticResource oivc}, Mode=OneWay}">
+                                            
+                                            <TextBlock  FontSize="14"  Margin="0" FontWeight="SemiBold" 
+                                              HorizontalAlignment="Center"  Text="{Binding UnreadMsgCount}"  
+                                                        Foreground="{StaticResource AppMainWindowBrush}"
+                                                        VerticalAlignment="Center"  />
+                                        </Border>
+
+                                        
+                                    </Grid>
+                                    <Separator VerticalAlignment="Bottom" Margin="0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Border>
+        </Grid>
+        <Border Grid.Column ="1" Grid.Row ="0" Background="{StaticResource AppMainWindowBrush}" 
+                BorderBrush="{StaticResource AppMainBorderBrush}" 
+		   BorderThickness="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row ="0" Background="{StaticResource AppMainWindowBrush}" 
+                        BorderBrush="{StaticResource AppMainBorderBrush}" 
+		   BorderThickness="0,0,0,1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Style="{StaticResource HintEntryFieldStyle}" Margin="0" Grid.Column="0">
+                            <TextBlock Text="Address or phone number" Foreground="{StaticResource ChatPageComposeHintFont}" FontSize="9" VerticalAlignment="Center" 
+								   HorizontalAlignment="Left" Margin="10,0,0,0"
+					   Visibility="{Binding ShowReceiverHint, Converter={StaticResource bvc}}" />
+
+                            <TextBox x:Name="TextMsgBox"  BorderThickness="0" Height="32" TextAlignment="Left" 
+                                     Foreground="{StaticResource AppMainBorderBrush}" 
+								 HorizontalAlignment="Stretch" Text="{Binding ReceiverAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" VerticalContentAlignment="Center" FontSize="14"
+								 Background="Transparent" 
+                                     CaretBrush="White"
+                                     BorderBrush="{StaticResource ChatPageSelectContactTextBorder}"/>
+                        </Grid>
+                        <Border Grid.Column ="1" Background="{StaticResource ChatPageMainBg}" BorderBrush="{StaticResource ChatPageMainBg}" 
+		   BorderThickness="1,0,0,0">
+                            <Button x:Name="buttonAudioCall" Margin="0.5,0.5,0,0" Click="OnCallClick"  Cursor="Hand" IsEnabled="{Binding CanMakeCall}">
+                                <Button.Resources>
+                                    <Grid x:Key="CallButtonNormal" Background="#FF2B912D">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Margin="3,0,5,0" Grid.Column="0">
+                                            <Rectangle Width="20" Height="10"   Fill="White" VerticalAlignment="Top" >
+                                                <Rectangle.OpacityMask>
+                                                    <ImageBrush ImageSource="..\Resources\cameraview.png" />
+                                                </Rectangle.OpacityMask>
+                                            </Rectangle>
+                                        </StackPanel>
+
+                                        <TextBlock Grid.Column="1" Text="Call" HorizontalAlignment="Left" FontSize="16" VerticalAlignment="Center" Margin ="3,-3,3,0" 
+                               Foreground="White"/>
+
+                                    </Grid>
+                                </Button.Resources>
+
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Opacity" Value="1" />
+                                        <Setter Property="BorderThickness" Value="0" />
+                                        <Setter Property="Padding" Value="0" />
+                                        <Setter Property="SnapsToDevicePixels" Value="True"/>
+                                        <Setter Property="VerticalAlignment" Value="Stretch"/>
+                                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                        <Setter Property="Content" Value="{StaticResource CallButtonNormal}" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Grid Background="Transparent">
+
+                                                        <Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="0" Margin="0">
+                                                            <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                        </Border>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Content" Value="{DynamicResource CallButtonNormal}" />
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="Content" Value="{DynamicResource CallButtonNormal}" />
+                                            </Trigger>
+
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
+                                                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsPressed}" Value="True"/>
+                                                </MultiDataTrigger.Conditions>
+
+                                                <Setter Property="Opacity" Value="0.7"/>
+                                                <Setter Property="Content" Value="{DynamicResource CallButtonNormal}"/>
+                                            </MultiDataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+
+                            </Button>
+
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row ="1" Background="{StaticResource AppMainWindowBrush}" 
+                        BorderBrush="{StaticResource AppMainBorderBrush}" 
+		   BorderThickness="0,0,0,1">
+                   
+                    <ListBox x:Name ="MessageListView" Style="{StaticResource MessagesListBox}" 
+				ItemsSource= "{Binding MessagesListView}" Margin="0" 
+                              
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" IsSynchronizedWithCurrentItem="True"
+                             HorizontalContentAlignment="Stretch"
+                             >
+                        <!--<ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="ContentTemplate" Value="{StaticResource SelectedMessageItemStyle}" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBox.ItemContainerStyle>-->
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+<StackPanel>
+                                    <Grid x:Name="SeparatorWnd" Visibility="{Binding IsSeparator, Converter={StaticResource bvc}}" Margin="0,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="4*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="2*"/>
+                                            <RowDefinition Height="2*"/>
+                                        </Grid.RowDefinitions>
+                                        <Border Grid.Column="0" Grid.Row="0" BorderBrush="#FFF0F0F0" BorderThickness="0,0,0,1"/>
+                                        <Border Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="#FFF0F0F0"/>
+                                        <Border Grid.Column="2" Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="#FFF0F0F0"/>
+                                        <Border Grid.Column="2" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="#FFF0F0F0"/>
+                                        <Border Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Padding="0,5" CornerRadius="3" Background="#FFF0F0F0">
+                                            <TextBlock Text="{Binding MessageTime, StringFormat=\{0:dd MMMM yyyy\}}" HorizontalAlignment="Center"></TextBlock>
+                                            </Border>
+
+                                    </Grid>
+                                    <Grid Margin="{Binding Direction, Converter={StaticResource bmarginc}}" 
+                                            HorizontalAlignment="{Binding Direction, Converter={StaticResourceExtension BtbaText}}"
+                                      Visibility="{Binding ShowInList, Converter={StaticResource bvc}}" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Width="26" Height="26" Grid.Column="0"
+										Margin="5,5,5,0" VerticalAlignment="Bottom" CornerRadius="13" Background="#FFCCCCCC" BorderThickness="0" Visibility="{Binding Direction, Converter={StaticResource dvc}}">
+                                            <TextBlock Text="{Binding Contact.Initials}" Foreground="#ff4c4c4c" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                                   DataContext="{Binding Chat}"
+                                                    >
+                                            </TextBlock>
+                                        </Border>
+
+
+                                        <Grid Grid.Column="1"
+                                      HorizontalAlignment="{Binding Direction, Converter={StaticResourceExtension BtbaText}}"
+                                      Visibility="{Binding ShowInList, Converter={StaticResource bvc}}" >
+                                            <Grid >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="9"/>
+                                                    <ColumnDefinition Width="5"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="9"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" BorderBrush="{Binding Direction, Converter={StaticResource bcolorc}}" 
+                                                    BorderThickness="1" 
+                                            Background="{Binding Direction, Converter={StaticResource bcolorc}}" 
+                                            CornerRadius="{Binding Direction, Converter={StaticResource bcornerc0}}" >
+
+                                                    <!--Text part-->
+                                                    <StackPanel HorizontalAlignment="Stretch" >
+                                                        <TextBlock  Text="Call declined with message" 
+    							Margin="5,0,5,0" TextWrapping="Wrap"
+    							Foreground="{StaticResource ChatPageBubbleTextFont}"
+    							FontSize="12" 
+                                  Visibility="{Binding IsDeclineMessage, Converter={StaticResource bvc}}"
+    							  VerticalAlignment="Top"/>
+                                                        <TextBlock  Text="{Binding Content}" 
+    							Margin="5,0,5,0" TextWrapping="Wrap"
+    							Foreground="{StaticResource ChatPageBubbleTextFont}"
+    							FontSize="{Binding Chat.MessageFontSize}" 
+                                  FontFamily="{Binding Chat.MessageFont}"
+    							  VerticalAlignment="Top"/>
+                                                    </StackPanel>
+                                                </Border>
+                                                <Rectangle Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Width="25" Height="16" 
+                                                   Fill="{Binding Direction, Converter={StaticResource bcolorc}}"  
+                                                   Visibility="{Binding Direction, Converter={StaticResource dvc}}">
+                                                    <Rectangle.OpacityMask>
+                                                        <ImageBrush ImageSource="..\Resources\arrow_left.png" ></ImageBrush>
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                                <Rectangle Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" 
+                                                   VerticalAlignment="Bottom" Width="25" Height="16" 
+                                                   HorizontalAlignment="Right" Margin="0,0,0,0"
+                                                   Fill="{Binding Direction, Converter={StaticResource bcolorc}}"  
+                                                   Visibility="{Binding Direction, Converter={StaticResource odvc}}" RenderTransformOrigin="0.5,0.5">
+                                                    <Rectangle.OpacityMask>
+                                                        <ImageBrush ImageSource="..\Resources\arrow_right.png" ></ImageBrush>
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                                <!--Date/Time-->
+                                                <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" BorderBrush="{Binding Direction, Converter={StaticResource bcolorc}}" 
+                                                    BorderThickness="1" 
+                                            Background="{Binding Direction, Converter={StaticResource bcolorc}}" 
+                                            CornerRadius="{Binding Direction, Converter={StaticResource bcornerc1}}" >
+                                                    <StackPanel Orientation="Horizontal"   Margin="5,5,5,5" HorizontalAlignment="{Binding Direction, Converter={StaticResourceExtension BtbaTime}}">
+                                                        <TextBlock Text="{Binding MessageTime, Converter={StaticResource mdc}}" 
+    							Foreground="{StaticResource ChatPageBubbleTextFont}" 
+    							 FontSize="12"/>
+                                                        <Ellipse Width="10" Height="10" 
+                                                         Fill="{Binding Status, Converter={StaticResource mdsb}}" Margin="8,2,8,0" Visibility="{Binding HasDeliveryStatus, Converter={StaticResource bvc}}"/>
+                                                    </StackPanel>
+                                                </Border>
+                                            </Grid>
+
+
+                                        </Grid>
+                                        <TextBlock Grid.Column="2" Width="1"/>
+                                    </Grid>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Border>
+                <Border Grid.Row ="2" Background="{StaticResource AppMainWindowBrush}" 
+                        BorderBrush="{StaticResource AppMainBorderBrush}" 
+		   BorderThickness="0,0,0,0">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Style="{StaticResource HintEntryFieldStyle}" Margin="0"  Grid.Column="0">
+                            <TextBlock Text="Message" Foreground="{StaticResource ChatPageComposeHintFont}" FontSize="9" VerticalAlignment="Center" 
+								   HorizontalAlignment="Left" Margin="10,0,0,0"
+					   Visibility="{Binding ShowMessageHint, Converter={StaticResource bvc}}" />
+
+                            <TextBox BorderThickness="1" Height="32" TextAlignment="Left" FontSize="14"
+									 Foreground="{StaticResource AppMainBorderBrush}" CaretBrush="White"
+								 HorizontalAlignment="Stretch" Text="{Binding MessageText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                     VerticalContentAlignment="Center"
+									 Background="Transparent" 
+									 BorderBrush="{StaticResource AppMainBorderBrush}"
+                                     PreviewKeyDown="OnKeyDown" 
+                                     />
+                        </Grid>
+                        <Border Grid.Column ="1" Background="{StaticResource AppMainWindowBrush}" BorderBrush="{StaticResource ChatPageMainBg}" 
+		   BorderThickness="1,0,0,0">
+                            <Button Width="50" Height="32" Background="{StaticResource AppMainWindowBrush}" Content="Send" 
+									BorderThickness="1" BorderBrush="{StaticResource ChatPageSelectContactTextBorder}" 
+									Foreground="White"
+									Click="OnSendButtonClicked"
+									/>
+                        </Border>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</model:VATRPWindow>

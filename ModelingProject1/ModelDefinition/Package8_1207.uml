@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="8d5b6a7f-a6c2-4765-b518-dffbd229b677"
+  name="ComponentModel"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="1d4f2bf2-e921-4ccd-a797-f69bc3a8559f"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DSystem.ComponentModel"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="c489ce06-cdb3-4e5d-a2bd-ddbfabfc00b7"
+        name="CancelEventArgs"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="46e5081f-8ce0-4999-aaf0-d61370033bf2"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.2%2FSystem.dll&quot; Namespace%3DSystem.ComponentModel Type%3DCancelEventArgs"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="4c6da9d3-b22a-40ca-b7c2-f98123ce5915"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3f803398-61f3-417b-98a0-f0cfbc8ce0d3">
+                <propertyInstance
+                  Id="c5251f07-4146-42f9-b842-68f4d2aeafa5"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="815f704a-05c0-4aa4-b643-4ad2eec89216">
+                <propertyInstance
+                  Id="137d8aa0-8d0e-4391-8242-c8f0b1f074ec"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="96b92c07-9e86-45a9-b1be-72a128f79e73">
+                <propertyInstance
+                  Id="736acf7b-616d-4e52-9b9b-1b2356d72508"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="027447e3-6929-4722-86be-e35af4ddd9f2">
+                <propertyInstance
+                  Id="76b96816-2bb7-43c4-a746-41af8ab77121"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="78996b9e-6b09-4919-9720-61f0caee3c1f">
+                <propertyInstance
+                  Id="40dd38e4-ed52-4c9e-8215-148dae3daee8"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="251bfb37-51f7-40cd-a5b7-402502ad2f01"
+            isSubstitutable="false">
+            <classMoniker
+              Id="996febec-03ab-4ae3-b72c-7759b1f6dd9f"
+              LastKnownName="EventArgs"
+              LastKnownLocation="Package4_1206.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

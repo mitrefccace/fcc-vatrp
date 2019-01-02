@@ -1,0 +1,46 @@
+﻿<!-- 
+Copyright © The MITRE Corporation.
+ 
+This program is licensed under the terms of the GNU General Public License Version 2, as published by the Free Software Foundation. This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  Please see the
+GNU General Public License for more details.
+ 
+This program or code contains content developed by The MITRE Corporation. If this program is used in a deployment or embedded within another project, MITRE requests that you send an email to opensource@mitre.org to let us know where and how this program is being used.
+ 
+NOTICE
+This (software/technical data) was produced for the U. S. Government under Contract Number HHSM-500-2012-00008I, and is subject to Federal Acquisition Regulation Clause 52.227-14, Rights in Data-General. No other use other than that granted to the U. S. Government, or to those acting on behalf of the U. S. Government under that Clause is authorized without the express written permission of The MITRE Corporation. For further information, please contact The MITRE Corporation, Contracts Management Office, 7515 Colshire Drive, McLean, VA  22102-7539, (703) 983-6000. 
+-->
+
+<model:VATRPWindow x:Class="com.vtcsecure.ace.windows.Views.AuthenticationView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:converters="clr-namespace:com.vtcsecure.ace.windows.Converters"
+        xmlns:model="clr-namespace:com.vtcsecure.ace.windows.Model"
+        xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        Title="VATRP Authentication" Height="191.648" Width="351.74" 
+                   Activated="Window_Activated" 
+                   Closing="Window_Closing" 
+                   StateChanged="Window_StateChanged" 
+                   LocationChanged="Window_LocationChanged" 
+                   SourceInitialized="Window_Initialized"
+                   Unloaded="Window_Unloaded" SizeToContent="WidthAndHeight" Icon="/VATRP;component/Resources/vatrp.ico">
+
+    <Grid Margin="20,20,20,20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="Title" Grid.Row="0" Grid.Column="0" Text="Credentials Required" HorizontalAlignment="Center"/>
+        <TextBox x:Name="usernameBox" Grid.Row="1" Grid.Column="0" FontSize="14" Margin="3" Width="300" HorizontalAlignment="Left" Height="24"/>
+        <TextBox x:Name="PasswordBox" Visibility="Visible" Grid.Row="2" Grid.Column="0" FontSize="14" Margin="3" Width="300" HorizontalAlignment="Left" Height="24"/>
+        <!--PasswordBox x:Name="passwordBox" Visibility="Hidden" Grid.Row="2" Grid.Column="0" FontSize="14" Margin="3" Width="300" HorizontalAlignment="Left" Height="24"/-->
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="0,20,0,0">
+            <Button x:Name="submit" Content="Submit" Click="OnSubmitClicked" Width="75" Margin="50,0,50,0" VerticalAlignment="Center" HorizontalAlignment="Center" IsDefault="True"/>
+            <Button x:Name="cancel" Content="Cancel" Click="OnCancelClicked" Width="75" Margin="0,0,50,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</model:VATRPWindow>

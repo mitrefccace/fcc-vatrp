@@ -1,0 +1,46 @@
+﻿<!-- 
+Copyright © The MITRE Corporation.
+ 
+This program is licensed under the terms of the GNU General Public License Version 2, as published by the Free Software Foundation. This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  Please see the
+GNU General Public License for more details.
+ 
+This program or code contains content developed by The MITRE Corporation. If this program is used in a deployment or embedded within another project, MITRE requests that you send an email to opensource@mitre.org to let us know where and how this program is being used.
+ 
+NOTICE
+This (software/technical data) was produced for the U. S. Government under Contract Number HHSM-500-2012-00008I, and is subject to Federal Acquisition Regulation Clause 52.227-14, Rights in Data-General. No other use other than that granted to the U. S. Government, or to those acting on behalf of the U. S. Government under that Clause is authorized without the express written permission of The MITRE Corporation. For further information, please contact The MITRE Corporation, Contracts Management Office, 7515 Colshire Drive, McLean, VA  22102-7539, (703) 983-6000. 
+-->
+
+<viewModel:CallViewModel
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:viewModel="clr-namespace:com.vtcsecure.ace.windows.ViewModel"
+    xmlns:model="clr-namespace:VATRP.Core.Model;assembly=VATRP.Core"
+    RemoteNumber="+1 899 678 985"
+    RingCount="0"
+    VisualizeIncoming="False"
+    VisualizeRinging="True"
+    DisplayName="Test caller"
+    CallState="Closed"
+    ShowInfo="True"
+    AutoAnswer="0"
+    CallerInfo="Test call"
+    ShowCallParams="True"
+    ShowIncomingCallPanel="False"
+    ShowOutgoingEndCall="True"
+    ShowDeclineMenu="False"
+    ShowDeclinedMessage ="True"
+    DeclinedMessage = "Can't talk now. Call me later"
+    RemotePartyTextSize="30"
+    DisplayNameSize="35"
+    InfoTextSize="25"
+    IsSpeakerOn="True"
+    IsMuteOn="True"
+    IsRttOn="True"
+    IsCallInfoOn="True"
+    >
+    <viewModel:CallViewModel.ActiveCall>
+        <model:VATRPCall LinphoneMessage="This is buggy error">
+            
+        </model:VATRPCall>
+    </viewModel:CallViewModel.ActiveCall>
+</viewModel:CallViewModel>

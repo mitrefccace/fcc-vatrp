@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner"
+  dslVersion="1.0.0.0"
+  Id="75275214-a262-4a93-95e9-dcf281733c4e"
+  name="Markup"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="7beff5ae-22fc-4453-9f25-8794380d9bcb"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DSystem.Windows.Markup"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="df40d22b-989d-4f59-aa03-827a5c88691b"
+        name="IComponentConnector"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="c42414a8-0799-4088-9b4a-c35820501d9b"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.2%2FSystem.Xaml.dll&quot; Namespace%3DSystem.Windows.Markup Type%3DIComponentConnector"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="1c358ea1-8a20-4eb7-91e0-a22de84ecc04"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="79756969-82fe-49dd-89f1-5f6a4d4075df">
+                <propertyInstance
+                  Id="fe9ad7bf-fed1-44c7-b670-84f53f759ae6"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d875c93e-0e4d-43ca-8cc8-808ba8db3ec6">
+                <propertyInstance
+                  Id="5d96871b-ef55-496e-90f3-d2deab008ea5"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c522a5b9-e4b6-4334-9a36-bf2a1ecdb4f8">
+                <propertyInstance
+                  Id="4bb17f4a-40b7-4980-a86a-8bec10d2aa80"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="dc1a9185-076c-46c8-aa01-e3cebf35bb45">
+                <propertyInstance
+                  Id="ea481349-4078-4950-8973-e72d1964b791"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="2944f14f-037f-49be-87a8-d03f67d65a26"
+        name="MarkupExtension"
+        isAbstract="true"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="4f3ecb69-0d3b-4e2d-88a6-3d4cc3216ca0"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.2%2FSystem.Xaml.dll&quot; Namespace%3DSystem.Windows.Markup Type%3DMarkupExtension"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="83e2c07b-c331-43c0-9a55-efec9cd84a89"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8f5396bb-cfca-4037-bc6e-9f3c47248b39">
+                <propertyInstance
+                  Id="88382e33-d339-417b-a982-9fd5581d0ff8"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="de4241f8-f70e-4a5d-8852-1c7fe10e88d8">
+                <propertyInstance
+                  Id="c8475ed6-eade-42d5-bc2a-1da59c94d232"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4440e885-58ea-4ff3-8c94-a2f86afd110c">
+                <propertyInstance
+                  Id="f54db137-a512-4eab-bfe4-a6d1e03f5cb3"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f50e05f5-b580-4af2-82a9-df8f55c8af22">
+                <propertyInstance
+                  Id="4319c885-9a46-4875-ab8d-7bbf4aaa997f"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c919c764-0736-4777-8eb6-678751bb402b">
+                <propertyInstance
+                  Id="f88b647b-2801-4368-8b58-5dbafbb35152"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

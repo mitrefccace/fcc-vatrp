@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="81b33751-4a71-4148-8984-4e8323dfc444"
+  name="UnifiedSettings"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="7bc0e65f-74ca-435c-a7cc-4d0f7514b82b"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3Dcom.vtcsecure.ace.windows.CustomControls.UnifiedSettings"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="b6715620-6eee-4d71-958c-6b3073a60edc"
+        name="SettingsWindow"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="15783f62-3b43-4057-bc59-2548db0310b9"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.App%2Fbin%2FDebug%2FACE.exe Namespace%3Dcom.vtcsecure.ace.windows.CustomControls.UnifiedSettings Type%3DSettingsWindow"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="cc51ab85-48fd-4950-aca7-1219aac5a016"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="93a069ba-05cd-49b4-8037-aeb9ceb80ac9">
+                <propertyInstance
+                  Id="fd3a17a2-2d36-4f1b-a617-037dda1fdb6b"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e17cd4f9-e00b-4a33-9826-ebac65f841fa">
+                <propertyInstance
+                  Id="1c9b0395-30ad-4a0a-90d1-fd16fb16fae8"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8dc6c9ac-9581-4e8c-bd92-3488d1a59b0c">
+                <propertyInstance
+                  Id="87f2d5bf-4208-4a11-a669-ab154b5aaab7"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2fee50d5-fa43-47ff-9a2b-1f3ad9c4cf1d">
+                <propertyInstance
+                  Id="2d24b8e9-7eb7-4b40-af1c-4145c5fdf45f"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5b586dd1-d7f8-4355-99bd-2000cc7a4fae">
+                <propertyInstance
+                  Id="60b7f7a8-5021-440f-85cd-6ef86ea6b611"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="e3ff1c0c-c368-4942-b467-92f91fd3b6d2">
+            <interfaceMoniker
+              Id="df40d22b-989d-4f59-aa03-827a5c88691b"
+              LastKnownName="IComponentConnector"
+              LastKnownLocation="Package19_1207.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

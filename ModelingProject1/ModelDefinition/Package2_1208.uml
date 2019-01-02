@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner"
+  dslVersion="1.0.0.0"
+  Id="0688a2b8-f8ac-4a35-abb5-fec901628460"
+  name="Data"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="b23fe80f-39f4-4748-a23f-1cd59ece4990"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DSystem.Windows.Data"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="7f6461ba-4ed5-4658-8f66-fa1dee56f196"
+        name="IValueConverter"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="113162cc-2825-4f4d-b56c-d80fcf87d7fb"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.2%2FPresentationFramework.dll&quot; Namespace%3DSystem.Windows.Data Type%3DIValueConverter"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="9bc83f11-27c0-4a12-bb52-e113bdf9b117"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4e46eb80-5f26-4816-b6e2-b62affc75f5a">
+                <propertyInstance
+                  Id="58dbd134-e8f7-4c54-9b5c-ca6db218fe50"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="be9e95e8-4c4e-4152-b643-e8f042dc77a7">
+                <propertyInstance
+                  Id="c85a71b1-41a8-4a1d-a24e-465b1395df72"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="df2d7c0e-e6fc-4c4d-948d-03699673ff50">
+                <propertyInstance
+                  Id="ffe29d02-4df1-4641-b82c-f9b18423658a"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="cfaf8fbb-70d7-4100-bb1f-afbfca68eb87">
+                <propertyInstance
+                  Id="e9d24466-d70a-47d7-bf71-4214b511ee4a"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="c6ced0a5-9885-47cb-ba4a-8126aa198ca1"
+        name="IMultiValueConverter"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="8f4051d2-6300-4da4-8b7c-a77322e031e7"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.2%2FPresentationFramework.dll&quot; Namespace%3DSystem.Windows.Data Type%3DIMultiValueConverter"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="f205fdb8-5d45-481e-a987-557dad60d787"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="55d2c30f-abda-4348-ae93-c5b10ddde187">
+                <propertyInstance
+                  Id="e0f27336-4ebb-4231-a3ce-9f04393704a7"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a08e63ca-1718-47bd-9fec-fe03fd2babf5">
+                <propertyInstance
+                  Id="493a743d-8a42-45b5-870e-e020588d1f4d"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5b75856e-d814-4356-8386-f5c86c3f0f4e">
+                <propertyInstance
+                  Id="fc1f3dd4-56df-4d32-a59b-35b56c4c64ce"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="af3a6a54-d822-45ec-b781-d9b8eb106be0">
+                <propertyInstance
+                  Id="fef85ba7-9c76-4450-9591-91f5d95ce8a8"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

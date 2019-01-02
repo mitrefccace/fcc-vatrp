@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///C:/PROGRAM FILES/MICROSOFT VISUAL STUDIO 12.0/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/ReverseEngineeringLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/CodeGen.RE.Log" Label="Code Generation/Text Transformation Log">
+  <MessageClass Name="Message" Label="Message" Option="Show informational messages" />
+  <MessageClass Name="Warning" Label="Warning" Option="Show warnings" />
+  <MessageClass Name="Error" Label="Error" Option="Show errors" />
+  <MessageClass Name="Property" Label="Property" Option="Show metadata" />
+  <MessageClass Name="Diagnostic" Label="Message" Option="Show diagnostic messages" />
+  <Message Timestamp="2016-09-13T15:00:37" Importance="High" Text="Reverse Engineering Started." />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Boolean' -  (PrimitiveType)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::com' -  (Package)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::com::vtcsecure' -  (Package)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::com::vtcsecure::ace' -  (Package)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::com::vtcsecure::ace::windows' -  (Package)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::com::vtcsecure::ace::windows::Converters' -  (Package)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::com::vtcsecure::ace::windows::Converters::BoolToBubbleAlignmentConverter' -  (Class)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::com::vtcsecure::ace::windows::Converters::BoolToBubbleAlignmentConverter::BoolToBubbleAlignmentConverter' -  (Operation)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::com::vtcsecure::ace::windows::Converters::BoolToBubbleAlignmentConverter::Convert' -  (Operation)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::com::vtcsecure::ace::windows::Converters::BoolToBubbleAlignmentConverter::Convert::culture' -  (Parameter)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::com::vtcsecure::ace::windows::Converters::BoolToBubbleAlignmentConverter::Convert::parameter' -  (Parameter)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::com::vtcsecure::ace::windows::Converters::BoolToBubbleAlignmentConverter::Convert::targetType' -  (Parameter)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::com::vtcsecure::ace::windows::Converters::BoolToBubbleAlignmentConverter::Convert::value' -  (Parameter)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::com::vtcsecure::ace::windows::Converters::BoolToBubbleAlignmentConverter::ConvertBack' -  (Operation)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::com::vtcsecure::ace::windows::Converters::BoolToBubbleAlignmentConverter::ConvertBack::culture' -  (Parameter)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::com::vtcsecure::ace::windows::Converters::BoolToBubbleAlignmentConverter::ConvertBack::parameter' -  (Parameter)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::com::vtcsecure::ace::windows::Converters::BoolToBubbleAlignmentConverter::ConvertBack::targetType' -  (Parameter)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::com::vtcsecure::ace::windows::Converters::BoolToBubbleAlignmentConverter::ConvertBack::value' -  (Parameter)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::com::vtcsecure::ace::windows::Converters::BoolToBubbleAlignmentConverter::FalseEquivalent' -  (Property)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::com::vtcsecure::ace::windows::Converters::BoolToBubbleAlignmentConverter::OppositeBooleanValue' -  (Property)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::com::vtcsecure::ace::windows::Converters::BoolToBubbleAlignmentConverter::TrueEquivalent' -  (Property)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System' -  (Package)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Globalization' -  (Package)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Globalization::CultureInfo' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Object' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Type' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Windows' -  (Package)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Windows::Data' -  (Package)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Windows::Data::IValueConverter' -  (Interface)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Windows::HorizontalAlignment' -  (Enumeration)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::com::vtcsecure::ace::windows::Converters::BoolToBubbleAlignmentConverter to ModelingProject1::System::Windows::HorizontalAlignment (Association)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::com::vtcsecure::ace::windows::Converters::BoolToBubbleAlignmentConverter to ModelingProject1::System::Windows::HorizontalAlignment (Association)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::com::vtcsecure::ace::windows::Converters::BoolToBubbleAlignmentConverter to ModelingProject1::System::Windows::Data::IValueConverter (InterfaceRealization)" />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="High" Text="(1) type(s) fully reverse engineered." />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="High" Text="(5) type(s) partially reverse engineered.  These types were not included in the original selection so their full definitions are not reverse engineered.  Instead, this shallow operation has simply ensured these types exist in the UML model because they are needed in order to fully describe other elements." />
+  <Message Timestamp="2016-09-13T15:00:39" Importance="High" Text="The reverse engineering operation completed with (0) error(s), and (0) warning(s)." />
+</Log>

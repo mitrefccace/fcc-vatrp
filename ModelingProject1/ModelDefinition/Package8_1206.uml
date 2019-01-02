@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="94ea96a7-f6ef-4ff9-abed-a73735dc4929"
+  name="Core"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="b6917e6e-9e9d-4b54-a7ec-6d7786afb714"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DVATRP.Core"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="1d063756-0590-4b3b-9b64-f8ef687349c8"
+        LastKnownName="Model"
+        LastKnownLocation="Package9_1206.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="90fd61a3-f632-44bb-a594-5e22cec193c8"
+        LastKnownName="Events"
+        LastKnownLocation="Package7_1207.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="9d1c6864-fec5-4e1b-97b6-5c52c0efc505"
+        LastKnownName="Interfaces"
+        LastKnownLocation="Package16_1207.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

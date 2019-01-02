@@ -1,0 +1,59 @@
+﻿<!-- 
+Copyright © The MITRE Corporation.
+ 
+This program is licensed under the terms of the GNU General Public License Version 2, as published by the Free Software Foundation. This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  Please see the
+GNU General Public License for more details.
+ 
+This program or code contains content developed by The MITRE Corporation. If this program is used in a deployment or embedded within another project, MITRE requests that you send an email to opensource@mitre.org to let us know where and how this program is being used.
+ 
+NOTICE
+This (software/technical data) was produced for the U. S. Government under Contract Number HHSM-500-2012-00008I, and is subject to Federal Acquisition Regulation Clause 52.227-14, Rights in Data-General. No other use other than that granted to the U. S. Government, or to those acting on behalf of the U. S. Government under that Clause is authorized without the express written permission of The MITRE Corporation. For further information, please contact The MITRE Corporation, Contracts Management Office, 7515 Colshire Drive, McLean, VA  22102-7539, (703) 983-6000. 
+-->
+
+<local:BaseResourcePanel x:Class="com.vtcsecure.ace.windows.CustomControls.Resources.DeafHoHResourcesPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:com.vtcsecure.ace.windows.CustomControls.Resources"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid  Background="{StaticResource RecentsPageMainBg}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="96"/>
+            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition Width="27*"/>
+        </Grid.ColumnDefinitions>
+        <!-- Row 0: Deaf HoH Resources Label -->
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Content="Deaf/Hard of Hearing Resources" VerticalContentAlignment="Center" Background="Gray" Name="Resources">
+        </Label>
+
+        <!--Background="{StaticResource RecentsPageMainBg}"-->
+        
+        <ListView Background="{StaticResource RecentsPageMainBg}" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3" MinHeight="200" Width="300" HorizontalAlignment="Left"
+                      x:Name="ResourceInfoListView" SelectionMode="Single" SelectionChanged="ResourceInfo_SelectionChanged" TouchDown="ResourceInfoListView_TouchDown" PreviewMouseLeftButtonDown="ResourceInfoListView_PreviewMouseLeftButtonDown" PreviewMouseUp="ResourceInfoListView_PreviewMouseUp">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="95" DisplayMemberBinding="{Binding Path=name}" />
+                    <GridViewColumn Header="Address" Width="160" DisplayMemberBinding="{Binding Path=address}" >
+<!--                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Width="50">
+                                    <CheckBox IsChecked="{Binding Path=Status, Mode=TwoWay}" 
+                                                  Click="CheckBox_Click"
+                                                  VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                        -->
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</local:BaseResourcePanel>

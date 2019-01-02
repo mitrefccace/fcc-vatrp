@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A4B764EF-2558-4DA9-9A43-0FFAA0E93D0B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VATRP.Core</RootNamespace>
+    <AssemblyName>VATRP.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetPlatformVersion>8.0</TargetPlatformVersion>
+    <NuGetPackageImportStamp>8a228361</NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Developer|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Developer\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net45\CommonServiceLocator.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\ThirdParties\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism, Version=7.1.0.431, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.7.1.0.431\lib\net45\Prism.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=7.1.0.431, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.7.1.0.431\lib\net45\Prism.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.SQLite, Version=1.0.99.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.99.0\lib\net451\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.99.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.99.0\lib\net451\System.Data.SQLite.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.99.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.99.0\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.7.1.0.431\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Windows.Devices" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enums\LinphonePrivacy.cs" />
+    <Compile Include="Enums\MessageDirection.cs" />
+    <Compile Include="Enums\TypingAction.cs" />
+    <Compile Include="Enums\UserStatus.cs" />
+    <Compile Include="Events\CardDavContactEventArgs.cs" />
+    <Compile Include="Events\CardDavSyncEventArgs.cs" />
+    <Compile Include="Events\TextMessageEventArgs.cs" />
+    <Compile Include="Events\MessageComposingEventArgs.cs" />
+    <Compile Include="Events\DeclineMessageArgs.cs" />
+    <Compile Include="Events\InfoEventArgs.cs" />
+    <Compile Include="Events\HttpDownloadEventArgs.cs" />
+    <Compile Include="Events\ConfigurationEventArgs.cs" />
+    <Compile Include="Events\ContactBasedEventArgs.cs" />
+    <Compile Include="Events\CameraMuteEventArgs.cs" />
+    <Compile Include="Events\InfoEventBaseArgs.cs" />
+    <Compile Include="Events\MWIEventArgs.cs" />
+    <Compile Include="Events\ContactEventArgs.cs" />
+    <Compile Include="Events\ContactRemovedEventArgs.cs" />
+    <Compile Include="Events\ContactStatusChangedEventArgs.cs" />
+    <Compile Include="Events\ConversationEventArgs.cs" />
+    <Compile Include="Events\ConversationUpdatedEventArgs.cs" />
+    <Compile Include="Events\EventHandlerTrigger.cs" />
+    <Compile Include="Events\HistoryEventTypes.cs" />
+    <Compile Include="Events\TypingInChatEventArgs.cs" />
+    <Compile Include="Events\ChatMessageEventArgs.cs" />
+    <Compile Include="Events\VATRPCallEventArgs.cs" />
+    <Compile Include="Events\VATRPEventArgs.cs" />
+    <Compile Include="Events\StringEventArgs.cs" />
+    <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Interfaces\IProviderService.cs" />
+    <Compile Include="Interfaces\IConfigurationService.cs" />
+    <Compile Include="Interfaces\IChatService.cs" />
+    <Compile Include="Interfaces\IContactService.cs" />
+    <Compile Include="Interfaces\IHistoryService.cs" />
+    <Compile Include="Interfaces\IAccountService.cs" />
+    <Compile Include="Interfaces\ILinphoneService.cs" />
+    <Compile Include="Interfaces\ISoundService.cs" />
+    <Compile Include="Interfaces\IVATRPservice.cs" />
+    <Compile Include="Model\ACEConfig.cs" />
+    <Compile Include="Model\CallParams.cs" />
+    <Compile Include="Model\Commands\CreateCallCommand.cs" />
+    <Compile Include="Model\Commands\ToggleCameraCommand.cs" />
+    <Compile Include="Model\Commands\SendChatMessageCommand.cs" />
+    <Compile Include="Model\Commands\DeclineCallCommand.cs" />
+    <Compile Include="Model\Commands\CallCommand.cs" />
+    <Compile Include="Model\Commands\LinphoneCommand.cs" />
+    <Compile Include="Model\Commands\AcceptCallCommand.cs" />
+    <Compile Include="Model\Commands\ResumeCallCommand.cs" />
+    <Compile Include="Model\Commands\PauseCallCommand.cs" />
+    <Compile Include="Model\Commands\MuteCallCommand.cs" />
+    <Compile Include="Model\Commands\TerminateCallCommand.cs" />
+    <Compile Include="Model\Utils\HttpDownloadHelper.cs" />
+    <Compile Include="Model\VATRPCredential.cs" />
+    <Compile Include="Model\VATRPDevice.cs" />
+    <Compile Include="Model\VATRPDomain.cs" />
+    <Compile Include="Model\VATRPServiceProvider.cs" />
+    <Compile Include="Model\VATRPUserGroup.cs" />
+    <Compile Include="Model\Utils\Time.cs" />
+    <Compile Include="Model\Utils\Tools.cs" />
+    <Compile Include="Model\VATRPChatMessage.cs" />
+    <Compile Include="Enums\MessageContentType.cs" />
+    <Compile Include="Model\VATRPChat.cs" />
+    <Compile Include="Model\ChatID.cs" />
+    <Compile Include="Model\CodecType.cs" />
+    <Compile Include="Model\ContactID.cs" />
+    <Compile Include="Model\HistoryShortMessageEvent.cs" />
+    <Compile Include="Model\VATRPChatEvent.cs" />
+    <Compile Include="Model\VATRPCallEvent.cs" />
+    <Compile Include="Model\VATRPCodec.cs" />
+    <Compile Include="Model\VATRPHistoryEvent.cs" />
+    <Compile Include="Model\PhoneNumber.cs" />
+    <Compile Include="Model\Configuration.cs" />
+    <Compile Include="Model\PhoneType.cs" />
+    <Compile Include="Model\VATRPContact.cs" />
+    <Compile Include="Model\MyObservableCollection.cs" />
+    <Compile Include="Model\VATRPAccount.cs" />
+    <Compile Include="Model\VATRPAccountType.cs" />
+    <Compile Include="Model\VATRPCall.cs" />
+    <Compile Include="Model\VATRPCallState.cs" />
+    <Compile Include="Model\vCard.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ProviderService.cs" />
+    <Compile Include="Services\AccountsService.cs" />
+    <Compile Include="Services\ChatsService.cs" />
+    <Compile Include="Services\ConfigurationService.cs" />
+    <Compile Include="Services\ContactService.cs" />
+    <Compile Include="Services\HistoryService.cs" />
+    <Compile Include="Services\LinphoneService.cs" />
+    <Compile Include="Services\ServiceManagerBase.cs" />
+    <Compile Include="Services\SoundService.cs" />
+    <Compile Include="Utilities\ConfigManager.cs" />
+    <Compile Include="Utilities\DataProtectionHelper.cs" />
+    <Compile Include="Utilities\XmlProtectionHelper.cs" />
+    <Compile Include="Utilities\XmlStringHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VATRP.LinphoneWrapper\VATRP.LinphoneWrapper.csproj">
+      <Project>{29e0cc8f-232a-4cb6-89c1-c3f6c7453b36}</Project>
+      <Name>VATRP.LinphoneWrapper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Services\LinphoneService.Preferences.cs">
+      <DependentUpon>LinphoneService.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="VATRP.Core.cd" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\ring.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newmsg.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ringbacktone.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\connevent.wav" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /b "$(ProjectDir)Bin\$(ConfigurationName)\x86\*.dll" "$(SolutionDir)VATRP.App\bin\$(ConfigurationName)\"</PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.99.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.99.0\build\net451\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.99.0\build\net451\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.99.0\build\net451\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

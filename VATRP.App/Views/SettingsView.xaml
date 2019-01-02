@@ -1,0 +1,74 @@
+﻿<!-- 
+Copyright © The MITRE Corporation.
+ 
+This program is licensed under the terms of the GNU General Public License Version 2, as published by the Free Software Foundation. This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  Please see the
+GNU General Public License for more details.
+ 
+This program or code contains content developed by The MITRE Corporation. If this program is used in a deployment or embedded within another project, MITRE requests that you send an email to opensource@mitre.org to let us know where and how this program is being used.
+ 
+NOTICE
+This (software/technical data) was produced for the U. S. Government under Contract Number HHSM-500-2012-00008I, and is subject to Federal Acquisition Regulation Clause 52.227-14, Rights in Data-General. No other use other than that granted to the U. S. Government, or to those acting on behalf of the U. S. Government under that Clause is authorized without the express written permission of The MITRE Corporation. For further information, please contact The MITRE Corporation, Contracts Management Office, 7515 Colshire Drive, McLean, VA  22102-7539, (703) 983-6000. 
+-->
+
+<model:VATRPWindow x:Class="com.vtcsecure.ace.windows.Views.SettingsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:customControls="clr-namespace:com.vtcsecure.ace.windows.CustomControls"
+        xmlns:model="clr-namespace:com.vtcsecure.ace.windows.Model"
+        xmlns:converters="clr-namespace:com.vtcsecure.ace.windows.Converters"
+        Title="Settings" Height="470" Width="400" 
+                   WindowStartupLocation="Manual"
+                   Activated="Window_Activated" 
+                   Closing="Window_Closing" 
+                   StateChanged="Window_StateChanged" 
+                   LocationChanged="Window_LocationChanged" 
+                   SourceInitialized="Window_Initialized"
+                   Loaded="OnLoaded" Icon="/VATRP;component/Resources/settings.png"
+                   >
+    <model:VATRPWindow.Resources>
+        <converters:BoolToVisibilityConverter x:Key="bvc"/>
+    </model:VATRPWindow.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <TabControl x:Name="SettingsTab" HorizontalAlignment="Stretch" Margin="1" Grid.Row="0" VerticalAlignment="Stretch" SelectedIndex="{Binding SelectedPage}">
+            <TabItem Header="Account">
+                <Grid Background="#FFE5E5E5">
+                    <customControls:SipSettingsCtrl x:Name="SipSettingsPage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        
+                    </customControls:SipSettingsCtrl>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Networking">
+                <Grid Background="#FFE5E5E5">
+                    <customControls:NetworkSettingsCtrl x:Name="NetworkSettingsPage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        
+                    </customControls:NetworkSettingsCtrl>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Codecs">
+                <Grid Background="#FFE5E5E5">
+                    <customControls:CodecsSettingsCtrl x:Name="CodecSettingsPage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </customControls:CodecsSettingsCtrl>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Multimedia">
+                <Grid Background="#FFE5E5E5">
+                    <customControls:MultimediaSettingsCtrl x:Name="MultimediaSettingsPage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Testing">
+                <Grid Background="#FFE5E5E5">
+                    <customControls:CallSettingsCtrl x:Name="CallSettingsPage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                    </customControls:CallSettingsCtrl>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button Content="Save" HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center" Width="75" Height="20" IsDefault="True" Click="OnSave"/>
+    </Grid>
+</model:VATRPWindow>

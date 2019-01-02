@@ -1,0 +1,504 @@
+﻿<!-- 
+Copyright © The MITRE Corporation.
+ 
+This program is licensed under the terms of the GNU General Public License Version 2, as published by the Free Software Foundation. This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  Please see the
+GNU General Public License for more details.
+ 
+This program or code contains content developed by The MITRE Corporation. If this program is used in a deployment or embedded within another project, MITRE requests that you send an email to opensource@mitre.org to let us know where and how this program is being used.
+ 
+NOTICE
+This (software/technical data) was produced for the U. S. Government under Contract Number HHSM-500-2012-00008I, and is subject to Federal Acquisition Regulation Clause 52.227-14, Rights in Data-General. No other use other than that granted to the U. S. Government, or to those acting on behalf of the U. S. Government under that Clause is authorized without the express written permission of The MITRE Corporation. For further information, please contact The MITRE Corporation, Contracts Management Office, 7515 Colshire Drive, McLean, VA  22102-7539, (703) 983-6000. 
+-->
+
+<UserControl x:Class="com.vtcsecure.ace.windows.CustomControls.MoreMenuCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:com.vtcsecure.ace.windows.Converters"
+             mc:Ignorable="d" 
+              d:DesignWidth="300"
+             Background="{StaticResource AppMainBorderBrush}"
+             >
+    <UserControl.Resources>
+        <converters:IntToVisibilityConverter x:Key="ivc" OppositeBooleanValue="True"/>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource AppMainBorderBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Button x:Name="BtnSettings" Grid.Row="0" Margin="0,0,0,0.5"
+						  Click="OnSettingsClicked"  
+						  HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <Button.Resources>
+                <Grid x:Key="SettingsHover" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Rectangle  Fill="{StaticResource NavigationBarPressedButtonBg}" Grid.Column="0" Grid.ColumnSpan="2">
+
+                    </Rectangle>
+                    <Rectangle Grid.Column="0" Width="28" Height="24" 
+                               HorizontalAlignment="Center"
+                               Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Center" 
+                               Grid.Row="0" >
+                        <Rectangle.OpacityMask>
+                            <ImageBrush ImageSource="../Resources/setting_menu.png" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Text="Settings" FontSize="22" VerticalAlignment="Center" Margin ="0,7" Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+                </Grid>
+                <Grid x:Key="SettingsPressed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Rectangle  Fill="{StaticResource NavigationBarPressedButtonBg}" Grid.Column="0" Grid.ColumnSpan="2">
+
+                    </Rectangle>
+                    <Rectangle Grid.Column="0" Width="28" Height="24" 
+                               HorizontalAlignment="Center"
+                               Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Center" 
+                               Grid.Row="0" >
+                        <Rectangle.OpacityMask>
+                            <ImageBrush ImageSource="../Resources/setting_menu.png" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Text="Settings" FontSize="22" VerticalAlignment="Center" Margin ="0,7" Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+                </Grid>
+                <Grid x:Key="SettingsNormal">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Rectangle  Fill="{StaticResource NavigationBarNormalButtonBg}" Grid.Column="0" Grid.ColumnSpan="2">
+
+                    </Rectangle>
+                    <Rectangle Grid.Column="0" Width="28" Height="24" 
+                               HorizontalAlignment="Center"
+                                Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Center" >
+                        <Rectangle.OpacityMask>
+                            <ImageBrush ImageSource="../Resources/setting_menu.png" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Grid.Column="1" 
+                               HorizontalAlignment="Left" Text="Settings" FontSize="22"
+                               VerticalAlignment="Top" Margin ="0,7" 
+                               Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+                </Grid>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Opacity" Value="1" />
+                    <Setter Property="BorderThickness" Value="1,1,0.5,0" />
+                    <Setter Property="BorderBrush" Value="{StaticResource AppMainBorderBrush}" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Margin" Value="0" />
+                    <Setter Property="SnapsToDevicePixels" Value="True"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Content" Value="{StaticResource SettingsNormal}" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Grid Background="Transparent">
+
+                                    <Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="0" Margin="0">
+                                        <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    </Border>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Content" Value="{StaticResource SettingsHover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Content" Value="{StaticResource SettingsPressed}" />
+                        </Trigger>
+
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsPressed}" Value="True"/>
+                            </MultiDataTrigger.Conditions>
+
+                            <Setter Property="Opacity" Value="0.7"/>
+                            <Setter Property="Content" Value="{StaticResource SettingsPressed}"/>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        
+        <!-- Row 1 -->
+        <Button x:Name="BtnResources" Grid.Row="1" Margin="1,0.5,0,0.5"
+						  Click="OnResourcesClicked"  
+						  HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <Button.Resources>
+                <Grid x:Key="ResourcesHover" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Rectangle  Fill="{StaticResource NavigationBarPressedButtonBg}" Grid.Column="0" Grid.ColumnSpan="2">
+
+                    </Rectangle>
+                    <Rectangle Grid.Column="0" Width="24" Height="24" 
+                               HorizontalAlignment="Center"
+                               Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Center" 
+                               Grid.Row="0" >
+                        <Rectangle.OpacityMask>
+                            <ImageBrush ImageSource="../Resources/resource_menu.png" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Text="Resources" FontSize="22" VerticalAlignment="Top" Margin ="0,7" Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+                </Grid>
+                <Grid x:Key="ResourcesPressed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Rectangle  Fill="{StaticResource NavigationBarPressedButtonBg}" Grid.Column="0" Grid.ColumnSpan="2">
+
+                    </Rectangle>
+                    <Rectangle Grid.Column="0" Width="24" Height="24" 
+                               HorizontalAlignment="Center"
+                               Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Center" 
+                               Grid.Row="0" >
+                        <Rectangle.OpacityMask>
+                            <ImageBrush ImageSource="../Resources/resource_menu.png" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Text="Resources"
+                               FontSize="22" VerticalAlignment="Center" Margin ="0,7" Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+                </Grid>
+                <Grid x:Key="ResourcesNormal">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Rectangle  Fill="{StaticResource NavigationBarNormalButtonBg}" Grid.Column="0" Grid.ColumnSpan="2">
+
+                    </Rectangle>
+                    <Rectangle Grid.Column="0" Width="24" Height="24" 
+                               HorizontalAlignment="Center"
+                                Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Center" >
+                        <Rectangle.OpacityMask>
+                            <ImageBrush ImageSource="../Resources/resource_menu.png" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Grid.Column="1" 
+                               HorizontalAlignment="Left" Text="Resources" FontSize="22"
+                               VerticalAlignment="Top" Margin ="0,7" 
+                               Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+                </Grid>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Opacity" Value="1" />
+                    <Setter Property="BorderThickness" Value="0,0,0.5,0" />
+                    <Setter Property="BorderBrush" Value="{StaticResource AppMainBorderBrush}" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Margin" Value="0" />
+                    <Setter Property="SnapsToDevicePixels" Value="True"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Content" Value="{StaticResource ResourcesNormal}" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Grid Background="Transparent">
+
+                                    <Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="0" Margin="0">
+                                        <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    </Border>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Content" Value="{StaticResource ResourcesHover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Content" Value="{StaticResource ResourcesPressed}" />
+                        </Trigger>
+
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsPressed}" Value="True"/>
+                            </MultiDataTrigger.Conditions>
+
+                            <Setter Property="Opacity" Value="0.7"/>
+                            <Setter Property="Content" Value="{StaticResource ResourcesPressed}"/>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <!-- Row 2 -->
+        <Button x:Name="BtnVideomail" Grid.Row="2" Margin="1,0.5,0,0.5"
+						  Click="OnVmClicked"  
+						  HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <Button.Resources>
+                <Grid x:Key="VMHover" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Rectangle  Fill="{StaticResource NavigationBarPressedButtonBg}" Grid.Column="0" Grid.ColumnSpan="3">
+
+                    </Rectangle>
+                    <Rectangle Grid.Column="0" Width="35" Height="23" 
+                               HorizontalAlignment="Center"
+                               Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Center" 
+                               Grid.Row="0" >
+                        <Rectangle.OpacityMask>
+                            <ImageBrush ImageSource="../Resources/videomail_menu.png" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Text="Videomail" FontSize="22" VerticalAlignment="Top" Margin ="0,7" Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+                    <Border Width="30" Height="30" CornerRadius="15" Grid.Column="2" HorizontalAlignment="Center" 
+                   VerticalAlignment="Center" Background="Transparent" Margin="5,0,15,0" 
+                            BorderBrush="{StaticResource AppMainBorderBrush}"
+                            BorderThickness="1"
+                        Visibility="{Binding VideoMailCount, Converter={StaticResource ivc}}" >
+                        <TextBlock Text="{Binding VideoMailCount}" 
+                           VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-1,0,0"
+                           FontSize="22" Foreground="{StaticResource AppMainBorderBrush}" />
+                    </Border>
+
+                </Grid>
+                
+                <Grid x:Key="VMPressed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Rectangle  Fill="{StaticResource NavigationBarPressedButtonBg}" Grid.Column="0" Grid.ColumnSpan="3">
+
+                    </Rectangle>
+                    <Rectangle Grid.Column="0" Width="35" Height="23" 
+                               HorizontalAlignment="Center"
+                               Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Center" 
+                               Grid.Row="0" >
+                        <Rectangle.OpacityMask>
+                            <ImageBrush ImageSource="../Resources/videomail_menu.png" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Text="Videomail"
+                               FontSize="22" VerticalAlignment="Center" Margin ="0,7" Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+                    <Border Width="30" Height="30" CornerRadius="15" Grid.Column="2" HorizontalAlignment="Center" 
+                            
+                    VerticalAlignment="Center" Background="Transparent" Margin="5,0,15,0" 
+                            BorderBrush="{StaticResource AppMainBorderBrush}"
+                            BorderThickness="1"
+                        Visibility="{Binding VideoMailCount, Converter={StaticResource ivc}}" >
+                        <TextBlock Text="{Binding VideoMailCount}" 
+                           VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-1,0,0"
+                           FontSize="22" Foreground="{StaticResource AppMainBorderBrush}" />
+                    </Border>
+
+                </Grid>
+                <Grid x:Key="VMNormal">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Rectangle  Fill="{StaticResource NavigationBarNormalButtonBg}" Grid.Column="0" Grid.ColumnSpan="3">
+
+                    </Rectangle>
+                    <Rectangle Grid.Column="0" Width="35" Height="23" 
+                               HorizontalAlignment="Center"
+                                Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Center" >
+                        <Rectangle.OpacityMask>
+                            <ImageBrush ImageSource="../Resources/videomail_menu.png" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Grid.Column="1" 
+                               HorizontalAlignment="Left" Text="Videomail" FontSize="22"
+                               VerticalAlignment="Top" Margin ="0,7" 
+                               Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+                    <Border Width="30" Height="30" CornerRadius="15" Grid.Column="2" HorizontalAlignment="Center" 
+                            
+                    VerticalAlignment="Center" Background="Transparent" Margin="5,0,15,0" 
+                            BorderBrush="{StaticResource AppMainBorderBrush}"
+                            BorderThickness="1"
+                        Visibility="{Binding VideoMailCount, Converter={StaticResource ivc}}" >
+                        <TextBlock Text="{Binding VideoMailCount}" 
+                           VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-1,0,0"
+                           FontSize="22" Foreground="{StaticResource AppMainBorderBrush}" />
+                    </Border>
+                </Grid>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Opacity" Value="1" />
+                    <Setter Property="BorderThickness" Value="0,0,0.5,0" />
+                    <Setter Property="BorderBrush" Value="{StaticResource AppMainBorderBrush}" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Margin" Value="0" />
+                    <Setter Property="SnapsToDevicePixels" Value="True"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Content" Value="{StaticResource VMNormal}" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Grid Background="Transparent">
+
+                                    <Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="0" Margin="0">
+                                        <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    </Border>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Content" Value="{StaticResource VMHover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Content" Value="{StaticResource VMPressed}" />
+                        </Trigger>
+
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsPressed}" Value="True"/>
+                            </MultiDataTrigger.Conditions>
+
+                            <Setter Property="Opacity" Value="0.7"/>
+                            <Setter Property="Content" Value="{StaticResource VMPressed}"/>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <!-- Row 3 -->
+        <ToggleButton x:Name="BtnSelfView" Margin="1,0.5,0,0"
+                      Grid.Row="3" Click="OnSelfViewClicked" 
+                      HorizontalAlignment="Stretch" VerticalAlignment="Center" IsChecked="{Binding IsSelfViewActive}">
+            <ToggleButton.Resources>
+                <Grid x:Key="SelfViewHover" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Rectangle  Fill="{StaticResource NavigationBarPressedButtonBg}" Grid.Column="0" Grid.ColumnSpan="2"/>
+                    <Rectangle Grid.Column="0" Width="24" Height="24" 
+                               HorizontalAlignment="Center"
+                                Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Center" >
+                        <Rectangle.OpacityMask>
+                            <ImageBrush ImageSource="../Resources/sview_menu.png" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Grid.Column="1" 
+                               HorizontalAlignment="Left" Text="Self-Preview" FontSize="22"
+                               VerticalAlignment="Top" Margin ="0,7" 
+                               Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+                </Grid>
+                <Grid x:Key="SelfViewPressed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Rectangle  Fill="{StaticResource NavigationBarPressedButtonBg}" Grid.Column="0" Grid.ColumnSpan="2"/>
+                    <Rectangle Grid.Column="0" Width="24" Height="24" 
+                               HorizontalAlignment="Center"
+                                Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Center" >
+                        <Rectangle.OpacityMask>
+                            <ImageBrush ImageSource="../Resources/sview_menu.png" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Grid.Column="1" 
+                               HorizontalAlignment="Left" Text="Self-Preview" FontSize="22"
+                               VerticalAlignment="Top" Margin ="0,7" 
+                               Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+                </Grid>
+                <Grid x:Key="SelfViewNormal">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Rectangle  Fill="{StaticResource NavigationBarNormalButtonBg}" Grid.Column="0" Grid.ColumnSpan="2"/>
+                    <Rectangle Grid.Column="0" Width="24" Height="24" 
+                               HorizontalAlignment="Center"
+                                Fill="{StaticResource NavigationBarNormalButtonFont}" VerticalAlignment="Center" >
+                        <Rectangle.OpacityMask>
+                            <ImageBrush ImageSource="../Resources/sview_menu.png" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Grid.Column="1" 
+                               HorizontalAlignment="Left" Text="Self-Preview" FontSize="22"
+                               VerticalAlignment="Top" Margin ="0,7" 
+                               Foreground="{StaticResource NavigationBarPressedButtonFont}"></TextBlock>
+
+                </Grid>
+            </ToggleButton.Resources>
+            <ToggleButton.Style>
+                <Style TargetType="{x:Type ToggleButton}">
+                    <Setter Property="Opacity" Value="1" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Margin" Value="0" />
+                    <Setter Property="SnapsToDevicePixels" Value="True"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="Content" Value="{StaticResource SelfViewNormal}" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                <Grid Background="Transparent">
+
+                                    <Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="0" Margin="0">
+                                        <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    </Border>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Content" Value="{StaticResource SelfViewHover}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content" Value="{StaticResource SelfViewPressed}" />
+                        </Trigger>
+
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}" Value="True"/>
+                            </MultiDataTrigger.Conditions>
+
+                            <Setter Property="Opacity" Value="0.7"/>
+                            <Setter Property="Content" Value="{StaticResource SelfViewPressed}"/>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ToggleButton.Style>
+        </ToggleButton>
+    </Grid>
+</UserControl>

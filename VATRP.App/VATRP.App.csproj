@@ -1,0 +1,879 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CF503001-3771-48E8-A425-73A11F38EDBC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>com.vtcsecure.ace.windows</RootNamespace>
+    <AssemblyName>VATRP</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+    <TargetPlatformVersion>8.0</TargetPlatformVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>C:\Users\MM206710\Desktop\http\public\ACE\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://localhost:8080/ACE/</InstallUrl>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.html</WebPage>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>2.0.0.0</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>1</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\vatrp.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Developer|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Developer\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>BB26F27FF8DA3F225DAFBF3335549916355CC745</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>VATRP.App_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net45\CommonServiceLocator.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HockeyApp, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HockeySDK.WPF.2.2.2\lib\net45\HockeyApp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HockeyAppPCL, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HockeySDK.Core.2.2.2\lib\portable-net45+win8+wp8+wpa81+win81\HockeyAppPCL.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\ThirdParties\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism, Version=7.1.0.431, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.7.1.0.431\lib\net45\Prism.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=7.1.0.431, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.7.1.0.431\lib\net45\Prism.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.WindowsRuntime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETCore\v4.5\System.Runtime.WindowsRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.7.1.0.431\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Windows">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Windows Kits\10\UnionMetadata\Windows.winmd</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.Constants.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\BoolToBubbleAlignmentConverter.cs" />
+    <Compile Include="Converters\BoolToBubbleMarginConverter.cs" />
+    <Compile Include="Converters\CallStateToBrushConverter.cs" />
+    <Compile Include="Converters\ContactFavoriteToBrushConverter.cs" />
+    <Compile Include="Converters\DirectionToMarkerColumnConverter.cs" />
+    <Compile Include="Converters\DirectionToMessageColumnConverter.cs" />
+    <Compile Include="Converters\DirectionToColumnSpanConverter.cs" />
+    <Compile Include="Converters\DirectionToColumnConverter.cs" />
+    <Compile Include="Converters\MessageDateConverter.cs" />
+    <Compile Include="Converters\MessageDeliveryStatusToBrushConverter.cs" />
+    <Compile Include="Converters\BoolToBubbleColorConverter.cs" />
+    <Compile Include="Converters\BoolToBubbleCornerConverter.cs" />
+    <Compile Include="Converters\DirectionToDateMarginConverter.cs" />
+    <Compile Include="Converters\MultipleParamsToBubbleMarginConverter.cs" />
+    <Compile Include="Converters\CallDurationConverter.cs" />
+    <Compile Include="Converters\ContactSelectionToBrushConverter.cs" />
+    <Compile Include="Converters\CallQualityConverter.cs" />
+    <Compile Include="Converters\CallStateToStringConverter.cs" />
+    <Compile Include="Converters\RegistrationStateToBrushConverter.cs" />
+    <Compile Include="Converters\VisibilityConverter.cs" />
+    <Compile Include="CustomControls\ContactListCtrl.xaml.cs">
+      <DependentUpon>ContactListCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\CallLogCtrl.xaml.cs">
+      <DependentUpon>CallLogCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\CallViewCtrl.xaml.cs">
+      <DependentUpon>CallViewCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\MoreMenuCtrl.xaml.cs">
+      <DependentUpon>MoreMenuCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\Resources\BaseResourcePanel.cs" />
+    <Compile Include="CustomControls\Resources\DeafHoHResourcesPanel.xaml.cs">
+      <DependentUpon>DeafHoHResourcesPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\Resources\ResourceInfo.cs" />
+    <Compile Include="CustomControls\Resources\ResourceMainCtrl.xaml.cs">
+      <DependentUpon>ResourceMainCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\Resources\ResourcesType.cs" />
+    <Compile Include="CustomControls\RTTCtrl.xaml.cs">
+      <DependentUpon>RTTCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\LocalContactPanel.xaml.cs">
+      <DependentUpon>LocalContactPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\MainSettingsCtrl.xaml.cs">
+      <DependentUpon>MainSettingsCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UnifiedSettings\AccountSettings.xaml.cs">
+      <DependentUpon>AccountSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UnifiedSettings\AdvancedSettings.xaml.cs">
+      <DependentUpon>AdvancedSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UnifiedSettings\BaseUnifiedSettingsPanel.cs" />
+    <Compile Include="CustomControls\Resources\ResourcePanel.xaml.cs">
+      <DependentUpon>ResourcePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UnifiedSettings\SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UnifiedSettings\TechnicalSupportSheetCtrl.xaml.cs">
+      <DependentUpon>TechnicalSupportSheetCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UnifiedSettings\UnifiedSettingsAdvancedCtrl.xaml.cs">
+      <DependentUpon>UnifiedSettingsAdvancedCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UnifiedSettings\UnifiedSettingsAudioCtrl.xaml.cs">
+      <DependentUpon>UnifiedSettingsAudioCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UnifiedSettings\UnifiedSettingsAudioVideoCtrl.xaml.cs">
+      <DependentUpon>UnifiedSettingsAudioVideoCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UnifiedSettings\UnifiedSettingsCallCtrl.xaml.cs">
+      <DependentUpon>UnifiedSettingsCallCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UnifiedSettings\UnifiedSettingsDeviceCtrl.xaml.cs">
+      <DependentUpon>UnifiedSettingsDeviceCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UnifiedSettings\UnifiedSettingsContentType.cs" />
+    <Compile Include="CustomControls\UnifiedSettings\UnifiedSettingsCtrl.xaml.cs">
+      <DependentUpon>UnifiedSettingsCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UnifiedSettings\UnifiedSettingsGeneralCtrl.xaml.cs">
+      <DependentUpon>UnifiedSettingsGeneralCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UnifiedSettings\UnifiedSettingsMainCtrl.xaml.cs">
+      <DependentUpon>UnifiedSettingsMainCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UnifiedSettings\UnifiedSettingsNetworkCtrl.xaml.cs">
+      <DependentUpon>UnifiedSettingsNetworkCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UnifiedSettings\UnifiedSettingsSummaryCtrl.xaml.cs">
+      <DependentUpon>UnifiedSettingsSummaryCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UnifiedSettings\UnifiedSettingsTextCtrl.xaml.cs">
+      <DependentUpon>UnifiedSettingsTextCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UnifiedSettings\UnifiedSettingsThemeCtrl.xaml.cs">
+      <DependentUpon>UnifiedSettingsThemeCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UnifiedSettings\UnifiedSettingsVideoCtrl.xaml.cs">
+      <DependentUpon>UnifiedSettingsVideoCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\Enums\ACEMenuSettings.cs" />
+    <Compile Include="CustomControls\Enums\VATRPSettings.cs" />
+    <Compile Include="Json\JsonFactoryConfig.cs" />
+    <Compile Include="Model\ActionCommand.cs" />
+    <Compile Include="Model\GifImage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Win32NativeAPI.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Utilities\ConfigLookup.cs" />
+    <Compile Include="Utilities\JsonDeserializer.cs" />
+    <Compile Include="Utilities\JsonException.cs" />
+    <Compile Include="Utilities\JsonWebRequest.cs" />
+    <Compile Include="Utilities\NetworkLogger.cs" />
+    <Compile Include="Utilities\NetworkUtility.cs" />
+    <Compile Include="Utilities\ScreenSaverHelper.cs" />
+    <Compile Include="Utilities\SRVLookup.cs" />
+    <Compile Include="Utilities\TechnicalSupportInfoBuilder.cs" />
+    <Compile Include="ViewModel\FeedbackViewModel.cs" />
+    <Compile Include="ViewModel\ContactEditViewModel.cs" />
+    <Compile Include="ViewModel\ContactsViewModel.cs" />
+    <Compile Include="ViewModel\InCallMessagingViewModel.cs" />
+    <Compile Include="ViewModel\SimpleMessagingViewModel.cs" />
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
+    <Compile Include="ViewModel\CallInfoViewModel.cs" />
+    <Compile Include="ViewModel\AboutViewModel.cs" />
+    <Compile Include="ViewModel\CallHistoryViewModel.cs" />
+    <Compile Include="ViewModel\MenuViewModel.cs" />
+    <Compile Include="ViewModel\VideoViewModel.cs" />
+    <Compile Include="ViewModel\HistoryCallEventViewModel.cs" />
+    <Compile Include="ViewModel\ProviderViewModel.cs" />
+    <Compile Include="ViewModel\LocalContactViewModel.cs" />
+    <Compile Include="ViewModel\MainControllerViewModel.cs" />
+    <Compile Include="ViewModel\ContactViewModel.cs" />
+    <Compile Include="ViewModel\MessagingViewModel.cs" />
+    <Compile Include="Views\AuthenticationView.xaml.cs">
+      <DependentUpon>AuthenticationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FeedbackView.xaml.cs">
+      <DependentUpon>FeedbackView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ContactEditView.xaml.cs">
+      <DependentUpon>ContactEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CallOverlayView.xaml.cs">
+      <DependentUpon>CallOverlayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CallInfoView.xaml.cs">
+      <DependentUpon>CallInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\KeyPadCtrl.xaml.cs">
+      <DependentUpon>KeyPadCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\MultimediaSettingsCtrl.xaml.cs">
+      <DependentUpon>MultimediaSettingsCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\CodecsSettingsCtrl.xaml.cs">
+      <DependentUpon>CodecsSettingsCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\CallSettingsCtrl.xaml.cs">
+      <DependentUpon>CallSettingsCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\RecentsCallCtrl.xaml.cs">
+      <DependentUpon>RecentsCallCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\NetworkingSettingsCtrl.xaml.cs">
+      <DependentUpon>NetworkingSettingsCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\SipSettingsCtrl.xaml.cs">
+      <DependentUpon>SipSettingsCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\ISettings.cs" />
+    <Compile Include="MainWindow.Events.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\DialpadScreen.xaml.cs">
+      <DependentUpon>DialpadScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ProviderSelector.xaml.cs">
+      <DependentUpon>ProviderSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ProviderLoginScreen.xaml.cs">
+      <DependentUpon>ProviderLoginScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\IMediaBox.cs" />
+    <Compile Include="Model\FlashWindowHelper.cs" />
+    <Compile Include="Model\DialpadKey.cs" />
+    <Compile Include="Model\KeyPadEventArgs.cs" />
+    <Compile Include="Model\VATRPWindow.cs" />
+    <Compile Include="Model\VATRPWindowType.cs" />
+    <Compile Include="Services\MediaActionHandler.cs" />
+    <Compile Include="Services\ServiceManager.cs" />
+    <Compile Include="ViewModel\CallViewModel.cs" />
+    <Compile Include="ViewModel\DialpadViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="Views\ContactBox.xaml.cs">
+      <DependentUpon>ContactBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LegalReleaseWindow.xaml.cs">
+      <DependentUpon>LegalReleaseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MediaTextBox.xaml.cs">
+      <DependentUpon>MediaTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HistoryView.xaml.cs">
+      <DependentUpon>HistoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CallProcessingBox.xaml.cs">
+      <DependentUpon>CallProcessingBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelfView.xaml.cs">
+      <DependentUpon>SelfView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CallView.xaml.cs">
+      <DependentUpon>CallView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <DesignDataWithDesignTimeCreatableTypes Include="SampleData\MessageViewSampleData.xaml">
+      <SubType>Designer</SubType>
+    </DesignDataWithDesignTimeCreatableTypes>
+    <Page Include="CustomControls\ContactListCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\CallLogCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\CallViewCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\MoreMenuCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\Resources\DeafHoHResourcesPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\Resources\ResourceMainCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\RTTCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\LocalContactPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <DesignDataWithDesignTimeCreatableTypes Include="SampleData\CallHistoryViewSampleData.xaml">
+      <SubType>Designer</SubType>
+    </DesignDataWithDesignTimeCreatableTypes>
+    <DesignData Include="SampleData\DialpadViewSampleData.xaml">
+      <SubType>Designer</SubType>
+    </DesignData>
+    <DesignData Include="SampleData\LocalContactViewSampleData.xaml">
+      <SubType>Designer</SubType>
+    </DesignData>
+    <Page Include="CustomControls\MainSettingsCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\Resources\ResourcePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\UnifiedSettings\AccountSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\UnifiedSettings\AdvancedSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\UnifiedSettings\SettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\UnifiedSettings\TechnicalSupportSheetCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\UnifiedSettings\UnifiedSettingsAdvancedCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\UnifiedSettings\UnifiedSettingsAudioCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\UnifiedSettings\UnifiedSettingsAudioVideoCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\UnifiedSettings\UnifiedSettingsCallCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\UnifiedSettings\UnifiedSettingsDeviceCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\UnifiedSettings\UnifiedSettingsCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\UnifiedSettings\UnifiedSettingsGeneralCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\UnifiedSettings\UnifiedSettingsMainCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\UnifiedSettings\UnifiedSettingsNetworkCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\UnifiedSettings\UnifiedSettingsSummaryCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\UnifiedSettings\UnifiedSettingsTextCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\UnifiedSettings\UnifiedSettingsThemeCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\UnifiedSettings\UnifiedSettingsVideoCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SampleData\ContactViewSampleData.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SampleData\MainViewSampleData.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <DesignData Include="SampleData\CallViewSampleData.xaml">
+      <SubType>Designer</SubType>
+    </DesignData>
+    <Page Include="SampleData\RTTSampleData.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AuthenticationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FeedbackView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ContactEditView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CallOverlayView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CallInfoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\KeyPadCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\MultimediaSettingsCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\DialpadScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\CodecsSettingsCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\CallSettingsCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\RecentsCallCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\NetworkingSettingsCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\SipSettingsCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\ProviderSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\ProviderLoginScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Styles\ListBoxRD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\VATRPRD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ContactBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LegalReleaseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MediaTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HistoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CallProcessingBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelfView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CallView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\arrow_left.png" />
+    <Resource Include="Resources\incoming.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ManagedVideoContainer\ManagedVideoContainer.csproj">
+      <Project>{e543535a-5eda-4035-a26a-71b3892a5bf5}</Project>
+      <Name>ManagedVideoContainer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VATRP.Core\VATRP.Core.csproj">
+      <Project>{a4b764ef-2558-4da9-9a43-0ffaa0e93d0b}</Project>
+      <Name>VATRP.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VATRP.LinphoneWrapper\VATRP.LinphoneWrapper.csproj">
+      <Project>{29e0cc8f-232a-4cb6-89c1-c3f6c7453b36}</Project>
+      <Name>VATRP.LinphoneWrapper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\vatrp.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\missed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\outgoing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\contacts.png" />
+    <Resource Include="Resources\dialpad.png" />
+    <Resource Include="Resources\recents.png" />
+    <Resource Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\cameraview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon_info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\keypad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\messages.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\backspace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\female.png" />
+    <Resource Include="Resources\male.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\send_message.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\resources.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\video_mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\mute_on.png" />
+    <Resource Include="Resources\numpad.png" />
+    <Resource Include="Resources\rtt.png" />
+    <Resource Include="Resources\speaker_off.png" />
+    <Resource Include="Resources\speaker_on.png" />
+    <Resource Include="Resources\video_off.png" />
+    <Resource Include="Resources\video_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\add_contact.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\del_contact.png" />
+    <Resource Include="Resources\edit_contact.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\fav_contact.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\switch_call.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\RTT_end.png" />
+    <Resource Include="Resources\RTT_start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\hold_off.png" />
+    <Resource Include="Resources\hold_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\import_vcards.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\export_vcards.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\resources_books.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\fullscreen_off.png" />
+    <Resource Include="Resources\fullscreen_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\hold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\call_quality_indicator_0.png" />
+    <Resource Include="Resources\call_quality_indicator_1.png" />
+    <Resource Include="Resources\call_quality_indicator_2.png" />
+    <Resource Include="Resources\call_quality_indicator_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\resource_menu.png" />
+    <Resource Include="Resources\setting_menu.png" />
+    <Resource Include="Resources\sview_menu.png" />
+    <Resource Include="Resources\videomail_menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\more.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\videomail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\security_ko.png" />
+    <Resource Include="Resources\security_ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\camera_disabled.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\hold.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="Windows">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\mute_keys_off.png" />
+    <Resource Include="Resources\mute_keys_on.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /b "$(SolutionDir)thirdparties\liblinphone\*.dll" "$(TargetDir)"
+xcopy /b "$(SolutionDir)thirdparties\rootca.pem" "$(TargetDir)"
+xcopy /b "$(SolutionDir)thirdparties\legal_release.txt" "$(TargetDir)"
+xcopy /b "$(SolutionDir)license.txt" "$(TargetDir)"
+mkdir "$(TargetDir)\lib"
+mkdir "$(TargetDir)\lib\mediastreamer"
+mkdir "$(TargetDir)\lib\mediastreamer\plugins"
+move  "$(TargetDir)\openh264.dll" "$(TargetDir)\lib\mediastreamer\plugins"
+move  "$(TargetDir)\libmsopenh264.dll" "$(TargetDir)\lib\mediastreamer\plugins"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

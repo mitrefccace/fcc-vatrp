@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="incoming" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\incoming.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="missed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\missed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="outgoing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\outgoing.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RecentsIncoming" xml:space="preserve">
+    <value>Incoming</value>
+  </data>
+  <data name="RecentsMissed" xml:space="preserve">
+    <value>Missed</value>
+  </data>
+  <data name="RecentsOutgoing" xml:space="preserve">
+    <value>Outgoing</value>
+  </data>
+  <data name="SIP_301" xml:space="preserve">
+    <value>The called person or organization has changed their number or call address.</value>
+  </data>
+  <data name="SIP_400" xml:space="preserve">
+    <value>Call failed because called terminal detected and error.</value>
+  </data>
+  <data name="SIP_404" xml:space="preserve">
+    <value>The number or address could not be found.</value>
+  </data>
+  <data name="SIP_406" xml:space="preserve">
+    <value>The call was not accepted of technical reasons by the called terminal.</value>
+  </data>
+  <data name="ERR_BadCredentials" xml:space="preserve">
+    <value>The call did not go through because  of access rights failure.</value>
+  </data>
+  <data name="ERR_DoNotDisturb" xml:space="preserve">
+    <value>The call failed because of communication problems.</value>
+  </data>
+  <data name="ERR_Generic" xml:space="preserve">
+    <value>Call failed because called terminal detected and error.</value>
+  </data>
+  <data name="ERR_IOError" xml:space="preserve">
+    <value>Communication error: Bad network connection.</value>
+  </data>
+  <data name="ERR_NoResponse" xml:space="preserve">
+    <value>The called terminal was not reachable because of technical reasons.</value>
+  </data>
+  <data name="ERR_NotAnswered" xml:space="preserve">
+    <value>No answer.</value>
+  </data>
+  <data name="ERR_Unknown" xml:space="preserve">
+    <value>The call failed of an unknown error.</value>
+  </data>
+  <data name="SIP_408" xml:space="preserve">
+    <value>The called terminal was not reachable because of technical reasons.</value>
+  </data>
+  <data name="SIP_480" xml:space="preserve">
+    <value>The person or organization you are trying to reach is not available at this time.  Check the number or address or try again later.</value>
+  </data>
+  <data name="SIP_484" xml:space="preserve">
+    <value>The address was incomplete. Please try again.</value>
+  </data>
+  <data name="SIP_486" xml:space="preserve">
+    <value>The number/address you are trying to reach is busy</value>
+  </data>
+  <data name="SIP_488" xml:space="preserve">
+    <value>The called terminal has no media in common with yours.</value>
+  </data>
+  <data name="SIP_494" xml:space="preserve">
+    <value>The call failed because it requires authorization.</value>
+  </data>
+  <data name="SIP_501" xml:space="preserve">
+    <value>The call failed because of a service error.</value>
+  </data>
+  <data name="SIP_502" xml:space="preserve">
+    <value>Call failed because of error in the communication service.</value>
+  </data>
+  <data name="SIP_504" xml:space="preserve">
+    <value>The call failed because of a service timeout error.</value>
+  </data>
+  <data name="SIP_603" xml:space="preserve">
+    <value>The call has been declined.</value>
+  </data>
+  <data name="SIP_604" xml:space="preserve">
+    <value>The number/address you are trying to reach is no longer available.</value>
+  </data>
+  <data name="ERR_NotReachable" xml:space="preserve">
+    <value>Destination not reachable.</value>
+  </data>
+</root>

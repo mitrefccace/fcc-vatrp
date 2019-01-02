@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="fc439cbd-8c52-452e-9962-9c61f1183802"
+  name="VATRP"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="e84378d9-800b-4541-93a2-4d71fc8d3005"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DVATRP"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="94ea96a7-f6ef-4ff9-abed-a73735dc4929"
+        LastKnownName="Core"
+        LastKnownLocation="Package8_1206.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="05a95206-17b1-4fd6-a72d-c8f4e21756f8"
+        LastKnownName="Linphone"
+        LastKnownLocation="Package3_1207.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="38af56f6-c1a6-45d4-90d5-f930c23df66d"
+        LastKnownName="LinphoneWrapper"
+        LastKnownLocation="Package10_1207.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

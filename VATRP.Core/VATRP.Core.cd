@@ -1,0 +1,920 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="VATRP.Core.Events.CameraMuteEventArgs">
+    <Position X="11.5" Y="26.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Events\CameraMuteEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.CardDavContactEventArgs">
+    <Position X="25" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="VATRP.Core.Events.CardDavContactEventArgs.CardDavAction" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Events\CardDavContactEventArgs.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAQ=</HashCode>
+      <FileName>Events\CardDavContactEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.CardDavSyncEventArgs">
+    <Position X="26.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Events\CardDavSyncEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.ChatMessageEventArgs">
+    <Position X="9.75" Y="27.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAACAAAAAAAABAgAAACAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Events\ChatMessageEventArgs.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VATRP.Core.Events.ConfigurationEventArgs">
+    <Position X="15" Y="19" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAQAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAgAAAAFAA=</HashCode>
+      <FileName>Events\ConfigurationEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.ContactBasedEventArgs">
+    <Position X="2.5" Y="44.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Events\ContactBasedEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.ContactEventArgs">
+    <Position X="39.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Events\ContactEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.ContactRemovedEventArgs">
+    <Position X="2.5" Y="41.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Events\ContactRemovedEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.ContactStatusChangedEventArgs">
+    <Position X="30" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Events\ContactStatusChangedEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.ConversationEventArgs">
+    <Position X="0.5" Y="41.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Events\ConversationEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.ConversationUpdatedEventArgs">
+    <Position X="0.5" Y="38.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Events\ConversationUpdatedEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.DeclineMessageArgs">
+    <Position X="28.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAABAAAAIAAA=</HashCode>
+      <FileName>Events\DeclineMessageArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.EventHandlerTrigger">
+    <Position X="30.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Events\EventHandlerTrigger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.HttpDownloadEventArgs">
+    <Position X="26.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAACAAAAIAAAAAAAAAAIA=</HashCode>
+      <FileName>Events\HttpDownloadEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.InfoEventArgs">
+    <Position X="13.75" Y="26.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Events\InfoEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.InfoEventBaseArgs">
+    <Position X="12.75" Y="24.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Events\InfoEventBaseArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.MessageComposingEventArgs">
+    <Position X="7.5" Y="27.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Events\MessageComposingEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.MWIEventArgs">
+    <Position X="31.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Events\MWIEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.StringEventArgs">
+    <Position X="10.5" Y="20" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Events\StringEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.TextMessageEventArgs">
+    <Position X="8.75" Y="24.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Events\TextMessageEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.TypingInChatEventArgs">
+    <Position X="26.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAQ=</HashCode>
+      <FileName>Events\TypingInChatEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.VATRPCallEventArgs">
+    <Position X="12.75" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Events\VATRPCallEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Events.VATRPEventArgs">
+    <Position X="12.75" Y="19.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAIAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Events\VATRPEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Extensions.CollectionExtensions">
+    <Position X="30.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAARAAAAAAAAgAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\CollectionExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Extensions.StringExtensions">
+    <Position X="33.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAIgAAAAAAEQAAgAAAIgAIAAAAAA=</HashCode>
+      <FileName>Extensions\StringExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.ACEConfig">
+    <Position X="41.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACBAYCAAKGBAQAAAIIAAAAJMAICAAAAIAJEACAgZAGA=</HashCode>
+      <FileName>Model\ACEConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.CallParams">
+    <Position X="23.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAEAAAAAAAAAAQAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\CallParams.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.ChatID">
+    <Position X="0.5" Y="22.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAgAAAgAAAAiA=</HashCode>
+      <FileName>Model\ChatID.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.Configuration">
+    <Position X="37.75" Y="1.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="VATRP.Core.Model.Configuration.ConfSection" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Configuration.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="VATRP.Core.Model.Configuration.ConfEntry" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Configuration.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAQAAAAMAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Configuration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.ContactID">
+    <Position X="2.75" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAEoAAAAAAAgQAAAIAAAAAAAAAAAiA=</HashCode>
+      <FileName>Model\ContactID.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VATRP.Core.Model.VATRPMessageEvent">
+    <Position X="8.5" Y="33.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAgACAAQAAAEAApAAAAAQAAABAAIAAAAAAAQ=</HashCode>
+      <FileName>Model\HistoryShortMessageEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VATRP.Core.Model.MyObservableCollection&lt;T&gt;">
+    <Position X="33.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAACAAQAAAAAAAAABAAIAAABIAEACA=</HashCode>
+      <FileName>Model\MyObservableCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.PhoneNumber">
+    <Position X="35.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIgAAAABACAAEAEAAAAAAAAAAAAAAAAAEAAAAAAI=</HashCode>
+      <FileName>Model\PhoneNumber.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.VATRPAccount">
+    <Position X="28.25" Y="38.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>SoEgENAhaAgEBCoAGwQAAASEgUDEmRwCQoAFBCQIIAI=</HashCode>
+      <FileName>Model\VATRPAccount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.VATRPCall">
+    <Position X="30" Y="18.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgIAFAIBAAAABAAAgAACACZCAgAMgICAABAACCAEABQ=</HashCode>
+      <FileName>Model\VATRPCall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.VATRPCallEvent">
+    <Position X="11" Y="40" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAFAQACAAQAARAgACAQIAAgAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Model\VATRPCallEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VATRP.Core.Model.VATRPChat">
+    <Position X="0.5" Y="26.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BgFkOAACBgQAECYAiEABwQUkAAJVAAAAUAACEZiIQAQ=</HashCode>
+      <FileName>Model\VATRPChat.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VATRP.Core.Model.VATRPChatEvent">
+    <Position X="15" Y="33.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAACAAAABAAAAAAAIAAQ=</HashCode>
+      <FileName>Model\VATRPChatEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VATRP.Core.Model.VATRPChatMessage" BaseTypeListCollapsed="true">
+    <Position X="31.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AkAABAEEQigghFQBICQAEIAAgQAAAA2AgABYIEDEAFA=</HashCode>
+      <FileName>Model\VATRPChatMessage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VATRP.Core.Model.VATRPCodec" BaseTypeListCollapsed="true">
+    <Position X="33.5" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAIAAAEACAgAAAEgAAAAAAAAAAAAAAAICQAAAAAECA=</HashCode>
+      <FileName>Model\VATRPCodec.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VATRP.Core.Model.VATRPContact">
+    <Position X="2.75" Y="26.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CkIQEsAFIDhQAgTMoEWAAQckHgQgKOACAAGiAQEAQmE=</HashCode>
+      <FileName>Model\VATRPContact.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VATRP.Core.Model.VATRPDevice">
+    <Position X="35.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAEAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\VATRPDevice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.VATRPDomain">
+    <Position X="24.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAACAAAAAAAEAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Model\VATRPDomain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.VATRPHistoryEvent">
+    <Position X="11.5" Y="33.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="VATRP.Core.Model.VATRPHistoryEvent.StatusType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\VATRPHistoryEvent.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AEAAEEAAAAAAAaQADIAAAAQAiAAAABAAAAIAAAAAAAA=</HashCode>
+      <FileName>Model\VATRPHistoryEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VATRP.Core.Model.VATRPServiceProvider" BaseTypeListCollapsed="true">
+    <Position X="26.5" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAGAAABAQAIBAACIAIkAAAAABCAQAgAEAAAAA=</HashCode>
+      <FileName>Model\VATRPServiceProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VATRP.Core.Model.VATRPUserGroup" BaseTypeListCollapsed="true">
+    <Position X="28.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIgAAAAAggAQE4ABAACQAggAAQIAAAACAAAAAAiA=</HashCode>
+      <FileName>Model\VATRPUserGroup.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VATRP.Core.Model.vCard">
+    <Position X="30" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAkAQAAAQAAACBAAAAAAAACAAAgAAAAA=</HashCode>
+      <FileName>Model\vCard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.vCardReader">
+    <Position X="31.75" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAIAgAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\vCard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.vCardWriter">
+    <Position X="33.5" Y="21.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Model\vCard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.Commands.AcceptCallCommand">
+    <Position X="14.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\Commands\AcceptCallCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.Commands.CallCommand">
+    <Position X="9.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Commands\CallCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.Commands.CreateCallCommand">
+    <Position X="16.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAggAAAAACAAAAAAAAABAAGIAAAIEAAAAAAA=</HashCode>
+      <FileName>Model\Commands\CreateCallCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.Commands.DeclineCallCommand">
+    <Position X="3.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Model\Commands\DeclineCallCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.Commands.LinphoneCommand">
+    <Position X="12.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Model\Commands\LinphoneCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VATRP.Core.Model.Commands.MuteCallCommand">
+    <Position X="5.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Commands\MuteCallCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.Commands.PauseCallCommand">
+    <Position X="8" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Commands\PauseCallCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.Commands.ResumeCallCommand">
+    <Position X="10.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Commands\ResumeCallCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.Commands.SendChatMessageCommand">
+    <Position X="12.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Commands\SendChatMessageCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.Commands.TerminateCallCommand">
+    <Position X="17" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Commands\TerminateCallCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.Commands.ToggleCameraCommand">
+    <Position X="1.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Commands\ToggleCameraCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.Utils.RequestState">
+    <Position X="26.5" Y="19.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAQIiECEAgAAAAAAAAAAAACIA=</HashCode>
+      <FileName>Model\Utils\HttpDownloadHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.Utils.HttpDownloadHelper">
+    <Position X="28.25" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IEAAIAAAAAEIAAAAAEAAAAAACAAAAACAAAACAEAJIAQ=</HashCode>
+      <FileName>Model\Utils\HttpDownloadHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.Utils.Time">
+    <Position X="36.75" Y="14" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>ABAQABIIAgAAAAAAAAAEAAAAgAAAAAAgATAEQAAAAAA=</HashCode>
+      <FileName>Model\Utils\Time.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Model.Utils.Tools">
+    <Position X="24.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAgAAAAAAAAAIAAAAAAAAAACAgAAAAAIA=</HashCode>
+      <FileName>Model\Utils\Tools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Properties.Resources">
+    <Position X="28.25" Y="21.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAABEAAABwAAAAAAAAAAACAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Services.AccountService" BaseTypeListCollapsed="true">
+    <Position X="37.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAEQAYAAASgAAAAAIQAgAAIECADAEAAAIiBCASAIAAA=</HashCode>
+      <FileName>Services\AccountsService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VATRP.Core.Services.ChatsService" BaseTypeListCollapsed="true">
+    <Position X="33.5" Y="25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BC0EQCAAADqUIXAEgqAkByEgAAHk0CBEJQoGQKUIAEg=</HashCode>
+      <FileName>Services\ChatsService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VATRP.Core.Services.XmlConfigurationService" BaseTypeListCollapsed="true">
+    <Position X="35.25" Y="19.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="VATRP.Core.Services.XmlConfigurationService.XmlSection" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\ConfigurationService.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="VATRP.Core.Services.XmlConfigurationService.XmlSectionEntry" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\ConfigurationService.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>hAEAAAAAACgABBBAIQAAgAIEAABEUAAAKgBAACAIAAA=</HashCode>
+      <FileName>Services\ConfigurationService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VATRP.Core.Services.ContactService" BaseTypeListCollapsed="true">
+    <Position X="28.25" Y="26.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JIgAEEoATCABIyAOgCAGAYhTgBAACQAAIAEAAVBYAAA=</HashCode>
+      <FileName>Services\ContactService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VATRP.Core.Services.HistoryService" BaseTypeListCollapsed="true">
+    <Position X="24.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAQCgAgAAQAACAQAAEEAAAAAAAIAAAAACIABA=</HashCode>
+      <FileName>Services\HistoryService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VATRP.Core.Services.LinphoneService" BaseTypeListCollapsed="true">
+    <Position X="40" Y="11.25" Width="1.5" />
+    <NestedTypes>
+      <Class Name="VATRP.Core.Services.LinphoneService.Preferences" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.Preferences.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.LinphoneCoreIsComposingReceivedCb" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.GlobalStateChangedDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.LinphoneChatMessageCbsMsgStateChangedCb" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.InfoReceivedDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.LinphoneCoreNetworkReachableCb" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.LinphoneFriendListContactUpdatedCb" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.LinphoneCoreInfoReceivedCb" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.LinphoneCoreGlobalStateChangedCb" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.ErrorDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.CardDavContactDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.LinphoneCoreCallLogUpdatedCb" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.OnCallLogUpdatedDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.LinphoneCoreNotifyPresenceReceivedCb" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.LinphoneCoreRegistrationStateChangedCb" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.LinphoneCoreCallStatsUpdatedCb" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.NotifyReceivedDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.LinphoneCoreNewSubscriptionRequestedCb" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.CallStatisticsChangedDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.IsComposingReceivedDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.OnMessageReceivedDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.LinphoneCoreCallStateChangedCb" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.OnMessageStatusChangedDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.RegistrationStateChangedDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.MWIReceivedDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.LinphoneCoreMessageReceivedCb" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.NetworkReachabilityChanged" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.LinphoneFriendListContactCreatedCb" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.LinphoneLogFuncCB" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.LinphoneCoreNotifyReceivedCb" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.LinphoneFriendListContactDeletedCb" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.LinphoneCoreLogFuncCb" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.CallStateChangedDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.LinphoneFriendListSyncStateChangedCb" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="VATRP.Core.Services.LinphoneService.CardDavSyncDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Services\LinphoneService.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>Dkcs9SmuxWw8X3CpmMIqYy9vkHnLGItG6gtLTPLuEvs=</HashCode>
+      <FileName>Services\LinphoneService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VATRP.Core.Services.ProviderService" BaseTypeListCollapsed="true">
+    <Position X="24.75" Y="18.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAEAAIAAACgAAAAAIQAAQAIEAgDAkJAAIgJAACAKAAA=</HashCode>
+      <FileName>Services\ProviderService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VATRP.Core.Services.ServiceManagerBase">
+    <Position X="30" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAIAAAQAAABCAIACAAAAAAEAAAAAGCAA=</HashCode>
+      <FileName>Services\ServiceManagerBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Services.SoundService" BaseTypeListCollapsed="true">
+    <Position X="31.75" Y="28" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAQBAKMACAAAAAQAAAAEAABAEAAEKABAAAEIAAI=</HashCode>
+      <FileName>Services\SoundService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VATRP.Core.Utilities.DataProtectionHelper">
+    <Position X="31.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAEAAABAABAAAAAAAAAAAIAAAAAAAAgAAA=</HashCode>
+      <FileName>Utilities\DataProtectionHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VATRP.Core.Utilities.XmlStringHelper">
+    <Position X="24.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\XmlStringHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="VATRP.Core.Interfaces.IAccountService">
+    <Position X="3.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAYAAAQAAAAAAAAAAAAAACAAAAAAAACACAQAAAAA=</HashCode>
+      <FileName>Interfaces\IAccountService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VATRP.Core.Interfaces.IChatService">
+    <Position X="3.5" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAgEQAAAACIAIXAEACAAAAAAAAAkQCAAAQIAAIQAAAA=</HashCode>
+      <FileName>Interfaces\IChatService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VATRP.Core.Interfaces.IConfigurationService">
+    <Position X="5.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABABAAAAAgAIAAABEEAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IConfigurationService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VATRP.Core.Interfaces.IContactsService">
+    <Position X="8" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAgAAAIATAABIyAGgCACAABSgAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IContactService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VATRP.Core.Interfaces.IHistoryService">
+    <Position X="7.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAQAAAAAAQAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Interfaces\IHistoryService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VATRP.Core.Interfaces.ILinphoneService">
+    <Position X="5.75" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAcMtSAmxWQwXmCJmEIKYS4HEGDLEIkAygMIRJKGEHM=</HashCode>
+      <FileName>Interfaces\ILinphoneService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VATRP.Core.Interfaces.IProviderService">
+    <Position X="9.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAIAAAAAAAAAAAAAAAAAAAgBAgBAAAAJAAAACAAA=</HashCode>
+      <FileName>Interfaces\IProviderService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VATRP.Core.Interfaces.ISoundService">
+    <Position X="12.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAACMACAAAAAAAAAAAAAAAAAAEAAAAAAEAAAI=</HashCode>
+      <FileName>Interfaces\ISoundService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VATRP.Core.Interfaces.IVATRPservice">
+    <Position X="6" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAIAAAAAAIAAA=</HashCode>
+      <FileName>Interfaces\IVATRPservice.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="VATRP.Core.Enums.MessageContentType">
+    <Position X="31.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAABAAAAAACEAAAAg=</HashCode>
+      <FileName>Enums\MessageContentType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VATRP.Core.Enums.MessageDirection">
+    <Position X="33.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\MessageDirection.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VATRP.Core.Enums.TypingAction">
+    <Position X="24.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\TypingAction.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VATRP.Core.Enums.UserStatus">
+    <Position X="26.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAgAEAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Enums\UserStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VATRP.Core.Events.HistoryEventTypes">
+    <Position X="28.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAgAAAAAAABAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Events\HistoryEventTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VATRP.Core.Model.ACEConfigStatusType">
+    <Position X="24.75" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAABAAAAAAAAAAAAAAAAAgAAEABCAAAAAAAAA=</HashCode>
+      <FileName>Model\ACEConfig.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VATRP.Core.Model.CodecType">
+    <Position X="26.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Model\CodecType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VATRP.Core.Model.PhoneType">
+    <Position X="35.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQAAAAAAAEQAAAAAAAAAAAAAAAQAAACAAAAABAAAAAA=</HashCode>
+      <FileName>Model\PhoneType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VATRP.Core.Model.VATRPAccountType">
+    <Position X="28.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAABAAAAAAAEAAAAAAAAAAAABA=</HashCode>
+      <FileName>Model\VATRPAccountType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VATRP.Core.Model.VATRPCallState">
+    <Position X="30" Y="26" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAggAABCAAAQYAAAAgBAACBAAAAAgAAAAAgADGAAAA=</HashCode>
+      <FileName>Model\VATRPCallState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VATRP.Core.Model.VATRPDeviceType">
+    <Position X="31.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACBAAAAAAAAAAAAAAAAAAAAAAAIAAACAAAAA=</HashCode>
+      <FileName>Model\VATRPDevice.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VATRP.Core.Model.Commands.LinphoneCommandType">
+    <Position X="30" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAIAAAAAAAAAAAAABAAAQQAAAABCAAAAAABAAABAAFA=</HashCode>
+      <FileName>Model\Commands\LinphoneCommand.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

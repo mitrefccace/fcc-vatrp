@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="9d1c6864-fec5-4e1b-97b6-5c52c0efc505"
+  name="Interfaces"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="8860d97c-fd9d-4f31-946a-4192dcb0cf28"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DVATRP.Core.Interfaces"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="fa63fe0a-bbd4-4b4c-8e0f-a09890c35dec"
+        name="ILinphoneService"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="6ca1d05c-3cd2-47cc-8ecf-8a73665c6ae9"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.Core%2Fbin%2FDebug%2FACE.Core.dll Namespace%3DVATRP.Core.Interfaces Type%3DILinphoneService"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="ee48e6d4-10fd-4627-b1e2-9b8d74720273"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ded05f36-497e-4629-b222-789b0463f5e5">
+                <propertyInstance
+                  Id="0595fc44-3500-435a-9777-e4c775c3dcfa"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="27dad817-53b0-412e-8392-bf2f4fb285c8">
+                <propertyInstance
+                  Id="d01eb29a-13c7-4b64-8963-b07b01ae1a71"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="fffeb847-7be0-4153-af77-740e1cb41068">
+                <propertyInstance
+                  Id="743e70d5-e7a3-4451-91dd-7c7fbd6ef8e2"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8bf4647e-8bbc-4c29-b8a7-8924e6b79503">
+                <propertyInstance
+                  Id="de9dab3a-ee79-4876-9a90-01452c220e71"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

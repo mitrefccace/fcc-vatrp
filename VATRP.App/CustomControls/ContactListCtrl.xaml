@@ -1,0 +1,566 @@
+﻿<!-- 
+Copyright © The MITRE Corporation.
+ 
+This program is licensed under the terms of the GNU General Public License Version 2, as published by the Free Software Foundation. This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  Please see the
+GNU General Public License for more details.
+ 
+This program or code contains content developed by The MITRE Corporation. If this program is used in a deployment or embedded within another project, MITRE requests that you send an email to opensource@mitre.org to let us know where and how this program is being used.
+ 
+NOTICE
+This (software/technical data) was produced for the U. S. Government under Contract Number HHSM-500-2012-00008I, and is subject to Federal Acquisition Regulation Clause 52.227-14, Rights in Data-General. No other use other than that granted to the U. S. Government, or to those acting on behalf of the U. S. Government under that Clause is authorized without the express written permission of The MITRE Corporation. For further information, please contact The MITRE Corporation, Contracts Management Office, 7515 Colshire Drive, McLean, VA  22102-7539, (703) 983-6000. 
+-->
+
+<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:properties="clr-namespace:com.vtcsecure.ace.windows.Properties"
+             xmlns:conv="clr-namespace:com.vtcsecure.ace.windows.Converters"
+             x:Class="com.vtcsecure.ace.windows.CustomControls.ContactListCtrl"
+             mc:Ignorable="d" 
+    d:DataContext="{d:DesignData Source=../SampleData/ContactViewSampleData.xaml}"
+             d:DesignWidth="300" d:DesignHeight="500"
+               MaxWidth="300"
+    Background="{StaticResource RecentsPageMainBg}"
+             >
+    <UserControl.Resources>
+        <conv:ContactFavoriteToBrushConverter x:Key="cftbc"/>
+        <conv:IntToVisibilityConverter x:Key="ivc"/>
+    </UserControl.Resources>
+    <Grid Margin="3" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Row="0" SelectedIndex="{Binding ActiveTab, Mode=TwoWay, 
+            UpdateSourceTrigger=PropertyChanged}">
+            <TabControl.Style>
+                <Style TargetType="{x:Type TabControl}">
+                    <Setter Property="SnapsToDevicePixels" Value="True"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabControl">
+                                <Grid KeyboardNavigation.TabNavigation="Local">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Disabled">
+                                                <Storyboard>
+                                                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Border.BorderBrush).
+                    (SolidColorBrush.Color)">
+                                                        <EasingColorKeyFrame KeyTime="0"
+                                         Value="#FF949494" />
+                                                    </ColorAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <StackPanel x:Name="ButtonsHolder" Orientation="Horizontal" 
+                                                Margin="1,1,10,1" HorizontalAlignment="Right"
+                                                Panel.ZIndex="98"
+                                                >
+
+                                        <Button x:Name="TabPanelImportContacts"
+                                            Margin="3,1" 
+                                            HorizontalAlignment="Right"
+                                            Background="Transparent"
+                                            ToolTip="Import contacts in vCard or xCard format"
+                                            Height="13"
+                                            Width="13" 
+                                            Cursor="Hand"
+                                            Panel.ZIndex="99"
+                                            Command="{Binding Path=TabPanelImportContactsCommand}">
+                                            <Button.Resources>
+                                                <Grid x:Key="ImportContactNormal" >
+                                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0" Grid.Column="0">
+                                                        <Rectangle Width="9" Height="13"   Fill="Gray" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                                                            <Rectangle.OpacityMask>
+                                                                <ImageBrush ImageSource="..\Resources\import_vcards.png" />
+                                                            </Rectangle.OpacityMask>
+                                                        </Rectangle>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <Grid x:Key="ImportContactPressed" Background="{DynamicResource RecentsPageMainBg}">
+                                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0" Grid.Column="0" >
+
+                                                        <Rectangle Width="9" Height="13"  Fill="LightGray" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                                                            <Rectangle.OpacityMask>
+                                                                <ImageBrush ImageSource="..\Resources\import_vcards.png" />
+                                                            </Rectangle.OpacityMask>
+                                                        </Rectangle>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Button.Resources>
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Opacity" Value="1" />
+                                                    <Setter Property="BorderThickness" Value="0" />
+                                                    <Setter Property="Padding" Value="0" />
+                                                    <Setter Property="SnapsToDevicePixels" Value="True"/>
+                                                    <Setter Property="VerticalAlignment" Value="Stretch"/>
+                                                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                                    <Setter Property="Content" Value="{StaticResource ImportContactNormal}" />
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                                <Grid Background="Transparent">
+
+                                                                    <Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" 
+                                                        BorderThickness="0" Background="{TemplateBinding Background}" CornerRadius="0" Margin="0">
+                                                                        <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                                    </Border>
+                                                                </Grid>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Content" Value="{StaticResource ImportContactNormal}" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsPressed" Value="True">
+                                                            <Setter Property="Content" Value="{StaticResource ImportContactPressed}" />
+                                                        </Trigger>
+
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsPressed}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+
+                                                            <Setter Property="Opacity" Value="0.7"/>
+                                                            <Setter Property="Content" Value="{StaticResource ImportContactNormal}"/>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+
+                                        <Button x:Name="TabPanelExportContacts"
+                                            Margin="3,1" 
+                                            HorizontalAlignment="Right"
+                                            Background="Transparent"
+                                            ToolTip="Export contacts in vCard or xCard format"
+                                            Height="13"
+                                            Width="13" 
+                                            Cursor="Hand"
+                                            Panel.ZIndex="99"
+                                            Command="{Binding Path=TabPanelExportContactsCommand}">
+                                            <Button.Resources>
+                                                <Grid x:Key="ExportContactNormal" >
+                                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0" Grid.Column="0">
+                                                        <Rectangle Width="9" Height="13"   Fill="Gray" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                                                            <Rectangle.OpacityMask>
+                                                                <ImageBrush ImageSource="..\Resources\export_vcards.png" />
+                                                            </Rectangle.OpacityMask>
+                                                        </Rectangle>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <Grid x:Key="ExportContactPressed" Background="{DynamicResource RecentsPageMainBg}">
+                                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0" Grid.Column="0" >
+
+                                                        <Rectangle Width="9" Height="13"  Fill="LightGray" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                                                            <Rectangle.OpacityMask>
+                                                                <ImageBrush ImageSource="..\Resources\export_vcards.png" />
+                                                            </Rectangle.OpacityMask>
+                                                        </Rectangle>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Button.Resources>
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Opacity" Value="1" />
+                                                    <Setter Property="BorderThickness" Value="0" />
+                                                    <Setter Property="Padding" Value="0" />
+                                                    <Setter Property="SnapsToDevicePixels" Value="True"/>
+                                                    <Setter Property="VerticalAlignment" Value="Stretch"/>
+                                                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                                    <Setter Property="Content" Value="{StaticResource ExportContactNormal}" />
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                                <Grid Background="Transparent">
+
+                                                                    <Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" 
+                                                        BorderThickness="0" Background="{TemplateBinding Background}" CornerRadius="0" Margin="0">
+                                                                        <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                                    </Border>
+                                                                </Grid>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Content" Value="{StaticResource ExportContactNormal}" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsPressed" Value="True">
+                                                            <Setter Property="Content" Value="{StaticResource ExportContactPressed}" />
+                                                        </Trigger>
+
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsPressed}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+
+                                                            <Setter Property="Opacity" Value="0.7"/>
+                                                            <Setter Property="Content" Value="{StaticResource ExportContactNormal}"/>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+
+                                        <Button x:Name="TabPanelAddContact"
+                                            Margin="3,0" 
+                                            HorizontalAlignment="Left"
+                                            Background="Transparent"
+                                            ToolTip="Add new contact"
+                                            Height="13"
+                                            Width="13"
+                                            Cursor="Hand"
+                                            Panel.ZIndex="99"
+                                            Command="{Binding Path=TabPanelAddContactCommand}">
+                                            <Button.Resources>
+                                                <Grid x:Key="AddContactNormal" >
+                                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0" Grid.Column="0">
+                                                        <Rectangle Width="13" Height="13"   Fill="Gray" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                                                            <Rectangle.OpacityMask>
+                                                                <ImageBrush ImageSource="..\Resources\add_contact.png" />
+                                                            </Rectangle.OpacityMask>
+                                                        </Rectangle>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <Grid x:Key="AddContactPressed" Background="{DynamicResource RecentsPageMainBg}">
+                                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0" Grid.Column="0" >
+                                                        <Rectangle Width="13" Height="13"  Fill="LightGray" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                                                            <Rectangle.OpacityMask>
+                                                                <ImageBrush ImageSource="..\Resources\add_contact.png" />
+                                                            </Rectangle.OpacityMask>
+                                                        </Rectangle>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Button.Resources>
+
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Opacity" Value="1" />
+                                                    <Setter Property="BorderThickness" Value="0" />
+                                                    <Setter Property="Padding" Value="0" />
+                                                    <Setter Property="SnapsToDevicePixels" Value="True"/>
+                                                    <Setter Property="VerticalAlignment" Value="Stretch"/>
+                                                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                                    <Setter Property="Content" Value="{StaticResource AddContactNormal}" />
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                                <Grid Background="Transparent">
+                                                                    <Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" 
+                                                        BorderThickness="0" Background="{TemplateBinding Background}" CornerRadius="0" Margin="0">
+                                                                        <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                                    </Border>
+                                                                </Grid>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Content" Value="{StaticResource AddContactNormal}" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsPressed" Value="True">
+                                                            <Setter Property="Content" Value="{StaticResource AddContactPressed}" />
+                                                        </Trigger>
+
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"/>
+                                                                <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsPressed}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+
+                                                            <Setter Property="Opacity" Value="0.7"/>
+                                                            <Setter Property="Content" Value="{StaticResource AddContactNormal}"/>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                    </StackPanel>
+
+                                    <TabPanel x:Name="HeaderPanel"
+                    Grid.Row="0"
+                    Panel.ZIndex="1"
+                    Margin="0,0,4,-1"
+                    IsItemsHost="True"
+                    KeyboardNavigation.TabIndex="1"
+                    Background="Transparent" >
+
+                                    </TabPanel>
+                                    
+                                    <Border x:Name="Border"
+                  Grid.Row="1"
+                  BorderThickness="1,1,1,0"
+                  CornerRadius="0"
+                  KeyboardNavigation.TabNavigation="Local"
+                  KeyboardNavigation.DirectionalNavigation="Contained"
+                  KeyboardNavigation.TabIndex="2" 
+                                    Background="White"
+                                    >
+                                        <Border.BorderBrush>
+                                            <SolidColorBrush Color="#FF949494"/>
+                                        </Border.BorderBrush>
+                                        <ContentPresenter x:Name="PART_SelectedContentHost"
+                              Margin="2"
+                              ContentSource="SelectedContent" />
+                                    </Border>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Style>
+            <TabItem Header="All" />
+            <TabItem Header="Favorites" />
+        </TabControl>
+        <Border  Grid.Row="1" BorderThickness="1,0,1,1" BorderBrush="#ff949494" Margin="0,-1,0,0">
+
+            <Grid Background="White" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ListBox x:Name ="ContactsList" BorderThickness="0" SelectedItem="{Binding SelectedContact}"
+                             ItemsSource= "{Binding ContactsListView}" Margin="0,2,0,0" 
+                             SelectionChanged="OnContactSelected" Background="White" Grid.Row="1"
+                             HorizontalContentAlignment="Stretch" IsSynchronizedWithCurrentItem="True">
+                    <ListBox.Resources>
+                        <Style TargetType="ListBoxItem">
+                            <Style.Resources>
+                                <!-- Background of selected item when focussed -->
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFE9EFE9"/>
+                            </Style.Resources>
+
+                        </Style>
+                    </ListBox.Resources>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True" >
+                                    <Setter Property="Grid.Background" TargetName="BorderControl" Value="#FFE9EFE9" />
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+
+                            <Grid Cursor="Hand" x:Name="BorderControl" Background="White">
+                                <Grid.Resources>
+                                    <Style x:Key="HideButtonsStyle" TargetType="StackPanel">
+                                        <Setter Property="Opacity" Value="0" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Grid,AncestorLevel=1}, Path=IsMouseOver}" Value="True" >
+                                                <Setter Property="Opacity" Value="1" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Resources>
+                                <Grid.ColumnDefinitions >
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Border Grid.Column="0" Grid.Row="0"  Grid.RowSpan="2" Margin="2,0">
+                                    <!--VerticalAlignment="Top" CornerRadius="35" BorderThickness="0" BorderBrush="{StaticResource RecentsPageCallerFont}">-->
+                                    <Grid >
+                                        <Image Source="{Binding Avatar}" Width="45" Height="45"  Margin="2,3"/>
+                                    </Grid>
+                                </Border>
+
+                                <TextBlock  Grid.Row="0" Grid.Column="1" Text="{Binding Contact.Fullname}" Margin="5,0, 0, 3" VerticalAlignment="Bottom" 
+                                FontSize="16"  Foreground="{StaticResource RecentsPageCallerFont}" TextWrapping="NoWrap" ToolTip="{Binding Contact.Fullname}"
+                                    TextTrimming="CharacterEllipsis" FontWeight="SemiBold" HorizontalAlignment="Left" MaxWidth="150"/>
+                                
+                                <TextBlock  Grid.Row="1" Grid.Column="1" Text="{Binding Contact.RegistrationName}" Margin="5,0" MaxWidth="150"
+                                FontSize="14"  Foreground="{StaticResource RecentsPageCallerFont}" ToolTip="{Binding Contact.ContactAddress_ForUI}" FontWeight="SemiBold" HorizontalAlignment="Left" TextTrimming="CharacterEllipsis" />
+                                
+                                <StackPanel x:Name="ControlBtnPanel" Style="{StaticResource HideButtonsStyle}"
+                                        Orientation="Horizontal" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Grid.RowSpan="2">
+
+                                    <ToggleButton x:Name="FavoriteBtn" Margin="0,0,2,0" Tag="{Binding Contact}"
+                                              HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                              Click="btnFavorite_Click" >
+                                        <ToggleButton.Resources>
+                                            <Grid x:Key="FavHover" >
+                                                <Rectangle  Fill="White" Grid.Row="0" >
+                                                </Rectangle>
+                                                <Rectangle Width="20" Height="20" Fill="{Binding Contact.IsFavorite, Converter={StaticResource cftbc}}" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                                                    <Rectangle.OpacityMask>
+                                                        <ImageBrush ImageSource="..\Resources\fav_contact.png" />
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                            </Grid>
+                                            <Grid x:Key="FavPressed">
+                                                <Rectangle  Fill="White" Grid.Row="0" >
+                                                </Rectangle>
+                                                <Rectangle Width="20" Height="20" Fill="{Binding Contact.IsFavorite, Converter={StaticResource cftbc}}" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                                                    <Rectangle.OpacityMask>
+                                                        <ImageBrush ImageSource="..\Resources\fav_contact.png" />
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                            </Grid>
+                                            <Grid x:Key="FavNormal">
+                                                <Rectangle  Fill="White" Grid.Row="0" Grid.RowSpan="2">
+                                                </Rectangle>
+                                                <Rectangle Width="20" Height="20" Fill="{Binding Contact.IsFavorite, Converter={StaticResource cftbc}}" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                                                    <Rectangle.OpacityMask>
+                                                        <ImageBrush ImageSource="..\Resources\fav_contact.png" />
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                            </Grid>
+                                        </ToggleButton.Resources>
+                                        <ToggleButton.Style>
+                                            <Style TargetType="{x:Type ToggleButton}">
+                                                <Setter Property="Background" Value="Transparent"/>
+                                                <Setter Property="Content" Value="{StaticResource FavNormal}"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="ToggleButton">
+                                                            <Border Name="border" BorderThickness="0" Padding="0,0" BorderBrush="DarkGray" CornerRadius="0" Background="{TemplateBinding Background}">
+                                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" Name="content" Margin="{TemplateBinding Margin}"/>
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsChecked" Value="True">
+                                                                    <Setter Property="Content" Value="{StaticResource FavPressed}"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Content" Value="{StaticResource FavHover}"/>
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ToggleButton.Style>
+                                    </ToggleButton>
+
+                                    <ToggleButton x:Name="EditBtn" Margin="0,0,2,0" Tag="{Binding Contact}" HorizontalAlignment="Left" 
+                                                  VerticalAlignment="Center" Click="OnEdit" 
+                                                  Background="Transparent"
+                                                  >
+                                        <ToggleButton.Resources>
+                                            <Grid x:Key="EditHover" >
+                                                <Rectangle Width="20" Height="21" Fill="#FF7C8387" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                                                    <Rectangle.OpacityMask>
+                                                        <ImageBrush ImageSource="..\Resources\edit_contact.png" />
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                            </Grid>
+                                            <Grid x:Key="EditPressed">
+
+                                                <Rectangle Width="20" Height="21" Fill="#FF7C8387" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                                                    <Rectangle.OpacityMask>
+                                                        <ImageBrush ImageSource="..\Resources\edit_contact.png" />
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                            </Grid>
+                                            <Grid x:Key="EditNormal">
+                                                <Rectangle Width="20" Height="21" Fill="#FF7C8387" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                                                    <Rectangle.OpacityMask>
+                                                        <ImageBrush ImageSource="..\Resources\edit_contact.png" />
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                            </Grid>
+                                        </ToggleButton.Resources>
+                                        <ToggleButton.Style>
+                                            <Style TargetType="{x:Type ToggleButton}">
+                                                <Setter Property="Background" Value="Transparent"/>
+                                                <Setter Property="Content" Value="{StaticResource EditNormal}"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="ToggleButton">
+                                                            <Border Name="border" BorderThickness="0" Padding="0,0" CornerRadius="0" Background="{TemplateBinding Background}">
+                                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" Name="content" Margin="{TemplateBinding Margin}"/>
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsChecked" Value="True">
+                                                                    <Setter Property="Content" Value="{StaticResource EditPressed}"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Content" Value="{StaticResource EditHover}"/>
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ToggleButton.Style>
+                                    </ToggleButton>
+
+                                    <ToggleButton x:Name="DelBtn" Margin="0,0,2,0" Tag="{Binding Contact}" HorizontalAlignment="Left" 
+                                                  VerticalAlignment="Center" Click="OnDelete" 
+                                                  Background="Transparent"
+                                                  >
+                                        <ToggleButton.Resources>
+                                            <Grid x:Key="DelHover" >
+                                                <Rectangle Width="14" Height="21" Fill="#FF7C8387" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                                                    <Rectangle.OpacityMask>
+                                                        <ImageBrush ImageSource="..\Resources\del_contact.png" />
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                            </Grid>
+                                            <Grid x:Key="DelPressed">
+                                                <Rectangle Width="14" Height="21" Fill="#FF7C8387" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                                                    <Rectangle.OpacityMask>
+                                                        <ImageBrush ImageSource="..\Resources\del_contact.png" />
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                            </Grid>
+                                            <Grid x:Key="DelNormal">
+                                                <Rectangle Width="14" Height="21" Fill="#FF7C8387" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2">
+                                                    <Rectangle.OpacityMask>
+                                                        <ImageBrush ImageSource="..\Resources\del_contact.png" />
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                            </Grid>
+                                        </ToggleButton.Resources>
+                                        <ToggleButton.Style>
+                                            <Style TargetType="{x:Type ToggleButton}">
+                                                <Setter Property="Background" Value="Transparent"/>
+                                                <Setter Property="Content" Value="{StaticResource DelNormal}"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="ToggleButton">
+                                                            <Border Name="border" BorderThickness="0" Padding="0,0"  CornerRadius="0" Background="{TemplateBinding Background}">
+                                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" Name="content" Margin="{TemplateBinding Margin}"/>
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsChecked" Value="True">
+                                                                    <Setter Property="Content" Value="{StaticResource DelPressed}"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Content" Value="{StaticResource DelHover}"/>
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ToggleButton.Style>
+                                    </ToggleButton>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Border>
+
+    </Grid>
+</UserControl>

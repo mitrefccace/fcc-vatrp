@@ -1,0 +1,122 @@
+﻿<!-- 
+Copyright © The MITRE Corporation.
+ 
+This program is licensed under the terms of the GNU General Public License Version 2, as published by the Free Software Foundation. This program is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  Please see the
+GNU General Public License for more details.
+ 
+This program or code contains content developed by The MITRE Corporation. If this program is used in a deployment or embedded within another project, MITRE requests that you send an email to opensource@mitre.org to let us know where and how this program is being used.
+ 
+NOTICE
+This (software/technical data) was produced for the U. S. Government under Contract Number HHSM-500-2012-00008I, and is subject to Federal Acquisition Regulation Clause 52.227-14, Rights in Data-General. No other use other than that granted to the U. S. Government, or to those acting on behalf of the U. S. Government under that Clause is authorized without the express written permission of The MITRE Corporation. For further information, please contact The MITRE Corporation, Contracts Management Office, 7515 Colshire Drive, McLean, VA  22102-7539, (703) 983-6000. 
+-->
+
+<local:BaseUnifiedSettingsPanel x:Class="com.vtcsecure.ace.windows.CustomControls.UnifiedSettings.UnifiedSettingsGeneralCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:com.vtcsecure.ace.windows.CustomControls.UnifiedSettings"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="400">
+    <Grid>
+        <Grid  Background="{StaticResource RecentsPageMainBg}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="120*"/>
+                <ColumnDefinition Width="40*"/>
+            </Grid.ColumnDefinitions>
+            <!-- Row 0: Mute Speaker -->
+            <Label Grid.Column="0" Grid.Row="0" Content="Mute Speaker" VerticalContentAlignment="Center" 
+                   HorizontalAlignment="Left" Name="MuteSpeakerLabel">
+            </Label>
+            <CheckBox Grid.Column="2" Grid.Row="0" Checked="OnMuteSpeaker" Unchecked="OnMuteSpeaker" HorizontalAlignment="Center" VerticalAlignment="Center" Name="MuteSpeakerCheckBox"/>
+
+            <!-- Row 1: Mute Microphone -->
+            <Label Grid.Column="0" Grid.Row="1" Content="Mute Microphone" VerticalContentAlignment="Center" 
+                   HorizontalAlignment="Left" Name="MuteMicrophoneLabel">
+            </Label>
+            <CheckBox Grid.Column="2" Grid.Row="1" Checked="OnMuteMicrophone" Unchecked="OnMuteMicrophone" HorizontalAlignment="Center" VerticalAlignment="Center" Name="MuteMicrophoneCheckBox"/>
+
+            <!-- Row 2: Echo Cancel -->
+            <Label Grid.Column="0" Grid.Row="2" Content="Echo Cancel" VerticalContentAlignment="Center" 
+                   HorizontalAlignment="Left" Name="EchoCancelLabel">
+            </Label>
+            <CheckBox Grid.Column="2" Grid.Row="2" Checked="OnEchoCancel"  Unchecked="OnEchoCancel" HorizontalAlignment="Center" VerticalAlignment="Center"  Name="EchoCancelCheckBox"/>
+
+            <!-- Row 3: Show Self View -->
+            <Label Grid.Column="0" Grid.Row="3" Content="Show Self View" VerticalContentAlignment="Center" 
+                   HorizontalAlignment="Left"  Name="ShowSelfViewLabel">
+            </Label>
+            <CheckBox Grid.Column="2" Grid.Row="3" Checked="OnShowSelfView" Unchecked="OnShowSelfView" HorizontalAlignment="Center" VerticalAlignment="Center"  Name="ShowSelfViewCheckBox"/>
+
+
+            <!-- Row 4: Start at Boot -->
+            <Label Grid.Column="0" Grid.Row="4" Content="Start at boot" VerticalContentAlignment="Center" 
+                   HorizontalAlignment="Left" Name="StartAtBootLabel">
+            </Label>
+            <CheckBox Grid.Column="2" Grid.Row="4" Checked="OnStartOnBoot" Unchecked="OnStartOnBoot" HorizontalAlignment="Center" VerticalAlignment="Center" Name="StartAtBootCheckbox"/>
+
+            <!-- Row 5: SIP Encryption -->
+            <Label Grid.Column="0" Grid.Row="5" Content="SIP Encryption" VerticalContentAlignment="Center" 
+                   HorizontalAlignment="Left" Name="SipEncrptionLabel">
+            </Label>
+            <CheckBox Grid.Column="2" Grid.Row="5" Checked="OnSipEncryption" Unchecked="OnSipEncryption" HorizontalAlignment="Center" VerticalAlignment="Center" Name="SipEncryptionCheckbox"/>
+
+            <!-- Row 6: Wifi Only -->
+            <Label Grid.Column="0" Grid.Row="6" Content="Wifi Only" VerticalContentAlignment="Center" 
+                   HorizontalAlignment="Left" Name="WifiOnlyLabel">
+            </Label>
+            <CheckBox Grid.Column="2" Grid.Row="6" Checked="OnWifiOnly" Unchecked="OnWifiOnly" HorizontalAlignment="Center" VerticalAlignment="Center"  Name="WifiOnlyCheckBox"/>
+
+            <!-- Row 7: Auto-answer after notification -->
+            <Label Grid.Column="0" Grid.Row="7" Content="Auto-answer After Notification" VerticalContentAlignment="Center" 
+                   HorizontalAlignment="Left"  Name="AutoAnswerAfterNotificationLabel">
+            </Label>
+            <CheckBox Grid.Column="2" Grid.Row="7" Checked="OnAutoAnswerAfterNotification" Unchecked="OnAutoAnswerAfterNotification" HorizontalAlignment="Center" VerticalAlignment="Center"  Name="AutoAnswerAfterNotificationCheckBox"/>
+
+            <!-- Row 8: High Contrast -->
+            <Label Grid.Column="0" Grid.Row="8"  Content="High Contrast" 
+                   VerticalContentAlignment="Center" HorizontalAlignment="Left" Name="AutoAnswerLabel">
+            </Label>
+            <CheckBox Grid.Column="2" Grid.Row="8" Checked="OnHighContrast" Unchecked="OnHighContrast" HorizontalAlignment="Center" 
+                      VerticalAlignment="Center"  Name="HighContrastCheckBox"/>
+
+            <!-- Row 9: Privacy -->
+            <Label Grid.Column="0" Grid.Row="9"  Content="Privacy" 
+                   VerticalContentAlignment="Center" HorizontalAlignment="Left" Name="PrivacyLabel">
+            </Label>
+            <CheckBox Grid.Column="2" Grid.Row="9" Checked="OnPrivacyCheck" Unchecked="OnPrivacyCheck" HorizontalAlignment="Center" 
+                      VerticalAlignment="Center"  Name="PrivacyCheckBox"/>
+
+            <!-- Row 9: Call Logging 
+            <Label Grid.Column="0" Grid.Row="9"  Content="Enable In Call Logging" 
+                   VerticalContentAlignment="Center" HorizontalAlignment="Left" Name="EnableTechCallLogLabel">
+            </Label>
+            <CheckBox Grid.Column="2" Grid.Row="9" Checked="OnEnableTechCallLog" Unchecked="OnEnableTechCallLog" HorizontalAlignment="Center" 
+                      VerticalAlignment="Center"  Name="EnableTechCallLogCheckBox"/>
+            -->
+            <!-- Row 10: Ping Logging 
+            <Label Grid.Column="0" Grid.Row="10"  Content="Enable Provider Ping Logging" 
+                   VerticalContentAlignment="Center" HorizontalAlignment="Left" Name="EnableProviderPingLogLabel">
+            </Label>
+            <CheckBox Grid.Column="2" Grid.Row="10" Checked="OnEnableProviderPingLog" Unchecked="OnEnableProviderPingLog" HorizontalAlignment="Center" 
+                      VerticalAlignment="Center"  Name="EnableProviderPingLogCheckBox"/>
+            -->
+            
+        </Grid>
+
+    </Grid>
+</local:BaseUnifiedSettingsPanel>

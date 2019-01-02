@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="a0383ec8-f27b-4ed7-8f78-7235189d0ef8"
+  name="VideoWrapper"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="e30de669-3cbb-48ec-b01f-884ecc4f02a6"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DVATRP.Linphone.VideoWrapper"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <enumeration
+        Id="5f89de72-d8e3-4319-a1a9-e6c69f5685dd"
+        name="QualityIndicator"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="010c84d9-0fe2-407e-b345-0931e61a7077"
+            handle="viewcode://./CodeSchema_Enum?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FManagedVideoContainer%2Fbin%2FDebug%2FVATRP.Linphone.VideoWrapper.dll Namespace%3DVATRP.Linphone.VideoWrapper Type%3DQualityIndicator"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="70c72ff8-2340-4197-844d-ee3474042692"
+            name="enum"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c9368800-e260-4091-b9de-c9008d1d2451">
+                <propertyInstance
+                  Id="1dc6b2c5-bc7f-404c-b82c-e0430818bfcf"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="80d670a3-94c6-4055-8e5a-e693ce1d377e">
+                <propertyInstance
+                  Id="fbfc148d-133b-4d5f-83b5-3cf403215b8f"
+                  name="BaseType"
+                  value="int" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5ba69d1f-47a4-4909-9e9b-1423d71451eb">
+                <propertyInstance
+                  Id="2082cab9-d388-4539-afb2-563bcfbb731c"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="dd09652f-ab9d-4323-a009-4fad83946ae3"
+        name="Renderable"
+        isAbstract="true"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="f512003c-2cec-4493-80a7-57f24047f018"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FManagedVideoContainer%2Fbin%2FDebug%2FVATRP.Linphone.VideoWrapper.dll Namespace%3DVATRP.Linphone.VideoWrapper Type%3DRenderable"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="d637114e-9d85-41d4-b796-56508c33409c"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="56acb80e-431a-4f2e-9dd1-d47c5d275ef8">
+                <propertyInstance
+                  Id="2eea114a-4aa3-448a-aac2-dab5ec605adc"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5d9fc291-ba5a-40aa-8950-e0e1a98318c4">
+                <propertyInstance
+                  Id="689597e1-0edd-415e-9313-404249895298"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="fb2650ea-5aa4-45d7-a6dd-15cd8041c399">
+                <propertyInstance
+                  Id="474ab33d-d798-4cd4-b55a-0f60c8941f1f"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="88da5eac-a40b-4c71-92af-49dcae330f17">
+                <propertyInstance
+                  Id="dddda400-406e-4742-bb7f-88caa8015f6e"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d6632ee5-48d4-4179-a183-1f4aa52953b3">
+                <propertyInstance
+                  Id="6c91b217-13eb-4bc9-817e-90252d5e856f"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="242c16b1-fd71-48e5-bc7b-2a22ad066d93"
+            isSubstitutable="false">
+            <classMoniker
+              Id="f1b0d6a5-cedd-4334-a51d-247205368415"
+              LastKnownName="DependencyObject"
+              LastKnownLocation="Package5_1206.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="ccc0c5b0-761b-44c2-a1cf-711f997c4a5c"
+            name="OnPaint"
+            visibility="Package"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="80921f99-3d21-45f1-9734-bd5689ddf847"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FManagedVideoContainer%2Fbin%2FDebug%2FVATRP.Linphone.VideoWrapper.dll Namespace%3DVATRP.Linphone.VideoWrapper Type%3DRenderable Member%3DOnPaint"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="67da383f-fb85-4690-b103-7de4c13b8296"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4381afab-5075-4728-b466-92412886b5ec">
+                    <propertyInstance
+                      Id="288e80a7-b0df-4ab6-834e-f0e98b01363e"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fdb87916-2a63-432f-98c7-c29afa80d60e">
+                    <propertyInstance
+                      Id="ee6400a9-acb3-4302-b647-7e10234c1c9f"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8a2f5215-4709-4fc5-97d5-aa53944615a4">
+                    <propertyInstance
+                      Id="39bc552b-304b-403b-aaf4-22cd698f0eb3"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b750b9cc-391f-4cd5-aed5-514aa9fcd9e0">
+                    <propertyInstance
+                      Id="b4f06e13-5fa4-4699-8ecd-39d0d94e9d74"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="29587f02-9c0f-4c0a-aea5-9bacd73867b9">
+                    <propertyInstance
+                      Id="4b20db32-62e7-4d60-8f7c-9ca5eb35096d"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="194f9519-386a-4114-b6f0-4e24fe2b0ccc"
+                LastKnownName="EventHandler"
+                LastKnownLocation="Package4_1206.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="47448df1-039f-4804-b246-c95f53145746"
+            name="Renderable"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="839c064f-298c-4aa1-89bf-0049f9045ab3"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FManagedVideoContainer%2Fbin%2FDebug%2FVATRP.Linphone.VideoWrapper.dll Namespace%3DVATRP.Linphone.VideoWrapper Type%3DRenderable Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="b44846a6-7786-4d1b-b7db-99f3afede7ed"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="802aa682-9a69-4734-b439-6b2da8741685">
+                    <propertyInstance
+                      Id="eff0dcc4-6771-4b99-9a21-101ed5b9650e"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6e3c17e0-a0f4-4a92-87b1-de3e7bc0ca80">
+                    <propertyInstance
+                      Id="d8ddad89-799c-4dda-bdfe-c6efff71014c"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c6e19325-f6da-4f2b-b3f6-f16e05132e68">
+                    <propertyInstance
+                      Id="79890726-3c9b-4358-b95e-8ae96e4bf40d"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="011ee33e-36b7-4624-884f-fe1f8b287bb7">
+                    <propertyInstance
+                      Id="e425b2ea-7506-4d20-8875-4c6647049744"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7c894fc3-7478-4ae6-b2d3-95aa5f7ce44f">
+                    <propertyInstance
+                      Id="d30c7030-c93b-4e4c-af8b-aaa45e54ae04"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="87148a7e-a171-4cd3-8f97-3dd1494f8c18">
+                    <propertyInstance
+                      Id="b7e57894-0fef-4d41-bdff-f886d3f98dd1"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="c50a73da-83e5-4792-8d3d-63e753b0213b"
+            name="Create"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="884fa585-7ec5-4fa4-80ae-763fb2104044"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FManagedVideoContainer%2Fbin%2FDebug%2FVATRP.Linphone.VideoWrapper.dll Namespace%3DVATRP.Linphone.VideoWrapper Type%3DRenderable Member%3DCreate"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c7d68875-5eb7-4cd3-8300-bc964344d75f"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="af010231-0319-462e-ad3d-50a81391d828">
+                    <propertyInstance
+                      Id="2b699021-f66f-4bba-979b-c5cbffd53d4e"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7aaf7ad4-5f8f-4b84-89ce-fef9b61f27cb">
+                    <propertyInstance
+                      Id="745b6d85-407f-4129-a7de-cb81b7c7aa9b"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e8e0b33e-8da7-4da6-8372-ce0dc7e8066d">
+                    <propertyInstance
+                      Id="daec11c3-5b5a-472d-9ea3-920b9e05e85c"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8fe69a3b-1739-4991-abcc-06eee495834e">
+                    <propertyInstance
+                      Id="7cad4188-3ddd-4c7c-9689-dd441aff8769"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="14af09d2-8002-4e3c-adae-52500f957add">
+                    <propertyInstance
+                      Id="c9b54b91-a1ba-4b29-90c6-4b0c2155c553"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ee5526a4-3497-41e1-ad7e-d47a56b28724">
+                    <propertyInstance
+                      Id="000656e4-4bec-4c80-a69c-20998c5c1c1f"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="53d80c82-15e8-4c39-946f-c4795b51b218"
+            name="Render"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="2d3d3212-e21c-47b3-a606-d96583cdf307"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FManagedVideoContainer%2Fbin%2FDebug%2FVATRP.Linphone.VideoWrapper.dll Namespace%3DVATRP.Linphone.VideoWrapper Type%3DRenderable Member%3DRender"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="7855c552-98e7-47e6-b105-edb34b473172"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="baa43776-f77d-4fec-a42a-e295e9bcd2e7">
+                    <propertyInstance
+                      Id="4a9a0e22-d2ab-48e1-8a4c-d6b952e739f1"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2ec81680-0559-43fd-8ab6-1209b460b28f">
+                    <propertyInstance
+                      Id="59103202-413d-4269-8e64-09556322200b"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3edfcc62-cbb4-44a0-ad2d-8326729afc20">
+                    <propertyInstance
+                      Id="2aca8ce7-1842-4dfe-ac3d-3ea30abffe41"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="191f3cc8-4f0f-4eff-9bfc-b277952c33e8">
+                    <propertyInstance
+                      Id="fce7ec9b-4797-4d37-be6a-2be498f9d0d8"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="569c4306-cc37-41d3-a1af-319e80cf9fd3">
+                    <propertyInstance
+                      Id="f68eee59-327c-4b55-800a-f64a2541e636"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8e47f823-2025-4b63-981c-ed8f1fe70d3b">
+                    <propertyInstance
+                      Id="1f967283-84b6-4fc5-9e91-11f1a7fcfe41"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="cc86f5d4-cf59-42fd-903f-f2dce4da90ac"
+            name="Repaint"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="df201387-df82-4973-8f36-2fe599a5cf65"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FManagedVideoContainer%2Fbin%2FDebug%2FVATRP.Linphone.VideoWrapper.dll Namespace%3DVATRP.Linphone.VideoWrapper Type%3DRenderable Member%3DRepaint"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="87225063-157a-4b6d-ad96-b34b042652d3"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a1c7ea13-dd9b-4bb3-a452-56da316d43a4">
+                    <propertyInstance
+                      Id="9a944800-a678-492e-b97f-303933bd2c91"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e7fffff8-4177-48eb-9a71-319ee1fe378d">
+                    <propertyInstance
+                      Id="d172421f-f707-44eb-a919-789d9241312c"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c360c8c3-4071-46c5-abb5-18efef036292">
+                    <propertyInstance
+                      Id="0aef73e9-f471-4a18-8ac4-4743204e8d14"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3c3ba7f6-0347-4e9b-a0c9-a1c17e5b3ac7">
+                    <propertyInstance
+                      Id="bec04491-9db4-49f0-a4ce-abde94704dd8"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="662cc52d-aa78-4cf0-9f96-1c8174fe124a">
+                    <propertyInstance
+                      Id="bdf0c902-61e1-4786-9fb9-75742f53441e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="99832302-300d-41b9-a323-05eb75778383">
+                    <propertyInstance
+                      Id="e628bab1-91a5-4038-803b-d6067e30a78f"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="493c6578-26e0-4903-9a5b-79bce35f7473"
+  name="Model"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="21d7f99e-a4ba-4a7c-b1f7-1e167954bc77"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3Dcom.vtcsecure.ace.windows.Model"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="1d1a3403-428a-429d-b093-41cc23593738"
+        name="KeyPadEventArgs"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="08d43369-b919-44a5-9752-eb98dc99145f"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.App%2Fbin%2FDebug%2FACE.exe Namespace%3Dcom.vtcsecure.ace.windows.Model Type%3DKeyPadEventArgs"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="c9ae27f4-add1-493d-afba-784270cec2ab"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="fc381a36-8e5f-4513-8e9a-a8cc77d91bba">
+                <propertyInstance
+                  Id="e4ff359d-a443-4e12-866e-6f86338e9ddf"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="39dc3994-dbab-4a8d-91b3-0d6d099dc415">
+                <propertyInstance
+                  Id="4a0bb368-e666-4be0-9d83-33fad40e0cde"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="89e49a7a-7f84-481d-a8bf-3a4553568b5b">
+                <propertyInstance
+                  Id="f2a485e4-9baf-4fdd-8962-f1cb5dce159d"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e9ec81b1-a06c-4322-88f6-be994c37368a">
+                <propertyInstance
+                  Id="43722e1d-1434-4618-8cde-f36d793f21b5"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="13499bde-6994-4034-885f-91870451c20f">
+                <propertyInstance
+                  Id="5a25e7a7-3505-453f-8749-0b657524191b"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="0b1de426-49a0-48d7-89b9-393bcbc5918f"
+            isSubstitutable="false">
+            <classMoniker
+              Id="996febec-03ab-4ae3-b72c-7759b1f6dd9f"
+              LastKnownName="EventArgs"
+              LastKnownLocation="Package4_1206.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="ba7429fa-9acd-4a71-aae2-ecfc4d458a6f"
+        name="VATRPWindow"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="5e42149c-4d57-450c-bc8a-3b281be4d7fa"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.App%2Fbin%2FDebug%2FACE.exe Namespace%3Dcom.vtcsecure.ace.windows.Model Type%3DVATRPWindow"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="fbec4564-8a87-49f4-82bb-89b6802b359f"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="44c52a9d-1266-4fa9-8174-31c3fcb8a04a">
+                <propertyInstance
+                  Id="706491a1-25bc-47c2-8be5-e715d4f88559"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b9f8a6aa-e32f-4e67-8a62-38b32c2be089">
+                <propertyInstance
+                  Id="348dd0cf-9e94-4aa0-9ce6-38a896898fc0"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="44554f6b-31d9-40cc-8aa5-e97a042e7aa5">
+                <propertyInstance
+                  Id="35e70332-d0f2-4d68-becd-0485b52596d6"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e23f4d8b-9d7e-4869-934d-8062c1e4b644">
+                <propertyInstance
+                  Id="64c802a2-db01-4334-be57-13aaa4b92c6a"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="08cce7ca-e082-4e53-9d1c-d9a9842a0c64">
+                <propertyInstance
+                  Id="a6c40b6c-e1bb-44c5-a37c-cb8a1473b844"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="174ed924-e5ec-481a-ae9f-dbcf552bb68e"
+        name="FlashWindowHelper"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="d2359ed9-9120-4b38-8312-6acab1696ed6"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.App%2Fbin%2FDebug%2FACE.exe Namespace%3Dcom.vtcsecure.ace.windows.Model Type%3DFlashWindowHelper"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="96014cb6-0036-4fbf-ba8d-cce7b957833c"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="42baa0e0-6f2c-41e4-8969-5ba6e561d306">
+                <propertyInstance
+                  Id="64c8dcb7-4c77-4dde-9dcc-43c3594e20fc"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="48df9c53-9290-41b9-bed4-dcb212482021">
+                <propertyInstance
+                  Id="4ada6af1-4d12-4b1c-b8fe-b6534d0d31ad"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5c99299d-8b05-437c-bde0-3c5bfe50bd0a">
+                <propertyInstance
+                  Id="a2ec5faa-78c0-4252-af6f-84c4055e7ad8"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a768ac75-0b5c-444d-ad76-a5fe432111db">
+                <propertyInstance
+                  Id="b5ebc5d7-8907-4b07-890f-3d60eebcd827"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="53eba171-abe9-4cb0-bbd9-dde533a1043a">
+                <propertyInstance
+                  Id="00c15f98-84ef-4bec-8160-ae17a17f2e55"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

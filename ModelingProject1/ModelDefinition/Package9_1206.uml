@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="1d063756-0590-4b3b-9b64-f8ef687349c8"
+  name="Model"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="3dc2e8f0-c8f2-4682-9819-1f6eaafc7c46"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DVATRP.Core.Model"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="b953b9bc-21bb-4755-ab41-a804bf525baa"
+        name="VATRPAccount"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="15f10b61-95e3-43b7-9e28-630c3d9202e3"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.Core%2Fbin%2FDebug%2FACE.Core.dll Namespace%3DVATRP.Core.Model Type%3DVATRPAccount"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="87c37d75-9622-4754-acbd-d1860f3004ac"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a5d94819-fdce-44f9-b97b-cf1cc771e807">
+                <propertyInstance
+                  Id="dc5c1ec8-cc94-4e46-8257-289156809daa"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d1385231-5a2e-4269-9e6e-8b8000fcaf04">
+                <propertyInstance
+                  Id="6c68bd6a-aa7e-4bbd-863a-773df1a7870c"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="39b63da3-3e00-47ce-826c-e93c124d0c70">
+                <propertyInstance
+                  Id="dc223c40-967a-4286-9e81-bd79b6d629d8"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="57f3708c-3109-4c18-b8d2-655e9af8298a">
+                <propertyInstance
+                  Id="1dc78684-51c6-4078-8406-411a21fda476"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ef1681dd-f594-409d-aace-3996d0879a23">
+                <propertyInstance
+                  Id="79dbfa2b-29ee-4335-be0e-adc71483a4ca"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="b36263c1-cbad-4b3d-a84b-b210e97dd7fd"
+        name="VATRPCall"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="22411f30-5ff1-4997-a632-69b80b815869"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.Core%2Fbin%2FDebug%2FACE.Core.dll Namespace%3DVATRP.Core.Model Type%3DVATRPCall"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="5a69f6eb-52ba-4a06-9328-2d3ea3d2d7ed"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a9736b2c-b9d2-4578-b36e-1094860870d0">
+                <propertyInstance
+                  Id="3f6eac7d-66e9-4830-bc5c-f1c2216f6d4e"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c8c0f1af-6a39-4906-b5a7-e446f5367199">
+                <propertyInstance
+                  Id="f102fe3b-7bba-444a-b56f-1910d01b1749"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d9846a0c-17e1-432a-8128-f90d341c1e4f">
+                <propertyInstance
+                  Id="402ebce6-6224-4bb6-971c-a2268a2568ca"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ab2f013a-b02e-417b-a1b1-2705220800fb">
+                <propertyInstance
+                  Id="2a7b6498-2782-4653-98ae-d1ac04467a64"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ff599dea-520e-4da0-b8fc-279e45454f12">
+                <propertyInstance
+                  Id="fe65c62c-3cc1-4eb1-8fbd-c8c51b039e6e"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

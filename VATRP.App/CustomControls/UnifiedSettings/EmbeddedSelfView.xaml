@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="com.vtcsecure.ace.windows.CustomControls.UnifiedSettings.EmbeddedSelfView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:videoWrapper="clr-namespace:VATRP.Linphone.VideoWrapper;assembly=VATRP.Linphone.VideoWrapper"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <ScrollViewer Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3"  MaxHeight="150" MaxWidth="400">
+            <videoWrapper:ManagedVideoControl x:Name="ctrlVideo" Width="{Binding VideoWidth}" Height="{Binding VideoHeight}" 
+												  VerticalAlignment="Center" HorizontalAlignment="Center">
+            </videoWrapper:ManagedVideoControl>
+        </ScrollViewer>
+
+    </Grid>
+</UserControl>

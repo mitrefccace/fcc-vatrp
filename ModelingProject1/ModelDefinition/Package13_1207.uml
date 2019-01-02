@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="37cc8ad5-330b-4523-8f00-09d750190d2d"
+  name="Primitives"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="2475b2c2-db43-4389-bfd3-54f185a87fb5"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DSystem.Windows.Controls.Primitives"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="ba85c1f3-18cd-40b8-9ed0-11b71a26db37"
+        name="ToggleButton"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="bf593195-3441-4b9a-a277-e3817a64c15e"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.2%2FPresentationFramework.dll&quot; Namespace%3DSystem.Windows.Controls.Primitives Type%3DToggleButton"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="ed2818ac-443a-492d-b607-0aeddd549782"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9cb37a3a-174d-43a9-ba2d-929a4f824524">
+                <propertyInstance
+                  Id="c379a20d-4d82-4f47-a1fe-229fbf529b9e"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0f2add3d-344a-481f-9c90-e6b5448936c5">
+                <propertyInstance
+                  Id="11a06e51-2a89-412b-9c1c-f12c757dfa65"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="62196ec1-b517-4faf-9c86-1274c027845e">
+                <propertyInstance
+                  Id="35dcf81b-d425-4ef2-88a7-ee5790853f7c"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7a06eea9-1842-4ffa-8226-e81e4b9cb968">
+                <propertyInstance
+                  Id="0fdccbb4-9471-438e-ab1f-74ae4c55b341"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="898b759f-1a4b-4be4-962d-c70a92b3ffa0">
+                <propertyInstance
+                  Id="3f6f5f45-dbbd-4100-a2b1-2b542e3b7197"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

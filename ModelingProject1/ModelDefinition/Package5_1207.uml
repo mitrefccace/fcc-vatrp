@@ -1,0 +1,566 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="fe9eabb8-c5c6-4344-b86f-25ea01999e06"
+  name="CustomControls"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="054624b0-325f-4eb4-b408-20f286aa0095"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3Dcom.vtcsecure.ace.windows.CustomControls"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="f3d70ae5-c675-4b5c-ab53-6202398152e2"
+        LastKnownName="Resources"
+        LastKnownLocation="Package6_1207.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="81b33751-4a71-4148-8984-4e8323dfc444"
+        LastKnownName="UnifiedSettings"
+        LastKnownLocation="Package18_1207.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="cbf17cc8-4c5f-4254-9936-e4c0d71f11aa"
+        name="CallViewCtrl"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="0b061700-8003-4ce5-af02-57782266a309"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.App%2Fbin%2FDebug%2FACE.exe Namespace%3Dcom.vtcsecure.ace.windows.CustomControls Type%3DCallViewCtrl"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="bae15592-85cf-4b98-af13-35ce384979e2"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2abc0729-4ea1-4b81-a2d2-c59693d8fac7">
+                <propertyInstance
+                  Id="0858b440-6bc7-48c7-888d-6fccd620fc64"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="eb32d1f4-3442-4b1a-b6dc-4a68abf5b61c">
+                <propertyInstance
+                  Id="29da04d3-bb32-44f5-af33-7b50aa44fc1f"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f88a64e4-2f35-4c2b-b08c-16705984247a">
+                <propertyInstance
+                  Id="4966cad3-814f-4001-9efd-a29406edc4bb"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7dee5b75-d317-478a-8fc8-f9b08b4f9cd5">
+                <propertyInstance
+                  Id="3d368b48-f49a-4ae2-8fa4-4edff5c12ab5"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8054e52b-1041-43a8-adfe-6e2386fb59e2">
+                <propertyInstance
+                  Id="def6915f-c400-49f0-ab57-b49430b2f59f"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="c64e7f65-4be2-4b7c-9b68-24b4ab267dbe">
+            <interfaceMoniker
+              Id="df40d22b-989d-4f59-aa03-827a5c88691b"
+              LastKnownName="IComponentConnector"
+              LastKnownLocation="Package19_1207.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="59f18135-def3-46f6-b08d-89a61901c1ac"
+            isSubstitutable="false">
+            <classMoniker
+              Id="f3e586b6-b67b-4eb3-871e-5eb8bcc767d0"
+              LastKnownName="UserControl"
+              LastKnownLocation="Package_1207.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="ffe86223-cc72-41cf-88b3-604fcd621dbc"
+        name="ContactListCtrl"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="da247e22-c75d-49ef-bcdb-4c96ef2d31a6"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.App%2Fbin%2FDebug%2FACE.exe Namespace%3Dcom.vtcsecure.ace.windows.CustomControls Type%3DContactListCtrl"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="aeefa6dc-b9e1-40e5-9a4a-ec5db4d45774"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="faa5d2c6-3737-41a2-8b10-cf4db30fcdd9">
+                <propertyInstance
+                  Id="c2f7bb8f-c5c6-4541-952c-c14f0c0d032c"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="607ba47b-70fe-4450-9a46-688e3647e8e4">
+                <propertyInstance
+                  Id="2a2c4888-6d15-4af7-a949-d88f4b54f971"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c482d77a-f5e0-4746-8c39-7e202a4d572b">
+                <propertyInstance
+                  Id="a6227ab2-ca6c-451e-a680-cd66f16d575e"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4b94849b-2243-4d63-82ff-c2dcc2646a21">
+                <propertyInstance
+                  Id="2236359d-23ee-4669-8fee-4b5cec8ac47f"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="adb6c92d-8310-412c-8a56-14fdfba215d4">
+                <propertyInstance
+                  Id="b8ed86ca-5a8a-40d1-90bf-c597e41d13cd"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="c17407c3-9e73-42ad-ae8e-41b3eb06e3a5">
+            <interfaceMoniker
+              Id="df40d22b-989d-4f59-aa03-827a5c88691b"
+              LastKnownName="IComponentConnector"
+              LastKnownLocation="Package19_1207.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="adb975af-e0ba-4c2f-b47c-96962e62ffa8"
+            isSubstitutable="false">
+            <classMoniker
+              Id="f3e586b6-b67b-4eb3-871e-5eb8bcc767d0"
+              LastKnownName="UserControl"
+              LastKnownLocation="Package_1207.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="3111fbd8-c7f4-4fae-bd47-8ff6ad4dc99f"
+        name="DialPadScreen"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="626a10e6-c7e2-4bbf-b05b-470d21f40f7d"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.App%2Fbin%2FDebug%2FACE.exe Namespace%3Dcom.vtcsecure.ace.windows.CustomControls Type%3DDialPadScreen"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="c9867aac-83b1-4d7e-8e77-d458f38ecbe9"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8298420e-5516-48a2-beff-7c4b92291d87">
+                <propertyInstance
+                  Id="f1c4c9a2-0b80-41d3-b25e-bd253c6d8e06"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="875fa6bb-d0d1-4325-9e8d-3428e25be0e6">
+                <propertyInstance
+                  Id="b5060755-c287-4626-8e90-85aab69b8d33"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="bab12249-c41b-4980-a78f-cb13df61f326">
+                <propertyInstance
+                  Id="c1b8684a-1375-43a4-a7dc-d594be5b98c9"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f64d3187-f225-4e39-8ada-5846194b7214">
+                <propertyInstance
+                  Id="c7472888-c966-4b33-a8fc-fa970a217cb3"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e120bec8-d082-4818-9a8c-b88ce9fd1b39">
+                <propertyInstance
+                  Id="5d01c42b-e48a-4d53-a24a-b63d72fc695d"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="ccb92221-65a0-4eec-8ff1-6eb252ff15d7">
+            <interfaceMoniker
+              Id="df40d22b-989d-4f59-aa03-827a5c88691b"
+              LastKnownName="IComponentConnector"
+              LastKnownLocation="Package19_1207.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="cea8cffd-e67d-433a-bc44-6c533bddbc88"
+            isSubstitutable="false">
+            <classMoniker
+              Id="f3e586b6-b67b-4eb3-871e-5eb8bcc767d0"
+              LastKnownName="UserControl"
+              LastKnownLocation="Package_1207.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="14b3a2cf-768c-4049-8975-db9ab4978e97"
+        name="CallLogCtrl"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="fea5f67b-f57c-44a9-a05e-9326b77ef04a"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.App%2Fbin%2FDebug%2FACE.exe Namespace%3Dcom.vtcsecure.ace.windows.CustomControls Type%3DCallLogCtrl"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="0cd15973-e7f8-4fa9-9d8c-49e1861ef2f5"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6fb3450d-1686-4995-a38b-19f72d6ddc33">
+                <propertyInstance
+                  Id="91e046fd-26bb-405d-b44a-f94b62c6e906"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a1aff235-f61d-40e0-8d21-70a266ab9566">
+                <propertyInstance
+                  Id="86be2910-bac0-4584-82aa-cce5e3ac79e1"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="583276cf-3181-4257-bc40-7192bbcf864c">
+                <propertyInstance
+                  Id="7712f6b6-4cbd-461b-bc9a-d93d3175724e"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2c58eec0-8b81-4db0-ac7f-b1ea7ad3f007">
+                <propertyInstance
+                  Id="f8dd2a36-ba9c-4734-9705-eb8e230e2e82"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6b4b4593-2cbc-49ec-bb99-8a4572ecc9f0">
+                <propertyInstance
+                  Id="dbb13feb-b99e-4978-8768-c5029e031beb"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="587b52be-8a7d-425a-bca8-892790957dbd">
+            <interfaceMoniker
+              Id="df40d22b-989d-4f59-aa03-827a5c88691b"
+              LastKnownName="IComponentConnector"
+              LastKnownLocation="Package19_1207.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="2c15cad7-fa90-4fe8-bf7a-5ae4a0d1374d"
+            isSubstitutable="false">
+            <classMoniker
+              Id="f3e586b6-b67b-4eb3-871e-5eb8bcc767d0"
+              LastKnownName="UserControl"
+              LastKnownLocation="Package_1207.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="af81ddbb-4059-4dd3-9aa7-a8b2ba03fd64"
+        name="LocalContactPanel"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="698a426f-3ce2-4b35-8a9f-741e779242c4"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.App%2Fbin%2FDebug%2FACE.exe Namespace%3Dcom.vtcsecure.ace.windows.CustomControls Type%3DLocalContactPanel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="b999d41d-5974-4135-9cf6-b59352cc334a"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0c49e213-bbc3-457d-85bb-9959f834db63">
+                <propertyInstance
+                  Id="41122a7b-5de9-4a7c-88f2-55a7a4e51945"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="aaf946cc-a24e-4e73-9ffb-ee4d37d0a69e">
+                <propertyInstance
+                  Id="19b1351a-f91d-4519-aec7-e0f9f6e109fa"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ad5e85cb-0e0f-44de-9a9d-96a0dfad6ff5">
+                <propertyInstance
+                  Id="3f278c0a-7561-4620-ac8d-0cb6c29c0228"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2b9fb7ad-c1b6-4930-9bfe-f9d7d852c0d4">
+                <propertyInstance
+                  Id="ff3adf07-a1a4-407d-b559-e783bf726382"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="22f308bd-9081-4d47-bd1a-ebde012ca717">
+                <propertyInstance
+                  Id="d59cf344-a87f-4e14-86bf-b84b00742ecc"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="e37c28d9-999a-4be5-9926-b0c1b3ba7e09">
+            <interfaceMoniker
+              Id="df40d22b-989d-4f59-aa03-827a5c88691b"
+              LastKnownName="IComponentConnector"
+              LastKnownLocation="Package19_1207.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="3e40c4dc-f416-4b14-a672-af7d7339da9e"
+            isSubstitutable="false">
+            <classMoniker
+              Id="f3e586b6-b67b-4eb3-871e-5eb8bcc767d0"
+              LastKnownName="UserControl"
+              LastKnownLocation="Package_1207.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="c39a7440-7beb-4cd2-b169-068860088297"
+        name="MoreMenuCtrl"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="aa003fbb-eed7-40de-94f2-ce3a3ca5179d"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.App%2Fbin%2FDebug%2FACE.exe Namespace%3Dcom.vtcsecure.ace.windows.CustomControls Type%3DMoreMenuCtrl"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="7aa744f9-630d-4850-95fb-958757d866d8"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4e6a3b76-7e6f-49ce-a35a-b52e2ce00561">
+                <propertyInstance
+                  Id="35e889de-ffb8-4adf-8ab1-ff88c1f1a59a"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="35b6bb02-1c96-483d-b9f7-318cc58ed09a">
+                <propertyInstance
+                  Id="c33b1606-7b68-47a7-9cfc-5881e109aed6"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="238ec30e-9eb2-4e17-b6c4-36b812fbbe02">
+                <propertyInstance
+                  Id="eb8b83b7-47d8-43bc-ac9c-6ae2ae765078"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c6d26d16-c919-4334-80ca-62aae347d14d">
+                <propertyInstance
+                  Id="929df2fb-d1eb-4964-9a59-ebe2d36da99c"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="134e7832-8354-4f06-9018-83e290cbd70a">
+                <propertyInstance
+                  Id="48ba0561-0d5d-4322-a389-cb159e2807f1"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="410d1375-4405-4b67-ad06-06db0d89080d">
+            <interfaceMoniker
+              Id="df40d22b-989d-4f59-aa03-827a5c88691b"
+              LastKnownName="IComponentConnector"
+              LastKnownLocation="Package19_1207.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="626a015f-249e-423d-a5c8-0925fad268fb"
+            isSubstitutable="false">
+            <classMoniker
+              Id="f3e586b6-b67b-4eb3-871e-5eb8bcc767d0"
+              LastKnownName="UserControl"
+              LastKnownLocation="Package_1207.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="62e85c56-56f6-433c-8ab2-c8bfe9d81108"
+        name="RTTCtrl"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="399ce31c-8ef9-4b9e-8763-cf5b7bd03cae"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FUser12%2FDesktop%2FManoj%2Face-windows-GoLive%2FVATRP.App%2Fbin%2FDebug%2FACE.exe Namespace%3Dcom.vtcsecure.ace.windows.CustomControls Type%3DRTTCtrl"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="5277422a-00ab-40e5-9c84-3a74657340ab"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7772ed58-9087-435a-9792-e734e1fd95f9">
+                <propertyInstance
+                  Id="2662656d-6fed-4082-a17e-353ad4581e2f"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="565e279d-d327-4331-bb86-86337c2b5940">
+                <propertyInstance
+                  Id="5ed4e373-4422-4e98-96be-242299f28ee2"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3db38d43-c880-4f9f-9733-d2bf235c957c">
+                <propertyInstance
+                  Id="62e385b9-549a-4bf8-8510-99bd808392e9"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b15d6449-9c8b-4871-83e2-aaae12d6acef">
+                <propertyInstance
+                  Id="4ab4db80-7825-4962-9226-25bbd43a707e"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5faa82fe-4c4c-40da-a66c-812f860ef6d4">
+                <propertyInstance
+                  Id="efa1bde9-af68-4637-b85b-76ac1de4a1d8"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="47834edd-0eff-467d-9f13-a98bc35814cc">
+            <interfaceMoniker
+              Id="df40d22b-989d-4f59-aa03-827a5c88691b"
+              LastKnownName="IComponentConnector"
+              LastKnownLocation="Package19_1207.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="426850f8-dbc3-4249-ad22-c2a97dc8898c"
+            isSubstitutable="false">
+            <classMoniker
+              Id="f3e586b6-b67b-4eb3-871e-5eb8bcc767d0"
+              LastKnownName="UserControl"
+              LastKnownLocation="Package_1207.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
