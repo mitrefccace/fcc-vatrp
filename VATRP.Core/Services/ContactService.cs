@@ -158,8 +158,10 @@ namespace VATRP.Core.Services
                     {
                         IntPtr addressPtr = LinphoneAPI.linphone_friend_get_address(curStruct.data);
                         if (addressPtr == IntPtr.Zero)
+                        {
+                            contactsPtr = curStruct.next;
                             continue;
-                            //return;
+                        }
 
                         string dn = "";
                         IntPtr tmpPtr = LinphoneAPI.linphone_address_get_display_name(addressPtr);
@@ -212,22 +214,6 @@ namespace VATRP.Core.Services
                                 IsLinphoneContact = true,
                                 LinphoneRefKey = refKey
                             };
-
-                            //int _count = Contacts.Where(item => item.Fullname == contact.Fullname).Count();
-
-                            //if (_count > 1)
-                            //{
-                            //    //  Find Last and Delete??
-                            //    var _contact = (from c in Contacts 
-                            //                    where c.LinphoneRefKey == contact.LinphoneRefKey
-                            //                    orderby c.ID descending
-                            //                    select c).FirstOrDefault();
-                            //    if (_contact != null)
-                            //    {
-                            //        DeleteLinphoneContact(_contact);
-                            //    }
-                      
-                            //}
                             
                             UpdateAvatar(contact);
                             Contacts.Add(contact); // cjm-sep17 -- this is the problem with having too many in the contacts list within ACE
@@ -238,36 +224,9 @@ namespace VATRP.Core.Services
                     contactsPtr = curStruct.next;
                 } while (curStruct.next != IntPtr.Zero);
                 
-                //  Clean Up Duplicates
-                //var _contacts = (from c in Contacts
-                //                    where c.LinphoneRefKey.Trim().Length > 0
-                //                    group c by c.Fullname into grp
-                //                    where grp.Count() > 1
-                //                 select grp).ToList();
-
-                //var _contacts = Contacts.Where(con => con.LinphoneRefKey.Trim().Length > 0 && con.)
-                //var _contacts = (from grp in Contacts.GroupBy(c => c.RegistrationName)
-                //                .Where(grp => grp.Count() > 1)
-                //                 select grp).ToList();
-
                 var _contacts = (from r in Contacts
                                       where (r.LinphoneRefKey.Trim().Length > 0)
                                  select r).GroupBy(x => x.RegistrationName).Where(x => x.Count() > 1).ToList();
-
-                //for (int i = 0; i < _contacts.Count(); i++)
-                //{
-                    //string _keyToClean = _contacts[i].Key;
-
-                    //var _contact = (from c in Contacts 
-                    //                where c.Fullname == _keyToClean
-                    //                orderby c.ID descending
-                    //                select c).LastOrDefault();
-
-                    //if (_contact != null)
-                    //{
-                    //    DeleteLinphoneContact(_contact);
-                    //}
-                //}
                 
             }
 
@@ -711,7 +670,10 @@ namespace VATRP.Core.Services
                     {
                         IntPtr addressPtr = LinphoneAPI.linphone_friend_get_address(curStruct.data);
                         if (addressPtr == IntPtr.Zero)
+                        {
+                            vcardsList = curStruct.next;
                             continue;
+                        }
 
                         string dn = "";
                         IntPtr tmpPtr = LinphoneAPI.linphone_address_get_display_name(addressPtr);

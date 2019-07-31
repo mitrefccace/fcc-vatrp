@@ -69,7 +69,7 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
                 UserNameTextBox.Text = App.CurrentAccount.Username;
                 PasswordTextBox.Password = App.CurrentAccount.Password;
                 DomainTextBox.Text = App.CurrentAccount.ProxyHostname;
-                ProxyTextBox.Text = Convert.ToString(App.CurrentAccount.ProxyPort);
+                ProxyTextBox.Text = Convert.ToString(App.CurrentAccount.HostPort);
                 string transport = App.CurrentAccount.Transport;
                 CardDAVServerTextBox.Text = App.CurrentAccount.CardDavServerPath;
                 CardDAVRealmTextBox.Text = App.CurrentAccount.CardDavRealm;
@@ -234,9 +234,9 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
             {
                 bool isChanged = false;
                 bool resyncContacts = false;
-                if (App.CurrentAccount.ProxyPort != port)
+                if (App.CurrentAccount.HostPort != port)
                 {
-                    App.CurrentAccount.ProxyPort = port;
+                    App.CurrentAccount.HostPort = port;
                     isChanged = true;
                 }
                 if (ValueChanged(App.CurrentAccount.AuthID, UserIdTextBox.Text))
@@ -345,15 +345,15 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
             }
         }
 
-        public void OnProxyPortChanged(Object sender, RoutedEventArgs args)
+        public void OnHostPortChanged(Object sender, RoutedEventArgs args)
         {
             if ((App.CurrentAccount == null) || !this.IsVisible)
                 return;
-            string newProxyPort = ProxyTextBox.Text;
-            if (string.IsNullOrEmpty(newProxyPort))
+            string newHostPort = ProxyTextBox.Text;
+            if (string.IsNullOrEmpty(newHostPort))
             {
-                int oldProxyPort = App.CurrentAccount.ProxyPort;
-                ProxyTextBox.Text = Convert.ToString(oldProxyPort);
+                ushort oldHostPort = App.CurrentAccount.HostPort;
+                ProxyTextBox.Text = Convert.ToString(oldHostPort);
             }
         }
 
@@ -369,11 +369,11 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
                 App.CurrentAccount.Transport = transportString;
                 if (transportString.ToUpper().Equals("TCP") || transportString.ToUpper().Equals("UDP"))
                 {
-                    App.CurrentAccount.ProxyPort = 5060;
+                    App.CurrentAccount.HostPort = 5060;
                 }
                 else if (transportString.ToUpper().Equals("TLS"))
                 {
-                    App.CurrentAccount.ProxyPort = 25061;
+                    App.CurrentAccount.HostPort = 25061;
                 }
                 OnAccountChangeRequested(Enums.ACEMenuSettingsUpdateType.RegistrationChanged);
             }
@@ -473,8 +473,10 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
                 return;
             }
             string uri = GeolocationTextBox.Text;
-            if (ValidURI(uri, httpsOnly:false))
+            if (ValidURI(uri, httpsOnly:false) && uri != App.CurrentAccount.GeolocationURI)
             {
+                MessageBoxResult result = MessageBox.Show("Would you like your location to be sent during Registration attempts?", "Geolocation Updated", MessageBoxButton.YesNo);
+                App.CurrentAccount.SendLocationWithRegistration = (result == MessageBoxResult.Yes);
                 App.CurrentAccount.GeolocationURI = uri;
                 ServiceManager.Instance.SaveAccountSettings();
             }

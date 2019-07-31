@@ -52,7 +52,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
             LoginBox.Text = App.CurrentAccount.Username;
             PasswdBox.Password = App.CurrentAccount.Password;
             HostnameBox.Text = App.CurrentAccount.ProxyHostname;
-            HostPortBox.Text = App.CurrentAccount.ProxyPort.ToString();
+            HostPortBox.Text = App.CurrentAccount.HostPort.ToString();
             foreach (var item in TransportBox.Items)
             {
                 var s = item as TextBlock;
@@ -83,7 +83,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
             ushort port = 0;
             ushort.TryParse(HostPortBox.Text, out port);
 
-            if (port != App.CurrentAccount.ProxyPort && port != 0)
+            if (port != App.CurrentAccount.HostPort && port != 0)
                 return true;
 
             var s = TransportBox.SelectedItem as TextBlock;
@@ -137,7 +137,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
                 MessageBox.Show("Incorrect SIP Server Port", "VATRP", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            App.CurrentAccount.ProxyPort = port;
+            App.CurrentAccount.HostPort = port;
             App.CurrentAccount.AuthID = AuthIDBox.Text;
             App.CurrentAccount.Username = LoginBox.Text;
             App.CurrentAccount.Password = PasswdBox.Password;

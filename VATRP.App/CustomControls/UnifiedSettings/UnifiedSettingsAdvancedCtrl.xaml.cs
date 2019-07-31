@@ -17,13 +17,16 @@ using com.vtcsecure.ace.windows.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+//using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -158,23 +161,25 @@ Default value = 1
 
         private void InitializeNetwork()
         {
-            if (App.CurrentAccount.EnableICE && App.CurrentAccount.EnableSTUN)
-                App.CurrentAccount.EnableICE = false; // normalization
-
             UseStunServerCheckbox.IsChecked = App.CurrentAccount.EnableSTUN;
             StunServerTextBox.Text = App.CurrentAccount.STUNAddress; // address:port 
+            UseTurnServerCheckbox.IsChecked = App.CurrentAccount.EnableTURN;
             UseIceServerCheckbox.IsChecked = App.CurrentAccount.EnableICE;
+            StunServerUsernameTextBox.Text = App.CurrentAccount.STUNUsername;
 
             foreach (TextBlock textBlock in MediaEncryptionComboBox.Items)
             {
                 if (textBlock.Text.Equals(App.CurrentAccount.MediaEncryption))
                 {
-                    if (MediaEncryptionComboBox.SelectedItem != null)
-                    {
+                  
                         MediaEncryptionComboBox.SelectedItem = textBlock;
-                    }      
+                        
                 }
             }
+
+            if (MediaEncryptionComboBox.SelectedItem == null)
+                MediaEncryptionComboBox.SelectedIndex = 0;
+
 
             AdaptiveRateCheckbox.IsChecked = App.CurrentAccount.EnableAdaptiveRate;
 
@@ -660,6 +665,8 @@ Default value = 1
             VideoCodecsListView.IsEnabled = false;
             UseIceServerCheckbox.IsEnabled = false;
             UseStunServerCheckbox.IsEnabled = false;
+            UseTurnServerCheckbox.IsEnabled = false;
+            StunServerUsernameTextBox.IsEnabled = false;
             IPv6Checkbox.IsEnabled = false;
             MediaEncryptionComboBox.IsEnabled = false;
             UploadBandwidthTextBox.IsEnabled = false;
@@ -708,28 +715,33 @@ Default value = 1
             if (enabled != App.CurrentAccount.EnableSTUN)
             {
                 App.CurrentAccount.EnableSTUN = enabled;
-                if (enabled)
-                {
-                    App.CurrentAccount.EnableICE = false;
-                    UseIceServerCheckbox.IsChecked = App.CurrentAccount.EnableICE;
-                }
-
                 OnAccountChangeRequested(Enums.ACEMenuSettingsUpdateType.NetworkSettingsChanged);
             }
         }
 
-         /// <summary>
-         /// Updates network information for to STUN server.
-         /// </summary>
-         /// <remarks>
-         /// This function is called everytime the Stun Server Textbox toggles focus. 
-         /// Accepts the server URI in the format address:port 
-         /// rather than just the address previously.Error checks for various user conditions 
-         /// such as too many colons or inputting an empty text box.
-         /// </remarks>
-         /// <param name="sender">The object</param>
-         /// <param name="args">Event arguments</param>
-         /// <returns>void</returns>
+        private void OnTurnServerChecked(object sender, RoutedEventArgs e)
+        {
+            bool enabled = UseTurnServerCheckbox.IsChecked ?? false;
+            if (enabled != App.CurrentAccount.EnableTURN)
+            {
+                App.CurrentAccount.EnableTURN = enabled;
+                OnAccountChangeRequested(Enums.ACEMenuSettingsUpdateType.NetworkSettingsChanged);
+            }
+        }
+
+
+        /// <summary>
+        /// Updates network information for to STUN server.
+        /// </summary>
+        /// <remarks>
+        /// This function is called everytime the Stun Server Textbox toggles focus. 
+        /// Accepts the server URI in the format address:port 
+        /// rather than just the address previously.Error checks for various user conditions 
+        /// such as too many colons or inputting an empty text box.
+        /// </remarks>
+        /// <param name="sender">The object</param>
+        /// <param name="args">Event arguments</param>
+        /// <returns>void</returns>
         public void OnStunServerChanged(Object sender, RoutedEventArgs args)
         {
             // VATRP-1949: removed check for empty stun server. However - maybe we want a test here so that if the user has
@@ -764,7 +776,21 @@ Default value = 1
                 }
             }
         }
-
+        /// <summary>
+        /// Updates user credential used to authenticate into STUN/TURN server.
+        /// </summary>
+        /// <remarks>
+        /// This function is called everytime the Stun Server Username Textbox toggles focus. 
+        /// </remarks>
+        /// <param name="sender">The object</param>
+        /// <param name="args">Event arguments</param>
+        /// <returns>void</returns>
+        public void OnStunServerUsernameChanged(Object sender, RoutedEventArgs args)
+        {
+            string stunUsername = StunServerUsernameTextBox.Text;
+            App.CurrentAccount.STUNUsername = stunUsername;
+            OnAccountChangeRequested(Enums.ACEMenuSettingsUpdateType.NetworkSettingsChanged);
+        }
         /// <summary>
         /// Validates a proper URI.
         /// </summary>
@@ -822,11 +848,6 @@ Default value = 1
             if (enabled != App.CurrentAccount.EnableICE)
             {
                 App.CurrentAccount.EnableICE = enabled;
-                if (enabled)
-                {
-                    App.CurrentAccount.EnableSTUN = false;
-                    UseStunServerCheckbox.IsChecked = App.CurrentAccount.EnableSTUN;
-                }
                 OnAccountChangeRequested(Enums.ACEMenuSettingsUpdateType.NetworkSettingsChanged);
             }
         }
@@ -999,8 +1020,62 @@ Default value = 1
         {
             TextBlock valueTB = (TextBlock)MediaEncryptionComboBox.SelectedItem;
             string value = valueTB.Text;
+            string exePath = "";
+            string pemKey = "";
+
             if (App.CurrentAccount != null)
             {
+                if (value.IndexOf("DTLS", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    exePath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                    pemKey = exePath + "\\linphone-dtls-default-identity.pem";
+
+                    if (!File.Exists(pemKey))
+                    {
+                        // Default the call to an unencrypted version if the DTLS key is not collocated with the VATRP executable:
+                        value = "Unencrypted";
+                        MessageBox.Show("Missing encryption key: default to an unencrypted call.\n\nTo enable encryption here, first, you must create and place a linphone-dtls-default-identity.pem file in the same directory location as the VATRP executable.", "Media Encryption Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        
+                        // Update the encryption pull down menu to unencrypted also:
+                        foreach (TextBlock textBlock in MediaEncryptionComboBox.Items)
+                        {
+                            if (textBlock.Text.Equals("Unencrypted"))
+                            {
+
+                                MediaEncryptionComboBox.SelectedItem = textBlock;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // Scan the pem key to see if the key and cert sections exist:
+                        string pemKeyContent = File.ReadAllText(pemKey);
+
+                        bool beginKey = pemKeyContent.Contains("BEGIN RSA PRIVATE KEY");
+                        bool endKey = pemKeyContent.Contains("END RSA PRIVATE KEY");
+                        bool beginCert = pemKeyContent.Contains("BEGIN CERTIFICATE");
+                        bool endCert = pemKeyContent.Contains("END CERTIFICATE");
+                        
+                        if (!beginKey || !endKey || !beginCert || !endCert)
+                        {
+                            // Default the call to an unencrypted version if the pem file is not valid:
+                            value = "Unencrypted";
+                            MessageBox.Show("The format of the encryption key is invalid: reverting to an unencrypted call.\n\nCertificate might be missing.\n\nPlease refer to the user guide for generating key and certificate.", "Media Encryption Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                            foreach (TextBlock textBlock in MediaEncryptionComboBox.Items)
+                            {
+                                if (textBlock.Text.Equals("Unencrypted"))
+                                {
+                                    MediaEncryptionComboBox.SelectedItem = textBlock;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                
+
                 App.CurrentAccount.MediaEncryption = value;
                 // update media settings.
                 ServiceManager.Instance.ApplyMediaSettingsChanges();

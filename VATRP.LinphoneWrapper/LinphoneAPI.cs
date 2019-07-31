@@ -132,6 +132,9 @@ namespace VATRP.LinphoneWrapper
             string ha1, string realm, string domain);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr linphone_core_create_nat_policy(IntPtr lc);
+
+        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void linphone_core_remove_auth_info(IntPtr lc, IntPtr auth_info);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
@@ -964,12 +967,36 @@ namespace VATRP.LinphoneWrapper
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr linphone_core_get_stun_server(IntPtr lc);
+        
+        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr linphone_core_get_nat_policy(IntPtr lc);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void linphone_core_set_firewall_policy(IntPtr lc, LinphoneFirewallPolicy pol);
+        public static extern void linphone_core_set_nat_policy(IntPtr lc, IntPtr natPolicy);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int linphone_core_get_firewall_policy(IntPtr lc);
+        public static extern void linphone_nat_policy_set_stun_server(IntPtr natPolicy, string stunServer);
+
+        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void linphone_nat_policy_enable_stun(IntPtr natPolicy, bool enable);
+
+        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void linphone_nat_policy_enable_turn(IntPtr natPolicy, bool enable);
+
+        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool linphone_nat_policy_ice_enabled(IntPtr natPolicy);
+
+        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void linphone_nat_policy_set_stun_server_username(IntPtr natPolicy, string username);
+
+        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern string linphone_nat_policy_get_stun_server(IntPtr natPolicy);
+
+        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void linphone_nat_policy_enable_ice(IntPtr natPolicy, bool enable);
+
+        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void linphone_nat_policy_clear(IntPtr natPolicy);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void linphone_core_set_avpf_mode(IntPtr lc, LinphoneAVPFMode mode);

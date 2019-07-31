@@ -97,7 +97,7 @@ This (software/technical data) was produced for the U. S. Government under Contr
                 </Label>
                 <TextBox Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" 
                      Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Center" 
-                     VerticalContentAlignment="Center" FontSize="12" Foreground="Blue" Visibility="Collapsed" Name="ProxyTextBox" LostFocus="OnProxyPortChanged" IsEnabled="false"/>
+                     VerticalContentAlignment="Center" FontSize="12" Foreground="Blue" Visibility="Collapsed" Name="ProxyTextBox" LostFocus="OnHostPortChanged" IsEnabled="false"/>
             <!-- Row 7: Transport -->
             <Label Grid.Column="0" Grid.Row="7" Content="Transport" VerticalAlignment="Center" VerticalContentAlignment="Center" 
                    HorizontalAlignment="Left" Name="TransportLabel" Visibility="Collapsed">

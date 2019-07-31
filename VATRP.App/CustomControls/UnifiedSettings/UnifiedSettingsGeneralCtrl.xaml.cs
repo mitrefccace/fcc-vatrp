@@ -177,7 +177,7 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
                 if (!App.CurrentAccount.Transport.Equals("TCP"))
                 {
                     App.CurrentAccount.Transport = "TCP";
-                    App.CurrentAccount.ProxyPort = 5060;
+                    App.CurrentAccount.HostPort = 5060;
                     changed = true;
                 }
             }
@@ -186,7 +186,7 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
                 if (!App.CurrentAccount.Transport.Equals("TLS"))
                 {
                     App.CurrentAccount.Transport = "TLS";
-                    App.CurrentAccount.ProxyPort = 25061;
+                    App.CurrentAccount.HostPort = 25061;
                     changed = true;
                 }
             }

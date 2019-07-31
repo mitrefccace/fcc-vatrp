@@ -43,6 +43,6 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.0.0.0")] // cjm-oct17 -- changed from 0.0.68.0
-[assembly: AssemblyFileVersion("1.0.0.0")] // cjm-oct17 -- changed from 0.0.68.0
-[assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config")] // cjm-aug17
+[assembly: AssemblyVersion("1.1.0")]
+[assembly: AssemblyFileVersion("1.1.0")]
+[assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config")]

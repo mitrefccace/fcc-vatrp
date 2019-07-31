@@ -444,15 +444,16 @@ namespace com.vtcsecure.ace.windows.Services
 
             this.LinphoneService.LinphoneConfig.ProxyHost = string.IsNullOrEmpty(App.CurrentAccount.ProxyHostname) ?
                 Configuration.LINPHONE_SIP_SERVER : App.CurrentAccount.ProxyHostname;
-            LinphoneService.LinphoneConfig.ProxyPort = App.CurrentAccount.ProxyPort;
+            LinphoneService.LinphoneConfig.ProxyPort = App.CurrentAccount.HostPort;
             LinphoneService.LinphoneConfig.UserAgent = ConfigurationService.Get(Configuration.ConfSection.LINPHONE, Configuration.ConfEntry.LINPHONE_USERAGENT,
                     Configuration.LINPHONE_USERAGENT);
+            LinphoneService.LinphoneConfig.Version = ConfigurationService.Get(Configuration.ConfSection.LINPHONE, Configuration.ConfEntry.VATRP_VERSION, Configuration.VATRP_VERSION);
+            LinphoneService.LinphoneConfig.OutboundProxy = App.CurrentAccount.OutboundProxy;
 
             LinphoneService.LinphoneConfig.AuthID = App.CurrentAccount.AuthID;
             LinphoneService.LinphoneConfig.Username = App.CurrentAccount.RegistrationUser;
             LinphoneService.LinphoneConfig.DisplayName = App.CurrentAccount.DisplayName;
             LinphoneService.LinphoneConfig.Password = App.CurrentAccount.RegistrationPassword;
-            LinphoneService.LinphoneConfig.PhoneNumber = App.CurrentAccount.PhoneNumber;
 
             string[] transportList = { "UDP", "TCP", "DTLS", "TLS" };
             if (transportList.All(s => App.CurrentAccount.Transport != s))
@@ -463,9 +464,12 @@ namespace com.vtcsecure.ace.windows.Services
 
             // set geolocation
             LinphoneService.LinphoneConfig.GeolocationURI = App.CurrentAccount.GeolocationURI;
+            LinphoneService.LinphoneConfig.SendLocationWithRegistration = App.CurrentAccount.SendLocationWithRegistration;
 
             LinphoneService.LinphoneConfig.Transport = App.CurrentAccount.Transport;
             LinphoneService.LinphoneConfig.EnableSTUN = App.CurrentAccount.EnableSTUN;
+            LinphoneService.LinphoneConfig.EnableTURN = App.CurrentAccount.EnableTURN;
+            LinphoneService.LinphoneConfig.EnableICE = App.CurrentAccount.EnableICE;
             LinphoneService.LinphoneConfig.STUNAddress = App.CurrentAccount.STUNAddress;
             LinphoneService.LinphoneConfig.STUNPort = App.CurrentAccount.STUNPort;
             LinphoneService.LinphoneConfig.MediaEncryption = GetMediaEncryptionText(App.CurrentAccount.MediaEncryption);

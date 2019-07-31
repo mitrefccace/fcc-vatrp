@@ -579,7 +579,6 @@ namespace com.vtcsecure.ace.windows
             {
                 ProviderLoginScreen wizardPage = new ProviderLoginScreen(this);
 
-                currentAccount.PhoneNumber = string.Empty; // clear phone number
                 currentAccount.Password = string.Empty; // clear password for logout
 
                 ServiceManager.Instance.AccountService.Save();
@@ -754,7 +753,7 @@ namespace com.vtcsecure.ace.windows
                 if (!string.IsNullOrEmpty(App.CurrentAccount.ProxyHostname) &&
                     !string.IsNullOrEmpty(App.CurrentAccount.RegistrationPassword) &&
                     !string.IsNullOrEmpty(App.CurrentAccount.RegistrationUser) &&
-                    App.CurrentAccount.ProxyPort != 0)
+                    App.CurrentAccount.HostPort != 0)
                 {
                     _mainViewModel.OfferServiceSelection = false;
                     _mainViewModel.IsAccountLogged = true;

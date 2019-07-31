@@ -55,6 +55,8 @@ namespace VATRP.Core.Services
             public int STUNPort { get; set; }
 			
             public bool EnableSTUN { get; set; }
+            public bool EnableTURN { get; set; }
+            public bool EnableICE { get; set; }
 			
             public bool EnableAVPF { get; set; }
 			
@@ -64,9 +66,12 @@ namespace VATRP.Core.Services
 
             public bool IsOutboundProxyOn { get; set; }
 
+            public string OutboundProxy { get; set; }
+
             public int Expires { get; set; }
 
             public string GeolocationURI { get; set; }
+            public bool SendLocationWithRegistration { get; set; }
 
             public string CardDavUser { get; set; }
             public string CardDavPass { get; set; }

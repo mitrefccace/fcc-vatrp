@@ -98,599 +98,605 @@ namespace com.vtcsecure.ace.windows
 	    private void OnCallStateChanged(VATRPCall call)
 	    {
            
+            try
+            {
+                Console.WriteLine("OnCallStateChanged: " + call.CallState);
+                //*******************************************************************************************************************************************************
+                // This method is called when user try to connect a call and call status changed like (Trying, Connected, Ringing, Closed, Incoming ) etc.
+                //*******************************************************************************************************************************************************
+                if (this.Dispatcher == null)
+                    return;
 
-            Console.WriteLine("OnCallStateChanged: " + call.CallState);
-            //*******************************************************************************************************************************************************
-            // This method is called when user try to connect a call and call status changed like (Trying, Connected, Ringing, Closed, Incoming ) etc.
-            //*******************************************************************************************************************************************************
-	        if (this.Dispatcher == null)
-	            return;
+                if (this.Dispatcher.Thread != Thread.CurrentThread)
+                {
+                    this.Dispatcher.BeginInvoke((Action)(() => this.OnCallStateChanged(call)));
+                    return;
+                }
 
-			if (this.Dispatcher.Thread != Thread.CurrentThread)
-			{
-				this.Dispatcher.BeginInvoke((Action)(() => this.OnCallStateChanged(call)));
-				return;
-			}
+                if (call == null)
+                    return;
 
-		    if (call == null)
-		        return;
+                lock (deferredLock)
+                {
+                    if (deferredHideTimer != null && deferredHideTimer.IsEnabled)
+                        deferredHideTimer.Stop();
+                }
 
-	        lock (deferredLock)
-	        {
-	            if (deferredHideTimer != null && deferredHideTimer.IsEnabled)
-	                deferredHideTimer.Stop();
-	        }
+                if (_mainViewModel == null)
+                    return;
 
-	        if (_mainViewModel == null)
-	            return;
+                if (_mainViewModel.ActiveCallModel != null &&
+                    _mainViewModel.ActiveCallModel.CallState == VATRPCallState.Declined)
+                {
+                    _mainViewModel.ActiveCallModel.DeclinedMessage = string.Empty;
+                    _mainViewModel.RemoveCalViewModel(_mainViewModel.ActiveCallModel);
+                }
 
-	        if (_mainViewModel.ActiveCallModel != null &&
-	            _mainViewModel.ActiveCallModel.CallState == VATRPCallState.Declined)
-	        {
-                _mainViewModel.ActiveCallModel.DeclinedMessage = string.Empty;
-                _mainViewModel.RemoveCalViewModel(_mainViewModel.ActiveCallModel);
-	        }
+                CallViewModel callViewModel = _mainViewModel.FindCallViewModel(call);
 
-			CallViewModel callViewModel = _mainViewModel.FindCallViewModel(call);
-
-			if (callViewModel == null)
-			{
-				callViewModel = new CallViewModel(_linphoneService, call)
-				{
-					CallInfoCtrl = _callInfoView
-				};
-
-                callViewModel.RTTViewModel.RttReceived += OnRttReceived;
-                callViewModel.RTTViewModel.CreateRttConversation(call.ChatRoom);
-			    callViewModel.CallConnectingTimeout += OnCallConnectingTimeout;
-                callViewModel.HideMessageWindowTimeout += OnMessageHideTimeout;
-			    callViewModel.CallQualityChangedEvent += OnCallQualityChanged;
-
-                callViewModel.VideoWidth = (int)CombinedUICallViewSize.Width;
-			    callViewModel.VideoHeight = (int)CombinedUICallViewSize.Height;
-				_mainViewModel.AddCalViewModel(callViewModel);
-			}
-
-		    if ((call.CallState == VATRPCallState.InProgress) ||
-                (call.CallState == VATRPCallState.StreamsRunning))
-		    {
-		        _mainViewModel.ActiveCallModel = callViewModel;
-		    }
-
-		    if (callViewModel.Declined)
-		    {
-                // do not process declined call
-                _mainViewModel.RemoveCalViewModel(callViewModel);
-		        return;
-		    }
-
-		    if (_mainViewModel.ActiveCallModel == null)
-		        _mainViewModel.ActiveCallModel = callViewModel;
-
-            Console.WriteLine(string.Format("CallStateChanged: State - {0}. Call: {1}", call.CallState, call.NativeCallPtr));
-
-            LOG.Info(string.Format("CallStateChanged: State - {0}. Call: {1}", call.CallState, call.NativeCallPtr));
-		    ctrlCall.SetCallViewModel(_mainViewModel.ActiveCallModel);
-	        VATRPContact contact = null;
-
-			var stopPlayback = false;
-		    var destroycall = false;
-	        var callDeclined = false;
-            bool isError = false;
-			switch (call.CallState)
-			{
-				case VATRPCallState.Trying:
-					// call started, 
-					call.RemoteParty = call.To;
-					callViewModel.OnTrying();
-			        _mainViewModel.IsCallPanelDocked = true;
-
-                    if (callViewModel.Contact == null)
-                        callViewModel.Contact = 
-ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("{0}@{1}", call.To.Username, call.To.HostAddress), IntPtr.Zero));
-
-                    if (callViewModel.Avatar == null && callViewModel.Contact != null)
+                if (callViewModel == null)
+                {
+                    callViewModel = new CallViewModel(_linphoneService, call)
                     {
-                        callViewModel.LoadAvatar(callViewModel.Contact.Avatar);
-                    }
+                        CallInfoCtrl = _callInfoView
+                    };
 
-			        if (callViewModel.Contact == null)
-			        {
-			            var contactID = new ContactID(string.Format("{0}@{1}", call.To.Username, call.To.HostAddress),
-			                IntPtr.Zero);
-                        callViewModel.Contact = new VATRPContact(contactID)
-                        {
-                            DisplayName = call.To.DisplayName,
-                            Fullname = call.To.Username,
-                            SipUsername = call.To.Username,
-                            RegistrationName = contactID.ID
-                        };
-			        }
-                    
-					break;
-				case VATRPCallState.InProgress:
-			        WakeupScreenSaver();
-			        this.ShowSelfPreviewItem.IsEnabled = false;
-					call.RemoteParty = call.From;
-					ServiceManager.Instance.SoundService.PlayRingTone();
-                    if (callViewModel.Contact == null)
-                        callViewModel.Contact = 
-ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("{0}@{1}", call.From.Username, call.From.HostAddress), IntPtr.Zero));
+                    callViewModel.RTTViewModel.RttReceived += OnRttReceived;
+                    callViewModel.RTTViewModel.CreateRttConversation(call.ChatRoom);
+                    callViewModel.CallConnectingTimeout += OnCallConnectingTimeout;
+                    callViewModel.HideMessageWindowTimeout += OnMessageHideTimeout;
+                    callViewModel.CallQualityChangedEvent += OnCallQualityChanged;
 
-                    if (callViewModel.Avatar == null && callViewModel.Contact != null)
-                    {
-                        callViewModel.LoadAvatar(callViewModel.Contact.Avatar);
-                    }
+                    callViewModel.VideoWidth = (int)CombinedUICallViewSize.Width;
+                    callViewModel.VideoHeight = (int)CombinedUICallViewSize.Height;
+                    _mainViewModel.AddCalViewModel(callViewModel);
+                }
 
-			        if (callViewModel.Contact == null)
-			        {
-			            var contactID = new ContactID(string.Format("{0}@{1}", call.From.Username, call.From.HostAddress),
-			                IntPtr.Zero);
-                        callViewModel.Contact = new VATRPContact(contactID)
-                        {
-                            DisplayName = call.From.DisplayName,
-                            Fullname = call.From.Username,
-                            SipUsername = call.From.Username,
-                            RegistrationName = contactID.ID
-                        };
-			        }
+                if ((call.CallState == VATRPCallState.InProgress) ||
+                    (call.CallState == VATRPCallState.StreamsRunning))
+                {
+                    _mainViewModel.ActiveCallModel = callViewModel;
+                }
 
-                    callViewModel.OnIncomingCall();
+                if (callViewModel.Declined)
+                {
+                    // do not process declined call
+                    _mainViewModel.RemoveCalViewModel(callViewModel);
+                    return;
+                }
 
-			        if (_linphoneService.GetActiveCallsCount == 2)
-			        {
-			            ShowOverlayNewCallWindow(true);
-                        ctrlCall.ctrlOverlay.SetNewCallerInfo(callViewModel.CallerInfo);
-			        }
-			        else
-			        {
-			            callViewModel.ShowIncomingCallPanel = true;
-			        }
+                if (_mainViewModel.ActiveCallModel == null)
+                    _mainViewModel.ActiveCallModel = callViewModel;
 
-                    if (WindowState != WindowState.Minimized)
+                Console.WriteLine(string.Format("CallStateChanged: State - {0}. Call: {1}", call.CallState, call.NativeCallPtr));
+
+                LOG.Info(string.Format("CallStateChanged: State - {0}. Call: {1}", call.CallState, call.NativeCallPtr));
+                ctrlCall.SetCallViewModel(_mainViewModel.ActiveCallModel);
+                VATRPContact contact = null;
+
+                var stopPlayback = false;
+                var destroycall = false;
+                var callDeclined = false;
+                bool isError = false;
+                switch (call.CallState)
+                {
+                    case VATRPCallState.Trying:
+                        // call started, 
+                        call.RemoteParty = call.To;
+                        callViewModel.OnTrying();
                         _mainViewModel.IsCallPanelDocked = true;
-                    
-                    if (_flashWindowHelper != null)
-                        _flashWindowHelper.FlashWindow(this);
-			        BringToFront();
-			        break;
-				case VATRPCallState.Ringing:
-                    //***********************************************************************************************************************************
-                    // Ringing for Outgoing call.
-                    //***********************************************************************************************************************************
-                    this.ShowSelfPreviewItem.IsEnabled = false;
-					callViewModel.OnRinging();
-                    _mainViewModel.IsCallPanelDocked = true;
-					call.RemoteParty = call.To;
-					ctrlCall.ctrlOverlay.SetCallerInfo(callViewModel.CallerInfo);
-					ctrlCall.ctrlOverlay.SetCallState("Ringing");
-                    if (callViewModel.Contact == null)
-                        callViewModel.Contact = 
-ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("{0}@{1}", call.To.Username, call.To.HostAddress), IntPtr.Zero));
 
-                    if (callViewModel.Avatar == null && callViewModel.Contact != null)
-                    {
-                        callViewModel.LoadAvatar(callViewModel.Contact.Avatar);
-                    }
+                        if (callViewModel.Contact == null)
+                            callViewModel.Contact =
+    ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("{0}@{1}", call.To.Username, call.To.HostAddress), IntPtr.Zero));
 
-			        if (callViewModel.Contact == null)
-			        {
-			            var contactID = new ContactID(string.Format("{0}@{1}", call.To.Username, call.To.HostAddress),
-			                IntPtr.Zero);
-                        callViewModel.Contact = new VATRPContact(contactID)
+                        if (callViewModel.Avatar == null && callViewModel.Contact != null)
                         {
-                            DisplayName = call.To.DisplayName,
-                            Fullname = call.To.Username,
-                            SipUsername = call.To.Username,
-                            RegistrationName = contactID.ID
-                        };
-			        }
+                            callViewModel.LoadAvatar(callViewModel.Contact.Avatar);
+                        }
 
-					ServiceManager.Instance.SoundService.PlayRingBackTone();
-					break;
-				case VATRPCallState.EarlyMedia:
-					callViewModel.OnEarlyMedia();
-					break;
-				case VATRPCallState.Connected:
-			        if (ServiceManager.Instance.ConfigurationService.Get(Configuration.ConfSection.GENERAL,
-			            Configuration.ConfEntry.USE_RTT, true))
-			        {
-			            _mainViewModel.IsRTTViewEnabled = true;
-			        }
-			        else
-			        {
-                        _mainViewModel.IsRTTViewEnabled = false;
-			        }
+                        if (callViewModel.Contact == null)
+                        {
+                            var contactID = new ContactID(string.Format("{0}@{1}", call.To.Username, call.To.HostAddress),
+                                IntPtr.Zero);
+                            callViewModel.Contact = new VATRPContact(contactID)
+                            {
+                                DisplayName = call.To.DisplayName,
+                                Fullname = call.To.Username,
+                                SipUsername = call.To.Username,
+                                RegistrationName = contactID.ID
+                            };
+                        }
 
-					callViewModel.OnConnected();
-                    if (_flashWindowHelper != null)
-                        _flashWindowHelper.StopFlashing();
-					stopPlayback = true;
-					callViewModel.ShowOutgoingEndCall = false;
-			        callViewModel.IsRTTEnabled =    // CJM : RTT 
-			            ServiceManager.Instance.ConfigurationService.Get(Configuration.ConfSection.GENERAL,
-			                Configuration.ConfEntry.USE_RTT, true) && callViewModel.ActiveCall != null &&
-			    _linphoneService.IsRttEnabled(callViewModel.ActiveCall.NativeCallPtr);
-			        ctrlRTT.SetViewModel(callViewModel.IsRTTEnabled ? callViewModel.RTTViewModel : null);
+                        break;
+                    case VATRPCallState.InProgress:
+                        WakeupScreenSaver();
+                        this.ShowSelfPreviewItem.IsEnabled = false;
+                        call.RemoteParty = call.From;
+                        ServiceManager.Instance.SoundService.PlayRingTone();
+                        if (callViewModel.Contact == null)
+                            callViewModel.Contact =
+    ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("{0}@{1}", call.From.Username, call.From.HostAddress), IntPtr.Zero));
 
-			        ShowCallOverlayWindow(true);
-                    ShowOverlayNewCallWindow(false);
-					ctrlCall.ctrlOverlay.SetCallerInfo(callViewModel.CallerInfo);
-					ctrlCall.ctrlOverlay.SetCallState("Connected");
-                    ctrlCall.ctrlOverlay.ForegroundCallDuration = callViewModel.CallDuration;
+                        if (callViewModel.Avatar == null && callViewModel.Contact != null)
+                        {
+                            callViewModel.LoadAvatar(callViewModel.Contact.Avatar);
+                        }
 
-			        if (_linphoneService.GetActiveCallsCount == 2)
-			        {
-			            CallViewModel nextVM = _mainViewModel.GetNextViewModel(callViewModel);
-			            if (nextVM != null)
-			            {
-			                ShowOverlaySwitchCallWindow(true);
-			                ctrlCall.ctrlOverlay.SetPausedCallerInfo(nextVM.CallerInfo);
-                            ctrlCall.ctrlOverlay.BackgroundCallDuration = nextVM.CallDuration;
-                            ctrlCall.ctrlOverlay.StartPausedCallTimer(ctrlCall.ctrlOverlay.BackgroundCallDuration);
-                            ctrlCall.BackgroundCallViewModel = nextVM;
-			            }
-			        }
-			        else
-			        {
-                        ShowOverlaySwitchCallWindow(false);
-			        }
+                        if (callViewModel.Contact == null)
+                        {
+                            var contactID = new ContactID(string.Format("{0}@{1}", call.From.Username, call.From.HostAddress),
+                                IntPtr.Zero);
+                            callViewModel.Contact = new VATRPContact(contactID)
+                            {
+                                DisplayName = call.From.DisplayName,
+                                Fullname = call.From.Username,
+                                SipUsername = call.From.Username,
+                                RegistrationName = contactID.ID
+                            };
+                        }
 
-                    ctrlCall.ctrlOverlay.StartCallTimer(ctrlCall.ctrlOverlay.ForegroundCallDuration);
-					_callOverlayView.EndCallRequested = false;
+                        callViewModel.OnIncomingCall();
 
-                    if (_selfView.IsVisible)
-                    {
-                        _selfView.ResetNativePreviewHandle = false;
-                        _selfView.Hide();
-                    }
+                        if (_linphoneService.GetActiveCallsCount == 2)
+                        {
+                            ShowOverlayNewCallWindow(true);
+                            ctrlCall.ctrlOverlay.SetNewCallerInfo(callViewModel.CallerInfo);
+                        }
+                        else
+                        {
+                            callViewModel.ShowIncomingCallPanel = true;
+                        }
 
-                    ctrlCall.ctrlVideo.DrawCameraImage = false;
-					ctrlCall.AddVideoControl();
-                    ctrlCall.RestartInactivityDetectionTimer();
-			        ctrlCall.UpdateVideoSettingsIfOpen();
-                    ctrlCall.UpdateMuteSettingsIfOpen();
+                        if (WindowState != WindowState.Minimized)
+                            _mainViewModel.IsCallPanelDocked = true;
 
-//                    MuteCall(createCmd.MuteMicrophone);
-//                    MuteSpeaker(createCmd.MuteSpeaker);
+                        if (_flashWindowHelper != null)
+                            _flashWindowHelper.FlashWindow(this);
+                        BringToFront();
+                        break;
+                    case VATRPCallState.Ringing:
+                        //***********************************************************************************************************************************
+                        // Ringing for Outgoing call.
+                        //***********************************************************************************************************************************
+                        this.ShowSelfPreviewItem.IsEnabled = false;
+                        callViewModel.OnRinging();
+                        _mainViewModel.IsCallPanelDocked = true;
+                        call.RemoteParty = call.To;
+                        ctrlCall.ctrlOverlay.SetCallerInfo(callViewModel.CallerInfo);
+                        ctrlCall.ctrlOverlay.SetCallState("Ringing");
+                        if (callViewModel.Contact == null)
+                            callViewModel.Contact =
+    ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("{0}@{1}", call.To.Username, call.To.HostAddress), IntPtr.Zero));
 
-					break;
-				case VATRPCallState.StreamsRunning:
-                    //********************************************************************************************************************************************
-                    // When call is Running
-                    //********************************************************************************************************************************************
-					callViewModel.OnStreamRunning();
-                    ShowCallOverlayWindow(true);
+                        if (callViewModel.Avatar == null && callViewModel.Contact != null)
+                        {
+                            callViewModel.LoadAvatar(callViewModel.Contact.Avatar);
+                        }
 
-                    // VATRP-1623: we are setting mute microphone true prior to initiating a call, but the call is always started
-                    //   with the mic enabled. attempting to mute right after call is connected here to side step this issue - 
-                    //   it appears to be an initialization issue in linphone
-                    if (_linphoneService.GetActiveCallsCount == 1)
-                    {
-                        ServiceManager.Instance.ApplyMediaSettingsChanges();
-                    }
-                    ctrlCall.ctrlOverlay.SetCallState("Connected");
-			        ctrlCall.UpdateControls();
-                    ctrlCall.ctrlOverlay.ForegroundCallDuration = _mainViewModel.ActiveCallModel.CallDuration;
-                    ctrlCall.RestartInactivityDetectionTimer();
-			        ctrlCall.UpdateVideoSettingsIfOpen();
-                    // VATRP-1899: This is a quick and dirty solution for POC. It will be funational, but not the end implementation we will want.
-                    if ((App.CurrentAccount != null) && App.CurrentAccount.UserNeedsAgentView)
-                    {
-                        _mainViewModel.IsMessagingDocked = true;
-                    }
-					break;
-				case VATRPCallState.RemotePaused:
-			        callViewModel.OnRemotePaused();
-                    callViewModel.CallState = VATRPCallState.RemotePaused;
-                    ShowCallOverlayWindow(true);
-                    ctrlCall.ctrlOverlay.SetCallerInfo(callViewModel.CallerInfo);
-                    ctrlCall.ctrlOverlay.SetCallState("On Hold");
-                    ctrlCall.UpdateControls();
-					break;
-                case VATRPCallState.LocalPausing:
-                    callViewModel.CallState = VATRPCallState.LocalPausing;
-                    break;
-                case VATRPCallState.LocalPaused:
-                    callViewModel.OnLocalPaused();
-                    callViewModel.CallState = VATRPCallState.LocalPaused;
-			        callViewModel.IsCallOnHold = true;
-			        bool updateInfoView = callViewModel.PauseRequest;
-			        if (_linphoneService.GetActiveCallsCount == 2)
-			        {
-			            if (!callViewModel.PauseRequest)
-			            {
-			                CallViewModel nextVM = _mainViewModel.GetNextViewModel(callViewModel);
+                        if (callViewModel.Contact == null)
+                        {
+                            var contactID = new ContactID(string.Format("{0}@{1}", call.To.Username, call.To.HostAddress),
+                                IntPtr.Zero);
+                            callViewModel.Contact = new VATRPContact(contactID)
+                            {
+                                DisplayName = call.To.DisplayName,
+                                Fullname = call.To.Username,
+                                SipUsername = call.To.Username,
+                                RegistrationName = contactID.ID
+                            };
+                        }
 
-			                if (nextVM != null)
-			                {
-			                    ShowOverlaySwitchCallWindow(true);
-			                    ctrlCall.ctrlOverlay.SetPausedCallerInfo(callViewModel.CallerInfo);
-			                    ctrlCall.ctrlOverlay.BackgroundCallDuration = callViewModel.CallDuration;
-			                    ctrlCall.ctrlOverlay.StartPausedCallTimer(ctrlCall.ctrlOverlay.BackgroundCallDuration);
-			                    ctrlCall.BackgroundCallViewModel = callViewModel;
-			                    ctrlCall.ctrlOverlay.ForegroundCallDuration = nextVM.CallDuration;
-			                    ctrlCall.SetCallViewModel(nextVM);
-			                    if (!nextVM.PauseRequest)
-			                        _mainViewModel.ResumeCall(nextVM);
-			                    else
-			                        updateInfoView = true;
-			                }
-			            }
-			        }
+                        ServiceManager.Instance.SoundService.PlayRingBackTone();
+                        break;
+                    case VATRPCallState.EarlyMedia:
+                        callViewModel.OnEarlyMedia();
+                        break;
+                    case VATRPCallState.Connected:
+                        if (ServiceManager.Instance.ConfigurationService.Get(Configuration.ConfSection.GENERAL,
+                            Configuration.ConfEntry.USE_RTT, true))
+                        {
+                            _mainViewModel.IsRTTViewEnabled = true;
+                        }
+                        else
+                        {
+                            _mainViewModel.IsRTTViewEnabled = false;
+                        }
 
-                    if (updateInfoView)
-			        {
+                        callViewModel.OnConnected();
+                        if (_flashWindowHelper != null)
+                            _flashWindowHelper.StopFlashing();
+                        stopPlayback = true;
+                        callViewModel.ShowOutgoingEndCall = false;
+                        callViewModel.IsRTTEnabled =    // CJM : RTT 
+                            ServiceManager.Instance.ConfigurationService.Get(Configuration.ConfSection.GENERAL,
+                                Configuration.ConfEntry.USE_RTT, true) && callViewModel.ActiveCall != null &&
+                    _linphoneService.IsRttEnabled(callViewModel.ActiveCall.NativeCallPtr);
+                        ctrlRTT.SetViewModel(callViewModel.IsRTTEnabled ? callViewModel.RTTViewModel : null);
+
+                        ShowCallOverlayWindow(true);
+                        ShowOverlayNewCallWindow(false);
+                        ctrlCall.ctrlOverlay.SetCallerInfo(callViewModel.CallerInfo);
+                        ctrlCall.ctrlOverlay.SetCallState("Connected");
+                        ctrlCall.ctrlOverlay.ForegroundCallDuration = callViewModel.CallDuration;
+
+                        if (_linphoneService.GetActiveCallsCount == 2)
+                        {
+                            CallViewModel nextVM = _mainViewModel.GetNextViewModel(callViewModel);
+                            if (nextVM != null)
+                            {
+                                ShowOverlaySwitchCallWindow(true);
+                                ctrlCall.ctrlOverlay.SetPausedCallerInfo(nextVM.CallerInfo);
+                                ctrlCall.ctrlOverlay.BackgroundCallDuration = nextVM.CallDuration;
+                                ctrlCall.ctrlOverlay.StartPausedCallTimer(ctrlCall.ctrlOverlay.BackgroundCallDuration);
+                                ctrlCall.BackgroundCallViewModel = nextVM;
+                            }
+                        }
+                        else
+                        {
+                            ShowOverlaySwitchCallWindow(false);
+                        }
+
+                        ctrlCall.ctrlOverlay.StartCallTimer(ctrlCall.ctrlOverlay.ForegroundCallDuration);
+                        _callOverlayView.EndCallRequested = false;
+
+                        if (_selfView.IsVisible)
+                        {
+                            _selfView.ResetNativePreviewHandle = false;
+                            _selfView.Hide();
+                        }
+
+                        ctrlCall.ctrlVideo.DrawCameraImage = false;
+                        ctrlCall.AddVideoControl();
+                        ctrlCall.RestartInactivityDetectionTimer();
+                        ctrlCall.UpdateVideoSettingsIfOpen();
+                        ctrlCall.UpdateMuteSettingsIfOpen();
+
+                        //                    MuteCall(createCmd.MuteMicrophone);
+                        //                    MuteSpeaker(createCmd.MuteSpeaker);
+
+                        break;
+                    case VATRPCallState.StreamsRunning:
+                        //********************************************************************************************************************************************
+                        // When call is Running
+                        //********************************************************************************************************************************************
+                        callViewModel.OnStreamRunning();
+                        ShowCallOverlayWindow(true);
+
+                        // VATRP-1623: we are setting mute microphone true prior to initiating a call, but the call is always started
+                        //   with the mic enabled. attempting to mute right after call is connected here to side step this issue - 
+                        //   it appears to be an initialization issue in linphone
+                        if (_linphoneService.GetActiveCallsCount == 1)
+                        {
+                            ServiceManager.Instance.ApplyMediaSettingsChanges();
+                        }
+                        ctrlCall.ctrlOverlay.SetCallState("Connected");
+                        ctrlCall.UpdateControls();
+                        ctrlCall.ctrlOverlay.ForegroundCallDuration = _mainViewModel.ActiveCallModel.CallDuration;
+                        ctrlCall.RestartInactivityDetectionTimer();
+                        ctrlCall.UpdateVideoSettingsIfOpen();
+                        // VATRP-1899: This is a quick and dirty solution for POC. It will be funational, but not the end implementation we will want.
+                        if ((App.CurrentAccount != null) && App.CurrentAccount.UserNeedsAgentView)
+                        {
+                            _mainViewModel.IsMessagingDocked = true;
+                        }
+                        break;
+                    case VATRPCallState.RemotePaused:
+                        callViewModel.OnRemotePaused();
+                        callViewModel.CallState = VATRPCallState.RemotePaused;
                         ShowCallOverlayWindow(true);
                         ctrlCall.ctrlOverlay.SetCallerInfo(callViewModel.CallerInfo);
                         ctrlCall.ctrlOverlay.SetCallState("On Hold");
                         ctrlCall.UpdateControls();
-			        }
-			        break;
-                case VATRPCallState.LocalResuming:
-                    callViewModel.OnResumed();
-                    callViewModel.IsCallOnHold = false;
-                    ShowCallOverlayWindow(true);
-					ctrlCall.ctrlOverlay.SetCallerInfo(callViewModel.CallerInfo);
-					ctrlCall.ctrlOverlay.SetCallState("Connected");
-			        ctrlCall.UpdateControls();
-
-			        if (_linphoneService.GetActiveCallsCount == 2)
-			        {
-			            CallViewModel nextVM = _mainViewModel.GetNextViewModel(callViewModel);
-			            if (nextVM != null)
-			            {
-			                ShowOverlaySwitchCallWindow(true);
-			                ctrlCall.ctrlOverlay.SetPausedCallerInfo(nextVM.CallerInfo);
-                            ctrlCall.ctrlOverlay.BackgroundCallDuration = nextVM.CallDuration ;
-                            ctrlCall.ctrlOverlay.StartPausedCallTimer(ctrlCall.ctrlOverlay.BackgroundCallDuration);
-                            ctrlCall.BackgroundCallViewModel = nextVM;
-                            ctrlCall.SetCallViewModel(callViewModel);
-                            ctrlCall.ctrlOverlay.ForegroundCallDuration = callViewModel.CallDuration;
-                            if (ServiceManager.Instance.ConfigurationService.Get(Configuration.ConfSection.GENERAL,
-                        Configuration.ConfEntry.USE_RTT, true))
+                        break;
+                    case VATRPCallState.LocalPausing:
+                        callViewModel.CallState = VATRPCallState.LocalPausing;
+                        break;
+                    case VATRPCallState.LocalPaused:
+                        callViewModel.OnLocalPaused();
+                        callViewModel.CallState = VATRPCallState.LocalPaused;
+                        callViewModel.IsCallOnHold = true;
+                        bool updateInfoView = callViewModel.PauseRequest;
+                        if (_linphoneService.GetActiveCallsCount == 2)
+                        {
+                            if (!callViewModel.PauseRequest)
                             {
-                                _mainViewModel.IsRTTViewEnabled = true;
-                                ctrlRTT.SetViewModel(callViewModel.RTTViewModel);
-                            }
-			            }
-			            else
-			            {
-			                ShowOverlaySwitchCallWindow(false);
-			            }
-			        }
-			        else
-			        {
-			            ShowOverlaySwitchCallWindow(false);
-			        }
-                    ctrlCall.ctrlVideo.DrawCameraImage = false;
-					ctrlCall.AddVideoControl();
-                    break;
-                case VATRPCallState.Closed:
-                    //*******************************************************************************************************************************************
-                    // When call is disconnected from both side.
-                    //*******************************************************************************************************************************************
-					if (_flashWindowHelper != null)
-                        _flashWindowHelper.StopFlashing();
-                    LOG.Info(string.Format("CallStateChanged: Result Code - {0}. Message: {1} Call: {2}", call.SipErrorCode, call.LinphoneMessage, call.NativeCallPtr));
-			        callDeclined = call.SipErrorCode == 603;
-                    callViewModel.OnClosed(ref isError, call.LinphoneMessage, call.SipErrorCode, callDeclined);
-					stopPlayback = true;
-			        destroycall = true;
-                    callViewModel.RTTViewModel.RttReceived -= OnRttReceived;
-                    callViewModel.CallQualityChangedEvent -= OnCallQualityChanged;
-                    callViewModel.RTTViewModel.ClearRTTConversation();
-                    if (ServiceManager.Instance.ConfigurationService.Get(Configuration.ConfSection.GENERAL,
-                       Configuration.ConfEntry.USE_RTT, true))
-                    {
-                        ctrlRTT.SetViewModel(null);
-                    }
-                    ShowOverlayNewCallWindow(false);
-                    ShowOverlaySwitchCallWindow(false);
-                    ctrlCall.BackgroundCallViewModel = null;
+                                CallViewModel nextVM = _mainViewModel.GetNextViewModel(callViewModel);
 
-			        if (callDeclined)
-			        {
-                        _mainViewModel.IsRTTViewEnabled = false;
-                        this.ShowSelfPreviewItem.IsEnabled = true;
-                        _callInfoView.Hide();
-                        ctrlCall.ctrlOverlay.StopCallTimer();
-                        ShowCallOverlayWindow(false);
-                        _mainViewModel.IsMessagingDocked = false;
-
-                        // ToDo VATRP-3878 
-
-                        //if (_mainViewModel.ActiveCallModel.DeclinedMessage.NotBlank())
-                        //    _mainViewModel.ActiveCallModel.ShowDeclinedMessage = true;
-                        //else
-                        //{
-                        //    _mainViewModel.ActiveCallModel.WaitForDeclineMessage = true;
-                        //}
-			            if (deferredHideTimer != null)
-			            {
-			                lock (deferredLock)
-			                {
-                                deferredHideTimer.Interval = TimeSpan.FromMilliseconds(DECLINE_WAIT_TIMEOUT);
-			                    deferredHideTimer.Start();
-			                }
-			            }
-			        }
-			        else
-			        {
-                        //************************************************************************************************************************************************
-                        // When call is disconnected.
-                        //*************************************************************************************************************************************************
-			            int callsCount = _mainViewModel.RemoveCalViewModel(callViewModel);
-			            if (callsCount == 0)
-			            {
-			                _mainViewModel.IsRTTViewEnabled = false;
-			                this.ShowSelfPreviewItem.IsEnabled = true;
-			                _callInfoView.Hide();
-			                ctrlCall.ctrlOverlay.StopCallTimer();
-			                
-			                if (!isError)
-			                {
-                                this.SizeToContent = SizeToContent.WidthAndHeight;
-                                ctrlCall.SetCallViewModel(null);
-                                _mainViewModel.IsCallPanelDocked = false;
-			                }
-			                else
-			                {
-                                if (deferredHideTimer != null)
+                                if (nextVM != null)
                                 {
-                                    lock (deferredLock)
-                                    {
-                                        deferredHideTimer.Interval = TimeSpan.FromMilliseconds(DECLINE_WAIT_TIMEOUT);
-                                        deferredHideTimer.Start();
-                                    }
+                                    ShowOverlaySwitchCallWindow(true);
+                                    ctrlCall.ctrlOverlay.SetPausedCallerInfo(callViewModel.CallerInfo);
+                                    ctrlCall.ctrlOverlay.BackgroundCallDuration = callViewModel.CallDuration;
+                                    ctrlCall.ctrlOverlay.StartPausedCallTimer(ctrlCall.ctrlOverlay.BackgroundCallDuration);
+                                    ctrlCall.BackgroundCallViewModel = callViewModel;
+                                    ctrlCall.ctrlOverlay.ForegroundCallDuration = nextVM.CallDuration;
+                                    ctrlCall.SetCallViewModel(nextVM);
+                                    if (!nextVM.PauseRequest)
+                                        _mainViewModel.ResumeCall(nextVM);
+                                    else
+                                        updateInfoView = true;
                                 }
-			                }
+                            }
+                        }
+
+                        if (updateInfoView)
+                        {
+                            ShowCallOverlayWindow(true);
+                            ctrlCall.ctrlOverlay.SetCallerInfo(callViewModel.CallerInfo);
+                            ctrlCall.ctrlOverlay.SetCallState("On Hold");
+                            ctrlCall.UpdateControls();
+                        }
+                        break;
+                    case VATRPCallState.LocalResuming:
+                        callViewModel.OnResumed();
+                        callViewModel.IsCallOnHold = false;
+                        ShowCallOverlayWindow(true);
+                        ctrlCall.ctrlOverlay.SetCallerInfo(callViewModel.CallerInfo);
+                        ctrlCall.ctrlOverlay.SetCallState("Connected");
+                        ctrlCall.UpdateControls();
+
+                        if (_linphoneService.GetActiveCallsCount == 2)
+                        {
+                            CallViewModel nextVM = _mainViewModel.GetNextViewModel(callViewModel);
+                            if (nextVM != null)
+                            {
+                                ShowOverlaySwitchCallWindow(true);
+                                ctrlCall.ctrlOverlay.SetPausedCallerInfo(nextVM.CallerInfo);
+                                ctrlCall.ctrlOverlay.BackgroundCallDuration = nextVM.CallDuration;
+                                ctrlCall.ctrlOverlay.StartPausedCallTimer(ctrlCall.ctrlOverlay.BackgroundCallDuration);
+                                ctrlCall.BackgroundCallViewModel = nextVM;
+                                ctrlCall.SetCallViewModel(callViewModel);
+                                ctrlCall.ctrlOverlay.ForegroundCallDuration = callViewModel.CallDuration;
+                                if (ServiceManager.Instance.ConfigurationService.Get(Configuration.ConfSection.GENERAL,
+                            Configuration.ConfEntry.USE_RTT, true))
+                                {
+                                    _mainViewModel.IsRTTViewEnabled = true;
+                                    ctrlRTT.SetViewModel(callViewModel.RTTViewModel);
+                                }
+                            }
+                            else
+                            {
+                                ShowOverlaySwitchCallWindow(false);
+                            }
+                        }
+                        else
+                        {
+                            ShowOverlaySwitchCallWindow(false);
+                        }
+                        ctrlCall.ctrlVideo.DrawCameraImage = false;
+                        ctrlCall.AddVideoControl();
+                        break;
+                    case VATRPCallState.Closed:
+                        //*******************************************************************************************************************************************
+                        // When call is disconnected from both side.
+                        //*******************************************************************************************************************************************
+                        if (_flashWindowHelper != null)
+                            _flashWindowHelper.StopFlashing();
+                        LOG.Info(string.Format("CallStateChanged: Result Code - {0}. Message: {1} Call: {2}", call.SipErrorCode, call.LinphoneMessage, call.NativeCallPtr));
+                        callDeclined = call.SipErrorCode == 603;
+                        callViewModel.OnClosed(ref isError, call.LinphoneMessage, call.SipErrorCode, callDeclined);
+                        stopPlayback = true;
+                        destroycall = true;
+                        callViewModel.RTTViewModel.RttReceived -= OnRttReceived;
+                        callViewModel.CallQualityChangedEvent -= OnCallQualityChanged;
+                        callViewModel.RTTViewModel.ClearRTTConversation();
+                        if (ServiceManager.Instance.ConfigurationService.Get(Configuration.ConfSection.GENERAL,
+                           Configuration.ConfEntry.USE_RTT, true))
+                        {
+                            ctrlRTT.SetViewModel(null);
+                        }
+                        ShowOverlayNewCallWindow(false);
+                        ShowOverlaySwitchCallWindow(false);
+                        ctrlCall.BackgroundCallViewModel = null;
+
+                        if (callDeclined)
+                        {
+                            _mainViewModel.IsRTTViewEnabled = false;
+                            this.ShowSelfPreviewItem.IsEnabled = true;
+                            _callInfoView.Hide();
+                            ctrlCall.ctrlOverlay.StopCallTimer();
                             ShowCallOverlayWindow(false);
                             _mainViewModel.IsMessagingDocked = false;
-			                _mainViewModel.ActiveCallModel = null;
-			                OnFullScreenToggled(false); // restore main window to dashboard
 
-			                if (this.ShowSelfPreviewItem.IsChecked && !_selfView.ResetNativePreviewHandle)
-			                {
-			                    _selfView.ResetNativePreviewHandle = true;
-			                    deferredShowPreviewTimer.Start();
-			                }
-			            }
-			            else
-			            {
-			                var nextVM = _mainViewModel.GetNextViewModel(null);
-			                if (nextVM != null)
-			                {
-			                    // defensive coding here- do not try to operate on an errored call state object
-			                    if (nextVM.CallState != VATRPCallState.Error)
-			                    {
-			                        _mainViewModel.ActiveCallModel = nextVM;
-			                        nextVM.CallSwitchLastTimeVisibility = Visibility.Hidden;
+                            // ToDo VATRP-3878 
 
-			                        if (ServiceManager.Instance.ConfigurationService.Get(Configuration.ConfSection.GENERAL,
-			                            Configuration.ConfEntry.USE_RTT, true))
-			                        {
-			                            _mainViewModel.IsRTTViewEnabled = true;
-                                        ctrlRTT.SetViewModel(nextVM.RTTViewModel);
-			                        }
-			                        else
-			                        {
-			                            ctrlRTT.SetViewModel(null);
-			                            _mainViewModel.IsRTTViewEnabled = false;
-			                        }
-			                        ShowCallOverlayWindow(true);
-			                        ctrlCall.ctrlOverlay.SetCallerInfo(nextVM.CallerInfo);
-			                        ctrlCall.ctrlOverlay.ForegroundCallDuration = _mainViewModel.ActiveCallModel.CallDuration;
-			                        ctrlCall.SetCallViewModel(_mainViewModel.ActiveCallModel);
-			                        ctrlCall.UpdateControls();
-			                        if (nextVM.ActiveCall.CallState == VATRPCallState.LocalPaused)
-			                        {
-			                            if (!nextVM.PauseRequest)
-			                                _mainViewModel.ResumeCall(nextVM);
-			                            else
-			                            {
-			                                ctrlCall.ctrlOverlay.SetCallState("On Hold");
-			                            }
-			                        }
-			                    }
-			                }
-			            }
-			        }
-			        if ((registerRequested || signOutRequest || defaultConfigRequest) && _linphoneService.GetActiveCallsCount == 0)
-					{
-						_linphoneService.Unregister(false);
-					}
-
-					break;
-				case VATRPCallState.Error:
-			        destroycall = true;
-			        if (_flashWindowHelper != null) 
-                        _flashWindowHelper.StopFlashing();
-			        ctrlCall.BackgroundCallViewModel = null;
-			        isError = true;
-                    callViewModel.RTTViewModel.RttReceived -= OnRttReceived;
-                    callViewModel.OnClosed(ref isError, call.LinphoneMessage, call.SipErrorCode, false);
-                    callViewModel.CallSwitchLastTimeVisibility = Visibility.Hidden;
-					stopPlayback = true;
-                    callViewModel.RTTViewModel.ClearRTTConversation();
-                    if (ServiceManager.Instance.ConfigurationService.Get(Configuration.ConfSection.GENERAL,
-                       Configuration.ConfEntry.USE_RTT, true))
-                    {
-                        ctrlRTT.SetViewModel(null);
-                    }
-
-					if (_linphoneService.GetActiveCallsCount == 0)
-					{
-                        _mainViewModel.IsRTTViewEnabled = false;
-                        this.ShowSelfPreviewItem.IsEnabled = true;
-                        if (this.ShowSelfPreviewItem.IsChecked && !_selfView.ResetNativePreviewHandle)
-                        {
-                            _selfView.ResetNativePreviewHandle = true;
-                            deferredShowPreviewTimer.Start();
+                            //if (_mainViewModel.ActiveCallModel.DeclinedMessage.NotBlank())
+                            //    _mainViewModel.ActiveCallModel.ShowDeclinedMessage = true;
+                            //else
+                            //{
+                            //    _mainViewModel.ActiveCallModel.WaitForDeclineMessage = true;
+                            //}
+                            if (deferredHideTimer != null)
+                            {
+                                lock (deferredLock)
+                                {
+                                    deferredHideTimer.Interval = TimeSpan.FromMilliseconds(DECLINE_WAIT_TIMEOUT);
+                                    deferredHideTimer.Start();
+                                }
+                            }
                         }
-					    if (callViewModel.CallState != VATRPCallState.Declined)
-					        _mainViewModel.RemoveCalViewModel(callViewModel);
-                        _callInfoView.Hide();
-						ctrlCall.ctrlOverlay.StopCallTimer();
-                        ShowCallOverlayWindow(false);
-                        _mainViewModel.IsMessagingDocked = false;
-
-					    if (deferredHideTimer != null)
-					    {
-					        lock (deferredLock)
-					        {
-                                deferredHideTimer.Interval = TimeSpan.FromMilliseconds(DECLINE_WAIT_TIMEOUT);
-					            deferredHideTimer.Start();
-					        }
-					    }
-
-					    _mainViewModel.ActiveCallModel = null;
-                        OnFullScreenToggled(false); // restore main window to dashboard
-					}
-                    else
-                    {
-                        _mainViewModel.RemoveCalViewModel(callViewModel);
-                    }
-					
-					break;
-				default:
-					break;
-			}
-
-			if (stopPlayback)
-			{
-                //***********************************************************************************************************************************************
-                // Stop Ringing for Incoming call/Outgoing call
-                //***********************************************************************************************************************************************
-				ServiceManager.Instance.SoundService.StopRingBackTone();
-				ServiceManager.Instance.SoundService.StopRingTone();
-			}
-
-		    if (destroycall)
-		    {
-                if (_linphoneService.GetActiveCallsCount == 0)
-                {
-                    if (_mainViewModel.IsCallPanelDocked)
-                    {
-                        ServiceManager.Instance.LinphoneService.SetVideoCallWindowHandle(IntPtr.Zero, true);
-                        if (_remoteVideoView != null)
+                        else
                         {
-                            _remoteVideoView.DestroyOnClosing = true; // allow window to be closed
-                            _remoteVideoView.Close();
-                            _remoteVideoView = null;
+                            //************************************************************************************************************************************************
+                            // When call is disconnected.
+                            //*************************************************************************************************************************************************
+                            int callsCount = _mainViewModel.RemoveCalViewModel(callViewModel);
+                            if (callsCount == 0)
+                            {
+                                _mainViewModel.IsRTTViewEnabled = false;
+                                this.ShowSelfPreviewItem.IsEnabled = true;
+                                _callInfoView.Hide();
+                                ctrlCall.ctrlOverlay.StopCallTimer();
+
+                                if (!isError)
+                                {
+                                    this.SizeToContent = SizeToContent.WidthAndHeight;
+                                    ctrlCall.SetCallViewModel(null);
+                                    _mainViewModel.IsCallPanelDocked = false;
+                                }
+                                else
+                                {
+                                    if (deferredHideTimer != null)
+                                    {
+                                        lock (deferredLock)
+                                        {
+                                            deferredHideTimer.Interval = TimeSpan.FromMilliseconds(DECLINE_WAIT_TIMEOUT);
+                                            deferredHideTimer.Start();
+                                        }
+                                    }
+                                }
+                                ShowCallOverlayWindow(false);
+                                _mainViewModel.IsMessagingDocked = false;
+                                _mainViewModel.ActiveCallModel = null;
+                                OnFullScreenToggled(false); // restore main window to dashboard
+
+                                if (this.ShowSelfPreviewItem.IsChecked && !_selfView.ResetNativePreviewHandle)
+                                {
+                                    _selfView.ResetNativePreviewHandle = true;
+                                    deferredShowPreviewTimer.Start();
+                                }
+                            }
+                            else
+                            {
+                                var nextVM = _mainViewModel.GetNextViewModel(null);
+                                if (nextVM != null)
+                                {
+                                    // defensive coding here- do not try to operate on an errored call state object
+                                    if (nextVM.CallState != VATRPCallState.Error)
+                                    {
+                                        _mainViewModel.ActiveCallModel = nextVM;
+                                        nextVM.CallSwitchLastTimeVisibility = Visibility.Hidden;
+
+                                        if (ServiceManager.Instance.ConfigurationService.Get(Configuration.ConfSection.GENERAL,
+                                            Configuration.ConfEntry.USE_RTT, true))
+                                        {
+                                            _mainViewModel.IsRTTViewEnabled = true;
+                                            ctrlRTT.SetViewModel(nextVM.RTTViewModel);
+                                        }
+                                        else
+                                        {
+                                            ctrlRTT.SetViewModel(null);
+                                            _mainViewModel.IsRTTViewEnabled = false;
+                                        }
+                                        ShowCallOverlayWindow(true);
+                                        ctrlCall.ctrlOverlay.SetCallerInfo(nextVM.CallerInfo);
+                                        ctrlCall.ctrlOverlay.ForegroundCallDuration = _mainViewModel.ActiveCallModel.CallDuration;
+                                        ctrlCall.SetCallViewModel(_mainViewModel.ActiveCallModel);
+                                        ctrlCall.UpdateControls();
+                                        if (nextVM.ActiveCall.CallState == VATRPCallState.LocalPaused)
+                                        {
+                                            if (!nextVM.PauseRequest)
+                                                _mainViewModel.ResumeCall(nextVM);
+                                            else
+                                            {
+                                                ctrlCall.ctrlOverlay.SetCallState("On Hold");
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
-                        if (deferredHideTimer != null && !deferredHideTimer.IsEnabled)
+                        if ((registerRequested || signOutRequest || defaultConfigRequest) && _linphoneService.GetActiveCallsCount == 0)
                         {
+                            _linphoneService.Unregister(false);
+                        }
+
+                        break;
+                    case VATRPCallState.Error:
+                        destroycall = true;
+                        if (_flashWindowHelper != null)
+                            _flashWindowHelper.StopFlashing();
+                        ctrlCall.BackgroundCallViewModel = null;
+                        isError = true;
+                        callViewModel.RTTViewModel.RttReceived -= OnRttReceived;
+                        callViewModel.OnClosed(ref isError, call.LinphoneMessage, call.SipErrorCode, false);
+                        callViewModel.CallSwitchLastTimeVisibility = Visibility.Hidden;
+                        stopPlayback = true;
+                        callViewModel.RTTViewModel.ClearRTTConversation();
+                        if (ServiceManager.Instance.ConfigurationService.Get(Configuration.ConfSection.GENERAL,
+                           Configuration.ConfEntry.USE_RTT, true))
+                        {
+                            ctrlRTT.SetViewModel(null);
+                        }
+
+                        if (_linphoneService.GetActiveCallsCount == 0)
+                        {
+                            _mainViewModel.IsRTTViewEnabled = false;
+                            this.ShowSelfPreviewItem.IsEnabled = true;
+                            if (this.ShowSelfPreviewItem.IsChecked && !_selfView.ResetNativePreviewHandle)
+                            {
+                                _selfView.ResetNativePreviewHandle = true;
+                                deferredShowPreviewTimer.Start();
+                            }
+                            if (callViewModel.CallState != VATRPCallState.Declined)
+                                _mainViewModel.RemoveCalViewModel(callViewModel);
+                            _callInfoView.Hide();
+                            ctrlCall.ctrlOverlay.StopCallTimer();
+                            ShowCallOverlayWindow(false);
                             _mainViewModel.IsMessagingDocked = false;
-                            _mainViewModel.IsCallPanelDocked = false;
-                        }
-                    }
 
-                    if (!callDeclined)
-                        _mainViewModel.ActiveCallModel = null;
+                            if (deferredHideTimer != null)
+                            {
+                                lock (deferredLock)
+                                {
+                                    deferredHideTimer.Interval = TimeSpan.FromMilliseconds(DECLINE_WAIT_TIMEOUT);
+                                    deferredHideTimer.Start();
+                                }
+                            }
+
+                            _mainViewModel.ActiveCallModel = null;
+                            OnFullScreenToggled(false); // restore main window to dashboard
+                        }
+                        else
+                        {
+                            _mainViewModel.RemoveCalViewModel(callViewModel);
+                        }
+
+                        break;
+                    default:
+                        break;
                 }
-		    }
-		}
+
+                if (stopPlayback)
+                {
+                    //***********************************************************************************************************************************************
+                    // Stop Ringing for Incoming call/Outgoing call
+                    //***********************************************************************************************************************************************
+                    ServiceManager.Instance.SoundService.StopRingBackTone();
+                    ServiceManager.Instance.SoundService.StopRingTone();
+                }
+
+                if (destroycall)
+                {
+                    if (_linphoneService.GetActiveCallsCount == 0)
+                    {
+                        if (_mainViewModel.IsCallPanelDocked)
+                        {
+                            ServiceManager.Instance.LinphoneService.SetVideoCallWindowHandle(IntPtr.Zero, true);
+                            if (_remoteVideoView != null)
+                            {
+                                _remoteVideoView.DestroyOnClosing = true; // allow window to be closed
+                                _remoteVideoView.Close();
+                                _remoteVideoView = null;
+                            }
+                            if (deferredHideTimer != null && !deferredHideTimer.IsEnabled)
+                            {
+                                _mainViewModel.IsMessagingDocked = false;
+                                _mainViewModel.IsCallPanelDocked = false;
+                            }
+                        }
+
+                        if (!callDeclined)
+                            _mainViewModel.ActiveCallModel = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LOG.Error("Linphone connection error: " + ex.Message);
+            }
+        }
 
 	    private void BringToFront()
 	    {
@@ -1108,7 +1114,7 @@ ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("
             LOG.Info(string.Format("New account registered. Username -{0}. Host - {1} Port - {2}",
                 App.CurrentAccount.RegistrationUser,
                 App.CurrentAccount.ProxyHostname,
-                App.CurrentAccount.ProxyPort));
+                App.CurrentAccount.HostPort));
 
             _mainViewModel.IsAccountLogged = true;
             // VATRP-1899: This is a quick and dirty solution for POC. It will be funational, but not the end implementation we will want.

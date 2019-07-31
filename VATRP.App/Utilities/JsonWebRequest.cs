@@ -195,6 +195,58 @@ namespace com.vtcsecure.ace.windows.Utilities
         }
 
         /// <summary>
+        /// Async unauthenticated XML GET request. 
+        /// </summary>
+        /// <typeparam name="T">T</typeparam>
+        /// <param name="webRequestUrl">string</param>
+        /// <returns>Task<T></returns>
+        public static async Task<T> MakeXmlWebRequestAsync<T>(string webRequestUrl)
+        {
+            WebResponse response = null;
+            try
+            {
+                // Specify TLS 1.2
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback(AcceptAllCertifications);
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(webRequestUrl);
+                request.PreAuthenticate = true;
+                request.KeepAlive = false;
+                request.ContentLength = 0;
+                request.Method = "GET";
+                request.Timeout = 30000;
+
+                response = await request.GetResponseAsync();
+                string xmlResults = string.Empty;
+                XmlSerializer serializer = new XmlSerializer(typeof(T));
+                using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+                {
+                    try
+                    {
+                        T item = (T)serializer.Deserialize(sr);
+                        return item;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                    finally
+                    {
+                        sr.Close();
+                        if (response != null)
+                        {
+                            response.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// Async authenticated XML GET request. 
         /// </summary>
         /// <typeparam name="T">T</typeparam>

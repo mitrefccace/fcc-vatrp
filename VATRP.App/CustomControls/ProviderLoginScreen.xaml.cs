@@ -34,6 +34,7 @@ using com.vtcsecure.ace.windows;
 using Microsoft.Win32;
 using System.IO;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace com.vtcsecure.ace.windows.CustomControls
 {
@@ -46,10 +47,10 @@ namespace com.vtcsecure.ace.windows.CustomControls
         #region Members
         public ObservableCollection<VATRPServiceProvider> ProviderList { get; private set; }
         private readonly MainWindow _mainWnd;
-        private int _pollTime; // cjm-sep17
-        private ushort _proxyPort; // cjm-sep17
+        private int _pollTime;
+        private ushort _hostPort;
         private string _address;
-        private SettingsWindow _settingsWindow; //cjmsep17
+        private SettingsWindow _settingsWindow;
         
         private string _versionInfo;
         private const string _placeholderText = "Enter a SIP URI";
@@ -57,7 +58,6 @@ namespace com.vtcsecure.ace.windows.CustomControls
         private bool _loginWithOld;
         private bool _accountNotYetLoaded;
         private bool _needToAddAccount;
-        private bool _configFileLoadedWithPort;
         #endregion
 
         public ProviderLoginScreen(MainWindow theMain)
@@ -71,7 +71,6 @@ namespace com.vtcsecure.ace.windows.CustomControls
             
             ProviderList = new ObservableCollection<VATRPServiceProvider>();
             HostnameBox.LostFocus += new RoutedEventHandler(ServerAddressEntered);
-            LoginBox.LostFocus += new RoutedEventHandler(UsernameModified);
             HostnameBox.KeyDown += new KeyEventHandler(handle_keydown);
 
             Initialize();
@@ -96,34 +95,31 @@ namespace com.vtcsecure.ace.windows.CustomControls
             }
             ProviderComboBox.IsEnabled = internetAvailable;
             LoginCmd.IsEnabled = internetAvailable;
-            TransportComboBox.IsEnabled = internetAvailable;
-            AuthIDBox.IsEnabled = internetAvailable;
-            LoginBox.IsEnabled = internetAvailable;
+            UserNameBox.IsEnabled = internetAvailable;
             PasswdBox.IsEnabled = internetAvailable;
+            TransportComboBox.IsEnabled = internetAvailable;
+
+            AuthIDBox.IsEnabled = internetAvailable;
+            OutboundProxyServerBox.IsEnabled = internetAvailable;
+            HostPortBox.IsEnabled = internetAvailable;
+
             AutoLoginBox.IsEnabled = internetAvailable;
 
             // Controls whether or not to check the account list
             // cached file for current account information.
             _accountNotYetLoaded = true;
-
-            // Controls whether or not the user can change port
-            // when transport has been changed. If a config file
-            // has been uploaded with a port specified then we
-            // should not change port.
-            _configFileLoadedWithPort = false;
         }
 
-        // cjm-sep17
         public int PollTime
         {
             get { return _pollTime; }
             set { _pollTime = value; }
         }
 
-        public ushort ProxyPort
+        public ushort HostPort
         {
-            get { return _proxyPort; }
-            set { _proxyPort = value; }
+            get { return _hostPort; }
+            set { _hostPort = value; }
         }
 
         public string Address
@@ -148,7 +144,8 @@ namespace com.vtcsecure.ace.windows.CustomControls
         {
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
             var version = assembly.GetName().Version;
-            return string.Format("Version {0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
+            return string.Format("Version {0}.{1}.{2}", version.Major, version.Minor, version.Build);
+            //return string.Format("Version {0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
         }
 
         /// <summary>
@@ -196,15 +193,18 @@ namespace com.vtcsecure.ace.windows.CustomControls
     public void InitializeToAccount(VATRPAccount account)
         {
             if (account != null)
-            {           
-                LoginBox.Text = account.Username;
+            {
+                UserNameBox.Text = account.PhoneNumber; // The VATRP PhoneNumber variable holds either a phone number or registrtion username
                 AuthIDBox.Text = account.AuthID;
+                OutboundProxyServerBox.Text = account.OutboundProxy;
                 InitializeToProvider(account.ProxyHostname);
                 RememberPasswordBox.IsChecked = account.RememberPassword;
                 AutoLoginBox.IsChecked = ServiceManager.Instance.ConfigurationService.Get(Configuration.ConfSection.GENERAL,
                     Configuration.ConfEntry.AUTO_LOGIN, false);
                 //AutoLoginBox.IsChecked = account.AutoLogin;
-                ProxyPort = account.ProxyPort;
+                HostPort = account.HostPort;
+                HostPortBox.Text = account.HostPort.ToString();
+
                 string transport = account.Transport;
                 if (string.IsNullOrWhiteSpace(transport))
                 {
@@ -297,22 +297,44 @@ namespace com.vtcsecure.ace.windows.CustomControls
             //*******************************Login Clicked Event ***********************************
             // This method will be called when user click on Login button.
             //**************************************************************************************          
-            // cjm-sep17 
+            // cjm-sep17
+            string phonePattern = @"^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$";
+            string pattern = @"[ \-\s\t\n\r\(\)\+\.]*";
+            string replacement = "";
+
+            Regex phoneCheckRgx = new Regex(phonePattern);
+            Regex rgx = new Regex(pattern);
+             
             if (_settingsWindow != null)
             {
                 _settingsWindow.Close();
                 _settingsWindow = null;
             }
 
+            string userName = UserNameBox.Text;
+            string password = PasswdBox.Password;
             string authId = AuthIDBox.Text;
-            string userName = LoginBox.Text;
+
+            Match match = phoneCheckRgx.Match(userName);
+            if (match.Success)
+            {
+                string result = rgx.Replace(userName, replacement);
+                // Perserving the leading 1 if there is one:
+                //
+                /*if (result.Length > 10 && result[0] == '1')
+                    result = result.Remove(0, 1);*/
+                userName = result;
+            }
+            
+            string outboundProxy = OutboundProxyServerBox.Text;
+            HostPort = ushort.Parse(HostPortBox.Text);
+
             if (string.IsNullOrWhiteSpace(userName)) // If username is blank then it will throw error message.
             {
                 MessageBox.Show("Please fill Username field", "VATRP", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-
-            string password = PasswdBox.Password;
+            
             if (string.IsNullOrEmpty(password))// If password is blank then it will throw error message.
             {
                 MessageBox.Show("Please fill Password field", "VATRP", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -324,16 +346,19 @@ namespace com.vtcsecure.ace.windows.CustomControls
                 MessageBox.Show("Please fill the Server address field", "VATRP", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+
+            if (string.IsNullOrEmpty(HostPortBox.Text) || string.Equals(HostPortBox.Text, _placeholderText)) // If address is blank or the watermark then throw error.
+            {
+                MessageBox.Show("Please fill the Host Server Port field", "VATRP", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             //if (!AddressURLSanityCheck(Address))
             //{
             //    MessageBox.Show("Please provide a valid Server address.", "VATRP", MessageBoxButton.OK, MessageBoxImage.Error);
             //    return;
             //}
 
-            // reset this flag for the next login attempt
-            _configFileLoadedWithPort = false;
-
-            var account = LoadCachedAccountFromFile(LoginBox.Text);
+            var account = LoadCachedAccountFromFile(UserNameBox.Text);
 
             if (account != null)
             {
@@ -346,7 +371,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
 
             if (LoginWithOld)
             {
-                Login_Old(authId, userName, password, _needToAddAccount);       
+                Login_Old(authId, outboundProxy, userName, password, _needToAddAccount);       
                 return;
             }
             if (App.CurrentAccount.configuration.HasExpired() || _needToAddAccount)
@@ -397,14 +422,14 @@ namespace com.vtcsecure.ace.windows.CustomControls
                 }
                 else
                 {
-                    if (string.IsNullOrEmpty(config.sip_auth_password) || string.IsNullOrEmpty(config.sip_auth_username))
+                    if (string.IsNullOrEmpty(config.sip_auth_password) || string.IsNullOrEmpty(config.phone_number))
                     {
-                        config.sip_auth_username = userName;
+                        config.phone_number = userName;
                         config.sip_auth_password = password;
                     }
                     // VATRP-1899: This is a quick and dirty solution for POC. It will be funational, but not the end implementation we will want.
                     //  This will ultimately be set by the configuration resources from Ace Connect.
-                    if (config.sip_auth_username.Equals("agent_1"))
+                    if (config.phone_number.Equals("agent_1"))
                     {
                         config.user_is_agent = true;
                     }
@@ -416,7 +441,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
                     UpdateConfigServiceFromACEConfig(config);
                 }
             }
-            Login_New(authId, userName, _needToAddAccount);
+            Login_New(authId, outboundProxy, userName, _needToAddAccount);
         }
 
         /// <summary>
@@ -461,17 +486,18 @@ namespace com.vtcsecure.ace.windows.CustomControls
         /// New login which handles remote configuration parsing.
         /// </summary>
         /// <param name="authId"></param>
+        /// <param name="outboundProxy"></param>
         /// <param name="username"></param>
         /// <param name="addAccount"></param>
-        private void Login_New(string authId, string username, bool addAccount )
+        private void Login_New(string authId, string outboundProxy, string username, bool addAccount )
         {
             //*********************************************************************************************************************************
             // Login in the VATRP application
             //*********************************************************************************************************************************
             VATRPCredential sipCredential = App.CurrentAccount.configuration.FindCredential("sip", username);
             if (sipCredential == null)
-            {             
-                LoginBox.Text = string.Empty;
+            {
+                UserNameBox.Text = string.Empty;
                 string msg = string.Format("VRS Account information is not present for {0}", Address);
                 string caption = "Error finding your account";
                 MessageBoxButton button = MessageBoxButton.OK;
@@ -479,13 +505,14 @@ namespace com.vtcsecure.ace.windows.CustomControls
                 return;
             }
 
-            App.CurrentAccount.AuthID = authId;
+            App.CurrentAccount.AuthID = sipCredential.username;
+            App.CurrentAccount.OutboundProxy = outboundProxy;
             App.CurrentAccount.Username = sipCredential.username;
             App.CurrentAccount.RegistrationUser = sipCredential.username;
             App.CurrentAccount.Password = sipCredential.password;
             App.CurrentAccount.RegistrationPassword = sipCredential.password;
             App.CurrentAccount.ProxyHostname = Address;
-            App.CurrentAccount.ProxyPort = ProxyPort;
+            App.CurrentAccount.HostPort = HostPort;
             App.CurrentAccount.RememberPassword = RememberPasswordBox.IsChecked ?? false;
 
             bool autoLogin = AutoLoginBox.IsChecked ?? false;
@@ -527,20 +554,21 @@ namespace com.vtcsecure.ace.windows.CustomControls
         /// Original login process which ignores configuration.
         /// </summary>
         /// <param name="userName"></param>
+        /// <param name="outboundProxy"></param>
         /// <param name="pw"></param>
         /// <param name="addAccount"></param>
-        private void Login_Old(string authId, string userName, string pw, bool addAccount)
+        private void Login_Old(string authId, string outboundProxy, string userName, string pw, bool addAccount)
         {
             App.CurrentAccount.AuthID = authId;
+            App.CurrentAccount.OutboundProxy = outboundProxy;
             App.CurrentAccount.Username = userName;
             App.CurrentAccount.RegistrationUser = userName;
             App.CurrentAccount.Password = pw;
             App.CurrentAccount.RegistrationPassword = pw;
-            App.CurrentAccount.ProxyPort = ProxyPort;
+            App.CurrentAccount.HostPort = HostPort;
             App.CurrentAccount.RememberPassword = false;
-
-            // cjm-nov17 -- adjustment for INTEROP
             App.CurrentAccount.ProxyHostname = (HostnameBox.Text != string.Empty) ? HostnameBox.Text : Address;
+
             UpdateNetLogger(App.CurrentAccount.ProxyHostname);
 
             bool autoLogin = AutoLoginBox.IsChecked ?? false;
@@ -564,8 +592,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
             }
 
             ServiceManager.Instance.ConfigurationService.Set(Configuration.ConfSection.GENERAL,
-                                                             Configuration.ConfEntry.ACCOUNT_IN_USE, App.CurrentAccount.AccountID);
-            // cjm-aug17
+                                                             Configuration.ConfEntry.ACCOUNT_IN_USE, App.CurrentAccount.AccountID);    
             if (addAccount)
             {
                 ServiceManager.Instance.AccountService.AddAccount(App.CurrentAccount);
@@ -583,10 +610,13 @@ namespace com.vtcsecure.ace.windows.CustomControls
             if (config == null)
                 return;
             AuthIDBox.Text = App.CurrentAccount.AuthID;
-            LoginBox.Text = App.CurrentAccount.Username;
+            UserNameBox.Text = App.CurrentAccount.PhoneNumber;
             Address = App.CurrentAccount.ProxyHostname;
             RememberPasswordBox.IsChecked = false;
             AutoLoginBox.IsChecked = ServiceManager.Instance.ConfigurationService.Get(Configuration.ConfSection.GENERAL, Configuration.ConfEntry.AUTO_LOGIN, false);
+            HostPortBox.IsReadOnly = true;
+            HostPortBox.Background = Brushes.LightGray;
+            HostPortBox.Foreground = Brushes.Black;
 
             switch (App.CurrentAccount.AccountType)
             {
@@ -619,22 +649,6 @@ namespace com.vtcsecure.ace.windows.CustomControls
             //{
                 UpdateNetLogger(uri); 
             //}
-        }
-
-        /// <summary>
-        /// Callback which sets the current accounts phone number
-        /// to and empty string if a new username is being enterd.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public void UsernameModified(object sender, EventArgs e)
-        {
-            string enteredUsername = LoginBox.Text;
-            if (App.CurrentAccount.Username != enteredUsername)
-            {
-                App.CurrentAccount.PhoneNumber = string.Empty;
-                _configFileLoadedWithPort = false;
-            }
         }
 
         /// <summary>
@@ -681,23 +695,16 @@ namespace com.vtcsecure.ace.windows.CustomControls
                 // update the ing logging for the new provider
                 UpdateNetLogger(provider.Address);
 
-                // reset the accounts phone number
-                App.CurrentAccount.PhoneNumber = string.Empty;
-
-                // reset this flag
-                _configFileLoadedWithPort = false;
-
                 // Reset the content being disaplyed in the form
                 AuthIDBox.Text = string.Empty;
                 PasswdBox.Password = string.Empty;
                 HostnameBox.Text = provider.Address;
                 Address = provider.Address;
+                UserNameBox.Text = string.Empty;
 
-                if (Address != App.CurrentAccount.ProxyHostname)
-                {
-                    LoginBox.Text = string.Empty;
-                }
-                
+                App.CurrentAccount.OutboundProxy = string.Empty;
+                OutboundProxyServerBox.Text = string.Empty;
+
                 if (string.Equals(provider.Label, "Custom"))
                 {
                     HostnameBox.IsReadOnly = false;
@@ -734,7 +741,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
                     _mainWnd.NetLogger.DomainName = address;
                 }
                 _mainWnd.NetLogger.PingProviderNowAsync();
-                _mainWnd.NetLogger.PollProviderAsync(PollTime);
+                // _mainWnd.NetLogger.PollProviderAsync(PollTime); remove the polling for now. It's causing crashes and the feature doesn't seem very importantF
             }
             catch (Exception ex)
             {
@@ -758,17 +765,55 @@ namespace com.vtcsecure.ace.windows.CustomControls
             App.CurrentAccount.Transport = transportText.Text;
             string transport = transportText.Text.ToLower();
 
-            // We only want to change the port when the transport selection 
-            // event occurs if we have not specified a port during the config
-            // file upload process.
-            if ((transport == "tcp" || transport == "udp") && !_configFileLoadedWithPort)
+            // Must check if HostPortBox exists before accessing it
+            // When a users un-registers, this method is called before the HostPortBox is initialized
+            if (transport == "tcp")
             {
-                ProxyPort = App.CurrentAccount.ProxyPort = 5060;
+                HostPort = App.CurrentAccount.HostPort = 5060;
+                if (HostPortBox != null)
+                {
+                    HostPortBox.IsReadOnly = true;
+                    HostPortBox.Background = Brushes.LightGray;
+                    HostPortBox.Foreground = Brushes.Black;
+                }
             }
-            else if(transport == "tls" && !_configFileLoadedWithPort)
+            else if(transport == "tls")
             {
-                ProxyPort = App.CurrentAccount.ProxyPort = 5061;
+                HostPort = App.CurrentAccount.HostPort = 5061;
+                if (HostPortBox != null)
+                {
+                    HostPortBox.IsReadOnly = true;
+                    HostPortBox.Background = Brushes.LightGray;
+                    HostPortBox.Foreground = Brushes.Black;
+                }
             }
+            else if(transport == "udp")
+            {
+                HostPort = App.CurrentAccount.HostPort = 5060;
+                if (HostPortBox != null)
+                {
+                    HostPortBox.IsReadOnly = false;
+                    HostPortBox.Background = Brushes.White;
+                }
+            }
+            if (HostPortBox != null)
+            {
+                HostPortBox.Text = HostPort.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Callback for username change event
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="args">Selection Changed Event Arguments</param>
+        private void OnUserNameLostFocus(object sender, RoutedEventArgs e)
+        {
+            // This prevents a null exception 
+            if (App.CurrentAccount == null) { return; }
+            App.CurrentAccount.PhoneNumber = UserNameBox.Text;
+            App.CurrentAccount.Username = UserNameBox.Text;
+            App.CurrentAccount.RegistrationUser = UserNameBox.Text;
         }
 
         /// <summary>
@@ -797,7 +842,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
             if (App.CurrentAccount == null)
             {
                 AuthIDBox.Text = string.Empty;
-                LoginBox.Text = string.Empty;  
+                UserNameBox.Text = string.Empty;  
             }
             PasswdBox.Password = string.Empty;
         }
@@ -879,9 +924,6 @@ namespace com.vtcsecure.ace.windows.CustomControls
             VATRPServiceProvider serviceProvider = ServiceManager.Instance.ProviderService.FindProviderLooseSearch("Custom");
             ProviderComboBox.SelectedItem = serviceProvider;
 
-            // Set this flag high since we managed a successful 
-            // file upload
-            _configFileLoadedWithPort = config.sip_register_port > 0;
             config.SetDownloadDate();
 
             // Check to see if this account is cached elsewhere
@@ -894,10 +936,11 @@ namespace com.vtcsecure.ace.windows.CustomControls
             // Store configuration in current account
             config.UpdateVATRPAccountFromACEConfig_login(App.CurrentAccount);
 
-            LoginBox.Text = string.IsNullOrEmpty(App.CurrentAccount.Username) ? App.CurrentAccount.PhoneNumber : App.CurrentAccount.Username;
+            UserNameBox.Text = App.CurrentAccount.PhoneNumber;
             PasswdBox.Password = App.CurrentAccount.Password;
             Address = App.CurrentAccount.ProxyHostname;
             AuthIDBox.Text = App.CurrentAccount.AuthID;
+            OutboundProxyServerBox.Text = App.CurrentAccount.OutboundProxy;
             string hostName = App.CurrentAccount.ProxyHostname;
             if (!string.IsNullOrWhiteSpace(hostName))
             {
@@ -906,7 +949,6 @@ namespace com.vtcsecure.ace.windows.CustomControls
             }
 
             // Update UI
-            ProxyPort = App.CurrentAccount.ProxyPort;
             string transport = App.CurrentAccount.Transport;
             if (!transport.Equals(TransportComboBox.Text))
             {
@@ -925,6 +967,12 @@ namespace com.vtcsecure.ace.windows.CustomControls
                         break;
                     }
                 }
+            }
+            if (config.sip_register_port != null && config.sip_register_port != 0)
+            {
+                HostPortBox.Text = config.sip_register_port.ToString();
+                HostPort = (UInt16)config.sip_register_port;
+                App.CurrentAccount.HostPort = HostPort;
             }
         }
 

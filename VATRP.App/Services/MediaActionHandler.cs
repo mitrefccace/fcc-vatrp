@@ -35,6 +35,24 @@ namespace com.vtcsecure.ace.windows.Services
         /// <returns>True if the call was placed successfully.</returns>
         internal static bool MakeVideoCall(string remoteUri) 
         {
+            string dialPadPhonePattern = @"^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$";
+            string pattern = @"[ \-\s\t\n\r\(\)\*\#\+\.]*";
+            string replacement = "";
+            Regex rgx = new Regex(pattern);
+            Regex dialPadPhoneCheckRgx = new Regex(dialPadPhonePattern);
+
+            //string result = rgx.Replace(remoteUri, replacement);
+            Match match = dialPadPhoneCheckRgx.Match(remoteUri);
+            if (match.Success)
+            {
+                string result = rgx.Replace(remoteUri, replacement);
+                // Perserving the leading 1 if there is one:
+                //
+                /*
+                if (result.Length > 10 && result[0] == '1')
+                    result = result.Remove(0, 1);*/
+                remoteUri = result;
+            }
 
             //******************************** Maake Video Call **********************************************************************************************
             // This method is called when user tap on call button on dial pad. or When user select the Contact from Contact list (All/Favorites) 
@@ -131,7 +149,7 @@ namespace com.vtcsecure.ace.windows.Services
             var privacyMask = VATRP.Core.Enums.LinphonePrivacy.LinphonePrivacyDefault;
             if (App.CurrentAccount.EnablePrivacy)
             {
-                privacyMask = VATRP.Core.Enums.LinphonePrivacy.LinphonePrivacyUser;
+                privacyMask = VATRP.Core.Enums.LinphonePrivacy.LinphonePrivacySession;
             }
             
         // update video policy settings prior to making a call

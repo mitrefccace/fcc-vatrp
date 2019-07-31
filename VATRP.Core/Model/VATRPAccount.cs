@@ -88,10 +88,13 @@ namespace VATRP.Core.Model
         public bool UseOutboundProxy { get; set; }
 
         [Column]
+        public string OutboundProxy { get; set; }
+
+        [Column]
         public string DisplayName { get; set; }
 
         [Column]
-        public ushort ProxyPort { get; set; }
+        public ushort HostPort { get; set; }
 
         [Column]
         public string Transport
@@ -127,7 +130,13 @@ namespace VATRP.Core.Model
         public bool EnableSTUN { get; set; }
 
         [Column]
+        public bool EnableTURN { get; set; }
+
+        [Column]
         public string STUNAddress { get; set; }
+
+        [Column]
+        public string STUNUsername { get; set; }
 
         [Column]
         public ushort STUNPort { get; set; }
@@ -285,13 +294,16 @@ namespace VATRP.Core.Model
         public string CardDavRealm { get; set; }
 
         [Column]
-        public string ContactsURI { get; set; }  // rmh-sep18
+        public string ContactsURI { get; set; }
 
         [Column]
         public string CDN { get; set; }  
 
         [Column]
         public string GeolocationURI { get; set; }
+
+        [Column]
+        public bool SendLocationWithRegistration { get; set; }
 
         [Column]
         public int RTTFontSize { get; set; }
@@ -310,8 +322,9 @@ namespace VATRP.Core.Model
         {
             configuration = new ACEConfig(); // cjm-sep17
             AccountID = Guid.NewGuid().ToString();
-            ProxyPort = Configuration.LINPHONE_SIP_PORT;
+            HostPort = Configuration.LINPHONE_SIP_PORT;
             ProxyHostname = Configuration.LINPHONE_SIP_SERVER;
+            OutboundProxy = "";
             Transport = "TCP";
             MediaEncryption = "Unencrypted";
             EnableAVPF = false;
@@ -359,9 +372,10 @@ namespace VATRP.Core.Model
             RTTFontFamily = "Segoe UI";
             CardDavServerPath = string.Empty;
             CardDavRealm = string.Empty;
-            ContactsURI = string.Empty;  // rmh-sep18
+            ContactsURI = string.Empty;
             CDN = string.Empty;
             GeolocationURI = string.Empty;
+            SendLocationWithRegistration = false;
             DisableAudioCodecs = false;
             EnableSTUN = true;
             EnableICE = false;

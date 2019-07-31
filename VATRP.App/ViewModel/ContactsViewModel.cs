@@ -143,7 +143,7 @@ namespace com.vtcsecure.ace.windows.ViewModel
         /// <param name="obj">object</param>
         /// <returns>void</returns>
         private void ExecuteImportCommand(object obj)
-        { 
+        {
             if (ServiceManager.Instance.LinphoneService.VCardSupported && !ImportInProgress)
             {
                 ImportInProgress = true;
@@ -156,7 +156,7 @@ namespace com.vtcsecure.ace.windows.ViewModel
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
-                        string uri = App.CurrentAccount.ContactsURI;  
+                        string uri = App.CurrentAccount.ContactsURI;
                         if (uri == string.Empty)
                         {
                             msg = "Valid URI required to import contacts. Please go to the Settings, Account menu to input a valid URI.";
@@ -166,26 +166,52 @@ namespace com.vtcsecure.ace.windows.ViewModel
                             ImportInProgress = false;
                             break;
                         }
-                        VATRPCredential contactsCredential = App.CurrentAccount.configuration.FindCredential("contacts", null) ?? GetAuthentication();
-                        if (contactsCredential == null) { ImportInProgress = false; return; }
+
                         importTask = Task.Run(async () =>
                         {
                             try
                             {
-                                await Dispatcher.BeginInvoke((Action)(() => Mouse.OverrideCursor = Cursors.AppStarting)); 
+                                await Dispatcher.BeginInvoke((Action)(() => Mouse.OverrideCursor = Cursors.AppStarting));
                                 XmlDocument xDoc = new XmlDocument();
-                                xDoc = await JsonWebRequest.MakeXmlWebRequestAuthenticatedAsync<XmlDocument>(uri, contactsCredential);
+                                xDoc = await JsonWebRequest.MakeXmlWebRequestAsync<XmlDocument>(uri);
                                 var recordsImported = ServiceManager.Instance.ContactService.ImportVcardFromXdoc(xDoc);
                             }
                             catch (Exception ex)
                             {
-                                await Dispatcher.BeginInvoke((Action)delegate ()
-                               {
-                                   msg = "Download failed.";
-                                   caption = "Import Error";
-                                   button = MessageBoxButton.OK;
-                                   MessageBox.Show(msg, caption, button, MessageBoxImage.Error);
-                               });
+                                try
+                                {
+
+                                    System.Net.HttpWebResponse response = ((ex as System.Net.WebException).Response) as System.Net.HttpWebResponse;
+                                    if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                                    {
+                                        await Dispatcher.BeginInvoke((Action)(() => Mouse.OverrideCursor = Cursors.AppStarting));
+                                        VATRPCredential creds = App.CurrentAccount.configuration.FindCredential("contacts", null);
+                                        if (creds == null)
+                                        {
+                                            await Dispatcher.BeginInvoke((Action)delegate ()
+                                            {
+                                                creds = GetAuthentication();
+                                            });
+                                        }
+                                        XmlDocument xDoc = new XmlDocument();
+                                        xDoc = await JsonWebRequest.MakeXmlWebRequestAuthenticatedAsync<XmlDocument>(uri, creds);
+                                        var recordsImported = ServiceManager.Instance.ContactService.ImportVcardFromXdoc(xDoc);
+                                    }
+                                    else
+                                    {
+                                        throw;
+                                    }
+                                }
+                                catch
+                                {
+                                    await Dispatcher.BeginInvoke((Action)delegate ()
+                                    {
+                                        msg = ex.Message;
+                                        caption = "Download failed";
+                                        button = MessageBoxButton.OK;
+                                        MessageBox.Show(msg, caption, button, MessageBoxImage.Error);
+                                    });
+                                }
                             }
                             finally
                             {
@@ -210,7 +236,7 @@ namespace com.vtcsecure.ace.windows.ViewModel
                                     caption = "Import Error";
                                     button = MessageBoxButton.OK;
                                     MessageBox.Show(msg, caption, button, MessageBoxImage.Error);
-                                });  
+                                });
                             }
                             finally
                             {
@@ -223,9 +249,9 @@ namespace com.vtcsecure.ace.windows.ViewModel
                         ImportInProgress = false;
                         break;
                 }
-            }       
+            }
         }
-        
+
         /// <summary>
         /// Method to import contacts from local machine. Prompts
         /// user to select a contacts file from the computer. Then
