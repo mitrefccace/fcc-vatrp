@@ -39,6 +39,7 @@ using VATRP.LinphoneWrapper.Structs;
 using System.Text.RegularExpressions;
 
 using System.Data.SQLite;
+using System.Windows;
 
 namespace VATRP.Core.Services
 {
@@ -673,12 +674,7 @@ namespace VATRP.Core.Services
                                     var muteCmd = command as MuteCallCommand;
                                     if (muteCmd != null)
                                     {
-                                        IntPtr callPtr = LinphoneAPI.linphone_core_get_current_call(linphoneCore);
-                                        dequeCommand = callPtr == IntPtr.Zero;
-                                        if (callPtr != IntPtr.Zero)
-                                            dequeCommand = LinphoneAPI.linphone_call_media_in_progress(callPtr) == 0;
-                                        if (dequeCommand)
-                                            LinphoneAPI.linphone_core_enable_mic(linphoneCore, muteCmd.MuteOn);
+                                        LinphoneAPI.linphone_core_enable_mic(linphoneCore, muteCmd.MuteOn);
                                     }
                                     break;
                                 case LinphoneCommandType.SendChatMessage:
@@ -794,6 +790,20 @@ namespace VATRP.Core.Services
             _isStarted = false;
             _isStopping = false;
             _isStopped = true;
+
+            // Added this to make sure _videoMWiSubscription is reset when users signs out of VATRP.
+            // To prevent crashing, also making sure the subscription is terminated only when the subscription has been activated.
+            if (_videoMWiSubscription != IntPtr.Zero)
+            {
+                if (LinphoneAPI.linphone_event_get_subscription_state(_videoMWiSubscription) == LinphoneSubscriptionState.LinphoneSubscriptionActive)
+                {
+                    LinphoneAPI.linphone_event_terminate(_videoMWiSubscription);
+                    _videoMWiSubscription = IntPtr.Zero;
+                }
+                else
+                    _videoMWiSubscription = IntPtr.Zero;
+            }
+
             LOG.Debug("Main loop exited");
             if (ServiceStopped != null)
                 ServiceStopped(this, EventArgs.Empty);
@@ -1053,20 +1063,19 @@ namespace VATRP.Core.Services
                 Marshal.StructureToPtr(t_config, t_configPtr, false);
             }
 
-            // Phone number will take higher priority over username 
             if (string.IsNullOrEmpty(preferences.DisplayName))
             {
-                identity = string.Format("sip:{0}@{1}", string.IsNullOrEmpty(preferences.PhoneNumber) ? preferences.Username : preferences.PhoneNumber, preferences.ProxyHost);
+                identity = string.Format("sip:{0}@{1}", preferences.Username, preferences.ProxyHost);
             }
             else
             {
-                identity = string.Format("\"{0}\" <sip:{1}@{2}>", preferences.DisplayName, string.IsNullOrEmpty(preferences.PhoneNumber) ? preferences.Username : preferences.PhoneNumber, preferences.ProxyHost);
+                identity = string.Format("\"{0}\" <sip:{1}@{2}>", preferences.DisplayName, preferences.Username, preferences.ProxyHost);
             }
 
             LinphoneAPI.linphone_core_set_sip_transports(linphoneCore, t_configPtr);
             LinphoneAPI.linphone_core_set_user_agent(linphoneCore, preferences.UserAgent, preferences.Version);
 
-            server_addr = string.Format("sip:{0}:{1};transport={2}", preferences.ProxyHost, preferences.ProxyPort, preferences.Transport.ToLower());
+            server_addr = string.Format("sip:{0}:{1};transport={2}", string.IsNullOrEmpty(preferences.OutboundProxy)? preferences.ProxyHost : preferences.OutboundProxy, preferences.ProxyPort, preferences.Transport.ToLower());
 
             LOG.Info(string.Format("Registering SIP account: {0} Server: {1}", identity, server_addr));
 
@@ -1091,7 +1100,6 @@ namespace VATRP.Core.Services
                 }
             }
 
-
             LinphoneAPI.linphone_core_add_auth_info(linphoneCore, auth_info);
             LinphoneAPI.linphone_core_set_primary_contact(linphoneCore, identity);
 
@@ -1104,7 +1112,7 @@ namespace VATRP.Core.Services
             /*set localParty with user name and domain*/
             LinphoneAPI.linphone_proxy_config_edit(proxy_cfg); 
 
-            if (!string.IsNullOrEmpty(preferences.GeolocationURI))
+            if (preferences.SendLocationWithRegistration)
 		    {
 		        LinphoneAPI.linphone_proxy_config_set_custom_header(proxy_cfg, "Geolocation", $"<{preferences.GeolocationURI}> ;purpose=geolocation");
             }
@@ -1114,9 +1122,13 @@ namespace VATRP.Core.Services
             LinphoneAPI.linphone_proxy_config_set_avpf_mode(proxy_cfg, (LinphoneAVPFMode)LinphoneAPI.linphone_core_get_avpf_mode(LinphoneCore));
             LinphoneAPI.linphone_proxy_config_set_avpf_rr_interval(proxy_cfg, 3);
 
-            string route = preferences.IsOutboundProxyOn ? server_addr : string.Empty;
             // use proxy as route if outbound_proxy is enabled
-            LinphoneAPI.linphone_proxy_config_set_route(proxy_cfg, route);
+            if (!(string.IsNullOrEmpty(preferences.OutboundProxy)) && preferences.IsOutboundProxyOn)
+            {
+                //string route = string.Format("<sip:{0};lr>", preferences.OutboundProxy);
+                //LinphoneAPI.linphone_proxy_config_set_custom_header(proxy_cfg, "Route", route);
+                LinphoneAPI.linphone_proxy_config_set_route(proxy_cfg, preferences.OutboundProxy);
+            }
             LinphoneAPI.linphone_proxy_config_set_expires(proxy_cfg, preferences.Expires);
             LinphoneAPI.linphone_proxy_config_enable_register(proxy_cfg, true);
             LinphoneAPI.linphone_core_add_proxy_config(linphoneCore, proxy_cfg);
@@ -1236,7 +1248,9 @@ namespace VATRP.Core.Services
             // clear stun_preference
 
             LinphoneAPI.linphone_core_set_stun_server(linphoneCore, null);
-            LinphoneAPI.linphone_core_set_firewall_policy(linphoneCore, LinphoneFirewallPolicy.LinphonePolicyNoFirewall);
+            IntPtr natPolicy = LinphoneAPI.linphone_core_get_nat_policy(linphoneCore);
+            LinphoneAPI.linphone_nat_policy_clear(natPolicy);
+            LinphoneAPI.linphone_core_set_nat_policy(linphoneCore, natPolicy);
 
             if (RegistrationStateChangedEvent != null)
                 RegistrationStateChangedEvent(LinphoneRegistrationState.LinphoneRegistrationCleared, LinphoneReason.LinphoneReasonNone);
@@ -1503,17 +1517,6 @@ namespace VATRP.Core.Services
             lock (callLock)
             {
                 activeCallPtr = LinphoneAPI.linphone_core_get_current_call(linphoneCore);
-                //if (activeCallPtr != IntPtr.Zero)
-                //{
-
-                //    VATRPCall call = FindCall(activeCallPtr);
-                //    if (call != null
-                //        /*&& (call.CallState != VATRPCallState.LocalPaused || call.CallState != VATRPCallState.LocalPausing)*/)
-                //    {
-                //        // probably this should be done in linphone core
-                //            LinphoneAPI.linphone_core_enable_mic(linphoneCore, !muteCall);
-                //    }
-                //}
             }
 
             var cmd = new MuteCallCommand(activeCallPtr, !muteCall);
@@ -2449,29 +2452,44 @@ namespace VATRP.Core.Services
             LOG.Info(string.Format("UpdateNetworkingParameters: IPv6 is {0}", account.EnableIPv6 ? "enabled" : "disabled"));
 
             var address = string.Format(account.STUNAddress);
-            LinphoneAPI.linphone_core_set_stun_server(linphoneCore, address);
-            if (account.EnableSTUN || account.EnableICE)
+            IntPtr natPolicy = LinphoneAPI.linphone_core_get_nat_policy(linphoneCore);
+            LinphoneAPI.linphone_nat_policy_clear(natPolicy);
+            if (account.EnableSTUN || account.EnableICE || account.EnableTURN)
             {
-                if (account.EnableSTUN)
+                LinphoneAPI.linphone_nat_policy_set_stun_server(natPolicy, address);
+                if(account.EnableTURN)
                 {
-                    LinphoneAPI.linphone_core_set_firewall_policy(linphoneCore,
-                        LinphoneFirewallPolicy.LinphonePolicyUseStun);
+                    LinphoneAPI.linphone_nat_policy_enable_turn(natPolicy, true);
+                    LOG.Info("UpdateNetworkingParameters: Enable TURN. " + address);
+                }
+                else if (account.EnableSTUN)
+                {
+                    LinphoneAPI.linphone_nat_policy_enable_stun(natPolicy, true);
                     LOG.Info("UpdateNetworkingParameters: Enable STUN. " + address);
                 }
-                else
+                if (account.EnableICE)
                 {
-                    LinphoneAPI.linphone_core_set_firewall_policy(linphoneCore,
-                        LinphoneFirewallPolicy.LinphonePolicyUseIce);
                     LOG.Info("UpdateNetworkingParameters: Enable ICE. " + address);
+                    LinphoneAPI.linphone_nat_policy_enable_ice(natPolicy, true);
                 }
             }
-            else
+
+            if (!String.IsNullOrEmpty(account.STUNUsername))
             {
-                LinphoneAPI.linphone_core_set_firewall_policy(linphoneCore,
-                    LinphoneFirewallPolicy.LinphonePolicyNoFirewall);
-                LOG.Info("UpdateNetworkingParameters: No Firewall. Stun server is " + address);
+                VATRPCredential credential = account.configuration.credentials.Find(c => c.username == account.STUNUsername);
+                if (credential != null)
+                {
+                    IntPtr authinfo = LinphoneAPI.linphone_core_find_auth_info(linphoneCore, credential.realm, credential.username, null);
+                    if (authinfo == IntPtr.Zero)
+                    {
+                        IntPtr newAuthInfo = LinphoneAPI.linphone_auth_info_new(credential.username, null, credential.password, null, credential.realm, null);
+                        LinphoneAPI.linphone_core_add_auth_info(linphoneCore, newAuthInfo);
+                    }
+                    LinphoneAPI.linphone_nat_policy_set_stun_server_username(natPolicy, account.STUNUsername);
+                }
             }
 
+            LinphoneAPI.linphone_core_set_nat_policy(linphoneCore, natPolicy);
             // TODO, Disable adaptive rate algorithm, since it caused bad video
             LinphoneAPI.linphone_core_set_adaptive_rate_algorithm(linphoneCore, account.AdaptiveRateAlgorithm);
             LinphoneAPI.linphone_core_enable_adaptive_rate_control(linphoneCore, account.EnableAdaptiveRate);
@@ -2482,6 +2500,7 @@ namespace VATRP.Core.Services
             LinphoneAPI.linphone_core_set_sip_dscp(linphoneCore, account.EnableQualityOfService ? account.SipDscpValue : 0);
             LinphoneAPI.linphone_core_set_audio_dscp(linphoneCore, account.EnableQualityOfService ? account.AudioDscpValue : 0);
             LinphoneAPI.linphone_core_set_video_dscp(linphoneCore, account.EnableQualityOfService ? account.VideoDscpValue : 0);
+
             return false;
         }
 
@@ -3336,9 +3355,7 @@ namespace VATRP.Core.Services
             } while (curStruct.next != IntPtr.Zero);
         }
 
-        #endregion
-
-        #region Subscriptions
+               
 
         public bool SubscribeForVideoMWI(string newVideoMailUri)
         {
@@ -3347,16 +3364,12 @@ namespace VATRP.Core.Services
                 try
                 {
                     IntPtr mwiAddressPtr = LinphoneAPI.linphone_core_create_address(linphoneCore, newVideoMailUri);
-                    if (_videoMWiSubscription != IntPtr.Zero)
-                    {
-                        LinphoneAPI.linphone_event_terminate(_videoMWiSubscription);
-                        _videoMWiSubscription = IntPtr.Zero;
-                    }
-
+                    
                     if (mwiAddressPtr != IntPtr.Zero)
                     {
                         _videoMWiSubscription = LinphoneAPI.linphone_core_subscribe(linphoneCore, mwiAddressPtr,
                             "message-summary", 1800, IntPtr.Zero);
+                        
                     }
                 }
                 catch (Exception ex)

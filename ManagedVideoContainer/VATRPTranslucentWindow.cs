@@ -30,6 +30,7 @@ namespace VATRP.Linphone.VideoWrapper
         private VATRPOverlay _container;
         double windowTopMargin;
         double windowLeftMargin;
+        bool popUpBlock = false; //this boolean prevents the application from take priority when opening another appilcation. (6/1/2019 :MT)
 
         public VATRPTranslucentWindow(VATRPOverlay decorator)
         {
@@ -156,6 +157,9 @@ namespace VATRP.Linphone.VideoWrapper
                         _parent = GetParentWindow(_container);
                         _window.Owner = _parent;
                         _parent.LocationChanged += new EventHandler(parent_LocationChanged);
+                        // The popUpBlock prevents the app from popping up in front of other windows. On Line Below, popUpBlock is set to false to allow
+                        // the system to set up and open. After that the popUpBlock is set to true which prevents in popping to front. 
+                        popUpBlock = false;
                     }
                 }
                 else
@@ -163,8 +167,10 @@ namespace VATRP.Linphone.VideoWrapper
                     if (!ShowWindow && _window.Visibility == Visibility.Visible)
                     {
                         _window.Hide();
-                        if (_parent != null)
-                            _parent.Activate();
+                        if (_parent != null && !popUpBlock) { 
+                            popUpBlock = true; 
+                            _parent.Activate(); 
+                        }
                     }
                 }
             }
@@ -195,11 +201,16 @@ namespace VATRP.Linphone.VideoWrapper
                     _window.Width = OverlayWidth;
                     _window.Height = OverlayHeight;
                 }
-
+               
                 if (ShowWindow)
+                {
                     _window.Show();
+                    popUpBlock = true; // Prevents the app from popping in front over windows when UpdateWindow runs
+                }
                 else
+                {
                     _window.Hide();
+                }
             }
             catch (Exception)
             {

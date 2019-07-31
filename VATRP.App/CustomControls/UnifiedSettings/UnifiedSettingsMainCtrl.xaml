@@ -154,7 +154,7 @@ This (software/technical data) was produced for the U. S. Government under Contr
                    HorizontalAlignment="Left" Visibility="Collapsed" Name="ProxyLabel">
                 </Label>
                 <TextBox Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
-                     Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Foreground="Blue" Visibility="Collapsed" Name="ProxyTextBox" LostFocus="OnProxyPortChanged" IsEnabled="false"/>
+                     Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Foreground="Blue" Visibility="Visible" Name="ProxyTextBox" IsEnabled="false"/>
 
                 <!-- Row 14: Save Account -->
                 <Button Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="1" Content="Save Account" Margin="0,2" 

@@ -454,6 +454,12 @@
         "Entry"
         {
         "MsmKey" = "8:_E2DCE9C827366D88C440B5DD9307AEDB"
+        "OwnerKey" = "8:_9ED663DFC04D425EBAE6D9E045FED772"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E2DCE9C827366D88C440B5DD9307AEDB"
         "OwnerKey" = "8:_58ACCF86DA6A4BE69FA87D3FAC717476"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -461,12 +467,6 @@
         {
         "MsmKey" = "8:_E2DCE9C827366D88C440B5DD9307AEDB"
         "OwnerKey" = "8:_F68F96F6A43C73E1C1A789544243BFB5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E2DCE9C827366D88C440B5DD9307AEDB"
-        "OwnerKey" = "8:_9ED663DFC04D425EBAE6D9E045FED772"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -539,36 +539,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_58ACCF86DA6A4BE69FA87D3FAC717476"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9ED663DFC04D425EBAE6D9E045FED772"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F68F96F6A43C73E1C1A789544243BFB5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_80D065819EEB94D482D99689E7F80E61"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1C075542547C1C2FC6434F2F6482E5DC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_87EE95821898166B66648F3EFEFA623B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -730,7 +700,37 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9ED663DFC04D425EBAE6D9E045FED772"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F68F96F6A43C73E1C1A789544243BFB5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_80D065819EEB94D482D99689E7F80E61"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E2DCE9C827366D88C440B5DD9307AEDB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_1C075542547C1C2FC6434F2F6482E5DC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_87EE95821898166B66648F3EFEFA623B"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -834,7 +834,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.5"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.5.2"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=395269"
                 }
@@ -1505,7 +1505,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:VATRP, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:VATRP, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_58ACCF86DA6A4BE69FA87D3FAC717476"
@@ -1793,7 +1793,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:VATRP.LinphoneWrapper, Version=0.0.62.0, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:VATRP.LinphoneWrapper, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_81CBB12BB234B878A9F8D5456AC94F6B"
@@ -1926,7 +1926,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:VATRP.Linphone.VideoWrapper, Version=1.0.6934.18069, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:VATRP.Linphone.VideoWrapper, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_8D3F53766FE31DB0457B17242CD853DB"
@@ -2079,7 +2079,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:VATRP.Core, Version=0.0.62.0, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:VATRP.Core, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_A1233D60D9A6B3D3F176160DB91FC378"
@@ -2865,15 +2865,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VATRP"
-        "ProductCode" = "8:{F4D3C887-E1F7-4BC7-B86C-FA4296414E7B}"
-        "PackageCode" = "8:{26D34926-C2C4-4F8C-9DA0-8403894EEFF0}"
+        "ProductCode" = "8:{3B36453F-DF0F-45E4-8E24-D8F68A431147}"
+        "PackageCode" = "8:{69981E18-19DA-4F34-88CB-ED04F198BC58}"
         "UpgradeCode" = "8:{DFD914DD-1BEF-441D-A0AC-711CAB669F78}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.1.0"
         "Manufacturer" = "8:The MITRE Corporation"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -2986,21 +2986,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0C78371366FF4DD7AB0D5388E6C8706A"
-            {
-            "Name" = "8:VATRP"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_58ACCF86DA6A4BE69FA87D3FAC717476"
-            "Folder" = "8:_E6433D319BA545FD8852F2D8CAAC5D10"
-            "WorkingFolder" = "8:_A78295604B8A4D7388408D66B48647D3"
-            "Icon" = "8:_4BA06458E96343F2B6F5EC56CF40161D"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_86B6EA6E3E384D9EA9ACD977651140EF"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_5DDD7836E1084396BEA6EB1A583A85E6"
             {
             "Name" = "8:VATRP"
             "Arguments" = "8:"
@@ -3010,6 +2996,20 @@
             "Transitive" = "11:FALSE"
             "Target" = "8:_58ACCF86DA6A4BE69FA87D3FAC717476"
             "Folder" = "8:_389283D3CF9E4206BA5121E5E51C22F7"
+            "WorkingFolder" = "8:_A78295604B8A4D7388408D66B48647D3"
+            "Icon" = "8:_4BA06458E96343F2B6F5EC56CF40161D"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_FE7F92102E8B42AAAADA41E1CCDA1A71"
+            {
+            "Name" = "8:VATRP"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_58ACCF86DA6A4BE69FA87D3FAC717476"
+            "Folder" = "8:_E6433D319BA545FD8852F2D8CAAC5D10"
             "WorkingFolder" = "8:_A78295604B8A4D7388408D66B48647D3"
             "Icon" = "8:_4BA06458E96343F2B6F5EC56CF40161D"
             "Feature" = "8:"

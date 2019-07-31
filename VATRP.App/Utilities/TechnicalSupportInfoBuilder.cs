@@ -125,7 +125,7 @@ namespace com.vtcsecure.ace.windows.Utilities
                 //       public string sip_register_domain { get; set; }
                 configString.AppendLine("Domain: " + App.CurrentAccount.ProxyHostname);
                 //       public int sip_register_port { get; set; }
-                configString.AppendLine("Port: " + App.CurrentAccount.ProxyPort);
+                configString.AppendLine("Port: " + App.CurrentAccount.HostPort);
                 //       public string sip_register_transport { get; set; }
                 configString.AppendLine("Transport: " + App.CurrentAccount.Transport);
 

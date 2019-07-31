@@ -62,8 +62,6 @@ namespace VATRP.Core.Model
         [JsonProperty("ice-servers")]
         public List<Ice_server> ice_servers = new List<Ice_server>();
 
-
-
         [JsonProperty]
         public ACEConfigStatusType configStatus { get; set; }
 
@@ -114,6 +112,9 @@ namespace VATRP.Core.Model
 
         [JsonProperty]
         public bool enable_stun { get; set; }
+
+        [JsonProperty]
+        public bool enable_turn { get; set; }
 
         [JsonProperty]
         public string stun_server { get; set; }
@@ -200,11 +201,11 @@ namespace VATRP.Core.Model
         }
 
         // cjm-sep17  
-        public VATRPCredential FindCredential(string serviceId, string userId)
+        public VATRPCredential FindCredential(string serviceId, string username)
         {
-            if (userId != null)
+            if (username != null)
             {
-                return credentials.Find(x => x.realm == serviceId && x.username == userId);
+                return credentials.Find(x => x.realm == serviceId && x.username == username);
             }
             else
             {
@@ -300,15 +301,25 @@ namespace VATRP.Core.Model
             // Fields Required from config file
             accountToUpdate.configuration = this;
             accountToUpdate.ProxyHostname = this.sip_register_domain;
+            accountToUpdate.RegistrationUser = this.phone_number;
+            accountToUpdate.Username = this.phone_number;
+            accountToUpdate.PhoneNumber = this.phone_number;
+
+            // Set the outbound proxy if there are any loaded from the config file
+            if (this.outbound_proxies.Any())
+            {
+                accountToUpdate.OutboundProxy = this.outbound_proxies[0];
+                accountToUpdate.UseOutboundProxy = true;
+            }
 
             int port = this.sip_register_port;
             if (port > 0)
             {
-                accountToUpdate.ProxyPort = (UInt16)port;
+                accountToUpdate.HostPort = (UInt16)port;
                 accountToUpdate.Transport = "UDP";
             }
             accountToUpdate.ContactsURI = this.contacts;
-            // TODO: set flag for sending geo location
+            accountToUpdate.SendLocationWithRegistration = this.sendLocationWithRegistration;
 
             // Find set of credentials that will be used
             accountToUpdate.RegistrationUser = "";
@@ -321,19 +332,17 @@ namespace VATRP.Core.Model
                 if (credential.realm == sip_register_domain)
                 {
                     // Update just the current account, not the config file
-                    accountToUpdate.RegistrationUser = credential.username;
-                    accountToUpdate.Username = credential.username;
                     accountToUpdate.RegistrationPassword = credential.password;
                     accountToUpdate.Password = credential.password;
-                    accountToUpdate.AuthID = credential.userid;
+                    accountToUpdate.AuthID = credential.username;
                     break;
                 }
             }
 
             // Fields Optional from config file
             accountToUpdate.DisplayName = this.display_name;
-            accountToUpdate.PhoneNumber = this.phone_number;
             accountToUpdate.MWIUri = this.sip_mwi_uri;
+            accountToUpdate.VideoMailUri = this.sip_videomail_uri;
             accountToUpdate.CardDavRealm = this.carddav;
             if (this.ice_servers.Count > 0)
             {
@@ -369,14 +378,15 @@ namespace VATRP.Core.Model
             accountToUpdate.configuration = this;
             accountToUpdate.configStatus = this.configStatus;
             //       public string sip_auth_username { get; set; }
-            string username = "";
-            if (!string.IsNullOrEmpty(this.sip_auth_username))
+            string phone_number = "";
+            if (!string.IsNullOrEmpty(this.phone_number))
             {
-                username = this.sip_auth_username;
-                if (!string.IsNullOrWhiteSpace(username))
+                phone_number = this.phone_number;
+                if (!string.IsNullOrWhiteSpace(phone_number))
                 {
-                    accountToUpdate.RegistrationUser = username;
-                    accountToUpdate.Username = username;
+                    accountToUpdate.RegistrationUser = phone_number;
+                    accountToUpdate.Username = phone_number;
+                    accountToUpdate.PhoneNumber = phone_number;
                 }
             }
             //       public string sip_auth_password { get; set; }
@@ -404,7 +414,7 @@ namespace VATRP.Core.Model
             var port = this.sip_register_port;
             if (port > 0)
             {
-                accountToUpdate.ProxyPort = (UInt16)port;
+                accountToUpdate.HostPort = (UInt16)port;
             }
             //       public string sip_register_transport { get; set; }
             string transport = "";
@@ -431,6 +441,7 @@ namespace VATRP.Core.Model
 
             //       public bool enable_stun { get; set; }
             accountToUpdate.EnableSTUN = this.enable_stun;
+            accountToUpdate.EnableTURN = this.enable_turn;
             //       public string stun_server { get; set; }
             accountToUpdate.STUNAddress = this.stun_server ?? string.Empty;
             var stunServer = accountToUpdate.STUNAddress.Split(':');

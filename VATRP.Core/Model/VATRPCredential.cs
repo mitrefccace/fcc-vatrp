@@ -24,7 +24,6 @@ namespace VATRP.Core.Model
     public class VATRPCredential
     {
         public string realm { get; set; }
-        public string userid { get; set; }
         public string username { get; set; }
         public string password { get; set; }
 

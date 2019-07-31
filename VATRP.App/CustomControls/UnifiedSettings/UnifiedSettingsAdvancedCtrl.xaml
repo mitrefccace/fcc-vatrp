@@ -194,6 +194,8 @@ This (software/technical data) was produced for the U. S. Government under Contr
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="240"/>
@@ -224,57 +226,68 @@ This (software/technical data) was produced for the U. S. Government under Contr
                         </Label>
                         <CheckBox Grid.Column="2" Grid.Row="3" Checked="OnStunServerChecked" Unchecked="OnStunServerChecked" HorizontalAlignment="Center" 
                                       VerticalAlignment="Center"  Name="UseStunServerCheckbox"/>
-
-                        <!-- Row 4: Use ICE Server -->
-                        <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Use ICE" VerticalContentAlignment="Center" 
+                        <!-- Row 4: Use TURN Server -->
+                        <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Use TURN" VerticalContentAlignment="Center" 
+                               HorizontalAlignment="Left"  Name="UseTurnServerLabel" >
+                        </Label>
+                        <CheckBox Grid.Column="2" Grid.Row="4" Checked="OnTurnServerChecked" Unchecked="OnTurnServerChecked" HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"  Name="UseTurnServerCheckbox"/>
+                        <!-- Row 5: Use ICE Server -->
+                        <Label Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Content="Use ICE" VerticalContentAlignment="Center" 
                                HorizontalAlignment="Left"  Name="UseIceServerLabel">
                         </Label>
-                        <CheckBox Grid.Column="2" Grid.Row="4" Checked="OnIceServerChecked" Unchecked="OnIceServerChecked" HorizontalAlignment="Center" 
+                        <CheckBox Grid.Column="2" Grid.Row="5" Checked="OnIceServerChecked" Unchecked="OnIceServerChecked" HorizontalAlignment="Center" 
                                       VerticalAlignment="Center"  Name="UseIceServerCheckbox"/>
 
-                        <!-- Row 5: Stun Server text box -->
-                        <Label Grid.Column="0" Grid.Row="5" Content="STUN Server" VerticalContentAlignment="Center" 
+                        <!-- Row 6: Stun Server text box -->
+                        <Label Grid.Column="0" Grid.Row="6" Content="STUN/TURN Server" VerticalContentAlignment="Center" 
                                HorizontalAlignment="Left" Name="StunServerLabel">
                         </Label>
-                        <TextBox Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
+                        <TextBox Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
                                  Height="23" Margin="0,0,0,0" TextWrapping="NoWrap" Text=""  VerticalAlignment="Center" Foreground="Blue" Name="StunServerTextBox"  LostFocus="OnStunServerChanged"/>
-
-                        <!-- Row 6: Random Port -->
-                        <Label Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Content="Random Port" VerticalContentAlignment="Center" 
-                               HorizontalAlignment="Left" Name="RandomPortLabel" Visibility="Collapsed">
-                        </Label>
-                        <CheckBox Grid.Column="2" Grid.Row="6" Checked="OnWifiOnly" Unchecked="OnRandomPort" HorizontalAlignment="Center" 
-                                      VerticalAlignment="Center" Name="RandomPortCheckbox" Visibility="Collapsed"/>
-
-                        <!-- Row 7: Audio Ports text box -->
-                        <Label Grid.Column="0" Grid.Row="7" Content="Audio Port(s)" VerticalContentAlignment="Center" 
-                               HorizontalAlignment="Left" Name="AudioPortsLabel" Visibility="Collapsed">
+                        <!-- Row 7: Stun Server Username box -->
+                        <Label Grid.Column="0" Grid.Row="7" Content="STUN/TURN Username" VerticalContentAlignment="Center" 
+                                           HorizontalAlignment="Left" Name="StunServerUsernameLabel">
                         </Label>
                         <TextBox Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
+                                 Height="23" Margin="0,0,0,0" TextWrapping="NoWrap" Text=""  VerticalAlignment="Center" Foreground="Blue" Name="StunServerUsernameTextBox"  LostFocus="OnStunServerUsernameChanged"/>
+                       
+            <!-- Row 8: Random Port -->
+                        <Label Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" Content="Random Port" VerticalContentAlignment="Center" 
+                               HorizontalAlignment="Left" Name="RandomPortLabel" Visibility="Collapsed">
+                        </Label>
+                        <CheckBox Grid.Column="2" Grid.Row="8" Checked="OnWifiOnly" Unchecked="OnRandomPort" HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center" Name="RandomPortCheckbox" Visibility="Collapsed"/>
+
+                        <!-- Row 9: Audio Ports text box -->
+                        <Label Grid.Column="0" Grid.Row="9" Content="Audio Port(s)" VerticalContentAlignment="Center" 
+                               HorizontalAlignment="Left" Name="AudioPortsLabel" Visibility="Collapsed">
+                        </Label>
+                        <TextBox Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
                                  Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Center" Foreground="Blue" 
                                  Name="AudioPortsTextBox"  LostFocus="OnAudioPortsChanged" Visibility="Collapsed"/>
 
 
-                        <!-- Row 8: Video Port(s) text box -->
-                        <Label Grid.Column="0" Grid.Row="8" Content="Video Port(s)" VerticalContentAlignment="Center" 
+                        <!-- Row 10: Video Port(s) text box -->
+                        <Label Grid.Column="0" Grid.Row="10" Content="Video Port(s)" VerticalContentAlignment="Center" 
                                HorizontalAlignment="Left" Name="VideoPortsLabel" Visibility="Collapsed">
                         </Label>
-                        <TextBox Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
+                        <TextBox Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
                                  Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Center" Foreground="Blue" 
                                  Name="VideoPortsTextBox"  LostFocus="OnVideoPortsChanged" Visibility="Collapsed"/>
 
-                        <!-- Row 9: IPv6 -->
-                        <Label Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2" Content="IPv6" VerticalContentAlignment="Center" 
+                        <!-- Row 11: IPv6 -->
+                        <Label Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="2" Content="IPv6" VerticalContentAlignment="Center" 
                                HorizontalAlignment="Left" Name="Ipv6Label" >
                         </Label>
-                        <CheckBox Grid.Column="2" Grid.Row="9" Checked="OnIPv6" Unchecked="OnIPv6" HorizontalAlignment="Center" 
+                        <CheckBox Grid.Column="2" Grid.Row="11" Checked="OnIPv6" Unchecked="OnIPv6" HorizontalAlignment="Center" 
                                       VerticalAlignment="Center" Name="IPv6Checkbox" />
 
-                        <!-- Row 10: Media Encryption -->
-                        <Label Grid.Column="0" Grid.Row="10" Content="Media Encryption" VerticalContentAlignment="Center" 
+                        <!-- Row 12: Media Encryption -->
+                        <Label Grid.Column="0" Grid.Row="12" Content="Media Encryption" VerticalContentAlignment="Center" 
                                HorizontalAlignment="Left" Name="MediaEncryptionLabel" >
                         </Label>
-                        <ComboBox Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" x:Name="MediaEncryptionComboBox" FontSize="14" Margin="0,3,0,3" Width="120" Height="24" 
+                        <ComboBox Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" x:Name="MediaEncryptionComboBox" FontSize="14" Margin="0,3,0,3" Width="120" Height="24" 
                                        VerticalAlignment="Center" HorizontalAlignment="Right" SelectionChanged="OnMediaEncryptionChanged" >
                             <TextBlock >Unencrypted</TextBlock>
                             <TextBlock >Encrypted (DTLS)</TextBlock>
@@ -282,69 +295,69 @@ This (software/technical data) was produced for the U. S. Government under Contr
                             <!--                <TextBlock >Encrypted (DTLS)</TextBlock> -->
                         </ComboBox>
 
-                        <!-- Row 11: Push Notifications -->
-                        <Label Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="2" Content="Push Notifications" VerticalContentAlignment="Center" 
+                        <!-- Row 13: Push Notifications -->
+                        <Label Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="2" Content="Push Notifications" VerticalContentAlignment="Center" 
                                HorizontalAlignment="Left" Name="PushNotificationsLabel" Visibility="Collapsed">
                         </Label>
-                        <CheckBox Grid.Column="2" Grid.Row="11" Checked="OnPushNotifications" Unchecked="OnPushNotifications" HorizontalAlignment="Center" 
+                        <CheckBox Grid.Column="2" Grid.Row="13" Checked="OnPushNotifications" Unchecked="OnPushNotifications" HorizontalAlignment="Center" 
                                       VerticalAlignment="Center" Name="PushNotificationsCheckbox" Visibility="Collapsed"/>
 
-                        <!-- Row 12: Adaptive Rate -->
-                        <Label Grid.Column="0" Grid.Row="12" Grid.ColumnSpan="2" Content="Adaptive Rate" VerticalContentAlignment="Center" 
+                        <!-- Row 14: Adaptive Rate -->
+                        <Label Grid.Column="0" Grid.Row="14" Grid.ColumnSpan="2" Content="Adaptive Rate" VerticalContentAlignment="Center" 
                                HorizontalAlignment="Left"  Name="AdaptiveRateLabel" Visibility="Visible">
                         </Label>
-                        <CheckBox Grid.Column="2" Grid.Row="12" Checked="OnAdaptiveRateChecked" Unchecked="OnAdaptiveRateChecked" HorizontalAlignment="Center" 
+                        <CheckBox Grid.Column="2" Grid.Row="14" Checked="OnAdaptiveRateChecked" Unchecked="OnAdaptiveRateChecked" HorizontalAlignment="Center" 
                                       VerticalAlignment="Center"  Name="AdaptiveRateCheckbox" Visibility="Visible"/>
 
-                        <!-- Row 13: Media Encryption -->
-                        <Label Grid.Column="0" Grid.Row="13" Content="Adaptive Rate Algorithm" VerticalContentAlignment="Center" 
+                        <!-- Row 15: Media Encryption -->
+                        <Label Grid.Column="0" Grid.Row="15" Content="Adaptive Rate Algorithm" VerticalContentAlignment="Center" 
                                HorizontalAlignment="Left" Name="AdaptiverateAlgorithmLabel" Visibility="Visible" >
                         </Label>
-                        <ComboBox Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" x:Name="AlgorithmComboBox"  FontSize="14" Margin="0,3,0,3" Width="120" Height="24" 
+                        <ComboBox Grid.Row="15" Grid.Column="1" Grid.ColumnSpan="2" x:Name="AlgorithmComboBox"  FontSize="14" Margin="0,3,0,3" Width="120" Height="24" 
                                        VerticalAlignment="Center" HorizontalAlignment="Right" SelectionChanged="OnAdaptiveRateAlgorithmChanged" Visibility="Visible" >
                             <TextBlock >Simple</TextBlock>
                             <TextBlock >Stateful</TextBlock>
                         </ComboBox>
 
-                        <!-- Row 14: Upload Bandwidth -->
-            <Label Grid.Column="0" Grid.Row="14" Grid.ColumnSpan="2" Content="Upload Bandwidth (kbit/s)" VerticalContentAlignment="Center"
+                        <!-- Row 16: Upload Bandwidth -->
+            <Label Grid.Column="0" Grid.Row="16" Grid.ColumnSpan="2" Content="Upload Bandwidth (kbit/s)" VerticalContentAlignment="Center"
                                HorizontalAlignment="Left" Name="UploadBandwidthLabel"/>
-                        <TextBox Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
+                        <TextBox Grid.Column="1" Grid.Row="16" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
                                  Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Center" 
                                  Name="UploadBandwidthTextBox"  LostFocus="OnUploadBandwidthChanged" />
 
-                        <!-- Row 15: Download Bandwidth -->
-            <Label Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="1" Content="Download Bandwidth (kbit/s)" VerticalContentAlignment="Center"
+                        <!-- Row 17: Download Bandwidth -->
+            <Label Grid.Column="0" Grid.Row="17" Grid.ColumnSpan="1" Content="Download Bandwidth (kbit/s)" VerticalContentAlignment="Center"
                                HorizontalAlignment="Left" Name="DownloadBandwidthLabel"/>
-                        <TextBox Grid.Column="1" Grid.Row="15" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
+                        <TextBox Grid.Column="1" Grid.Row="17" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
                                  Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Center" 
                                  Name="DownloadBandwidthTextBox"  LostFocus="OnDownloadBandwidthChanged" />
 
-                        <!-- Row 16: Quality of service -->
-                        <Label Grid.Column="0" Grid.Row="16" Grid.ColumnSpan="2" Content="Packet Tagging(DSCP)" VerticalContentAlignment="Center" 
+                        <!-- Row 18: Quality of service -->
+                        <Label Grid.Column="0" Grid.Row="18" Grid.ColumnSpan="2" Content="Packet Tagging(DSCP)" VerticalContentAlignment="Center" 
                                HorizontalAlignment="Left"  Name="QosLabel">
                         </Label>
-                        <CheckBox Grid.Column="2" Grid.Row="16" Checked="OnQoSChecked" Unchecked="OnQoSChecked" HorizontalAlignment="Center" 
+                        <CheckBox Grid.Column="2" Grid.Row="18" Checked="OnQoSChecked" Unchecked="OnQoSChecked" HorizontalAlignment="Center" 
                                       VerticalAlignment="Center"  Name="QoSCheckbox"/>
 
-                        <!-- Row 17: SIP DSCP -->
-                        <Label Grid.Column="0" Grid.Row="17" Grid.ColumnSpan="1" Content="SIP DSCP" VerticalContentAlignment="Center"
+                        <!-- Row 19: SIP DSCP -->
+                        <Label Grid.Column="0" Grid.Row="19" Grid.ColumnSpan="1" Content="SIP DSCP" VerticalContentAlignment="Center"
                                HorizontalAlignment="Left" Name="SipDscpLabel"/>
-                        <TextBox Grid.Column="1" Grid.Row="17" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
+                        <TextBox Grid.Column="1" Grid.Row="19" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
                                  Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Center" 
                                  Name="SipDscpTextBox"  LostFocus="OnSIPDscpChanged" />
 
-                        <!-- Row 18: Audio DSCP -->
-                        <Label Grid.Column="0" Grid.Row="18" Grid.ColumnSpan="1" Content="Audio DSCP" VerticalContentAlignment="Center"
+                        <!-- Row 20: Audio DSCP -->
+                        <Label Grid.Column="0" Grid.Row="20" Grid.ColumnSpan="1" Content="Audio DSCP" VerticalContentAlignment="Center"
                                HorizontalAlignment="Left" Name="AudioDscpLabel"/>
-                        <TextBox Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
+                        <TextBox Grid.Column="1" Grid.Row="20" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
                                  Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Center" 
                                  Name="AudioDscpTextBox"  LostFocus="OnAudioDscpChanged" />
 
-                        <!-- Row 19: Video Bandwidth -->
-                        <Label Grid.Column="0" Grid.Row="19" Grid.ColumnSpan="1" Content="Video DSCP" VerticalContentAlignment="Center"
+                        <!-- Row 21: Video Bandwidth -->
+                        <Label Grid.Column="0" Grid.Row="21" Grid.ColumnSpan="1" Content="Video DSCP" VerticalContentAlignment="Center"
                                HorizontalAlignment="Left" Name="VideoDscpLabel"/>
-                        <TextBox Grid.Column="1" Grid.Row="19" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
+                        <TextBox Grid.Column="1" Grid.Row="21" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
                                  Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Center" 
                                  Name="VideoDscpTextBox"  LostFocus="OnVideoDscpChanged" />
 

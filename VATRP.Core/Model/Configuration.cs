@@ -50,6 +50,7 @@ namespace VATRP.Core.Model
             USERNAME,
             DISPLAYNAME,
             LINPHONE_USERAGENT,
+            VATRP_VERSION,
             REQUEST_LINK,
             ACCOUNT_IN_USE,
             AUTO_ANSWER,
@@ -74,6 +75,7 @@ namespace VATRP.Core.Model
 		public static ushort LINPHONE_SIP_PORT = 5060;
 		public static string DISPLAY_NAME = "John Doe";
 		public static string LINPHONE_USERAGENT = "VATRP";
+        public static string VATRP_VERSION = "1.1.0";
         public static string DEFAULT_REQUEST = string.Empty;
 	}
 }
