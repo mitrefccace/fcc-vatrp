@@ -1027,6 +1027,9 @@ namespace VATRP.LinphoneWrapper
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte linphone_core_ipv6_enabled(IntPtr lc);
+
+        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void linphone_core_add_supported_tag(IntPtr lc, string tag);
         /**
  * Returns the list of available audio codecs.
  * @param[in] lc The LinphoneCore object

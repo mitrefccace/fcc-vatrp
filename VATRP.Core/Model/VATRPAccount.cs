@@ -314,6 +314,8 @@ namespace VATRP.Core.Model
         [Column]
         public bool EnablePrivacy { get; set; }
 
+        [Column]
+        public bool DisableUserPhoneTag { get; set; }
         #endregion
 
         #region Methods
@@ -380,6 +382,7 @@ namespace VATRP.Core.Model
             EnableSTUN = true;
             EnableICE = false;
             EnablePrivacy = false;
+            DisableUserPhoneTag = false;
         }
 		
         public void StorePassword(string filePath)

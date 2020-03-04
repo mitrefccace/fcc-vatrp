@@ -361,7 +361,12 @@ This (software/technical data) was produced for the U. S. Government under Contr
                                  Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Center" 
                                  Name="VideoDscpTextBox"  LostFocus="OnVideoDscpChanged" />
 
-                    </Grid>
+                        <!-- Row 22: Video Bandwidth -->
+                        <Label Grid.Column="0" Grid.Row="22" Grid.ColumnSpan="1" Content="Disable 'User=Phone' Tag" VerticalContentAlignment="Center"
+                                           HorizontalAlignment="Left" Name="DisableUserPhoneTagLabel"/>
+                        <CheckBox Grid.Column="2" Grid.Row="22" Checked="OnDisableUserPhoneTagCheckbox" Unchecked="OnDisableUserPhoneTagCheckbox" HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center"  Name="DisableUserPhoneTagCheckbox"/>
+        </Grid>
 
                     <!-- Row 3: Debug Settings Label -->
                     <Label Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Content="Debug" VerticalContentAlignment="Center"  Background="Gray">

@@ -164,6 +164,9 @@ namespace VATRP.Core.Model
         [JsonProperty]
         public bool log_call { get; set; } // cjm-sep17
 
+        [JsonProperty]
+        public bool disable_user_phone_tag { get; set; }
+
         public ACEConfig()
         {
             configStatus = ACEConfigStatusType.UNKNOWN;
@@ -452,6 +455,7 @@ namespace VATRP.Core.Model
             }
             //       public bool enable_ice { get; set; }
             accountToUpdate.EnableICE = this.enable_ice;
+            accountToUpdate.DisableUserPhoneTag = this.disable_user_phone_tag;
 
             //       public string sip_videomail_uri { get; set; }
             accountToUpdate.VideoMailUri = (sip_videomail_uri ?? string.Empty);

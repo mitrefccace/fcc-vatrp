@@ -35,6 +35,9 @@ using Microsoft.Win32;
 using System.IO;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
+using System.Xml;
+using System.Threading.Tasks;
+using com.vtcsecure.ace.windows.Views;
 
 namespace com.vtcsecure.ace.windows.CustomControls
 {
@@ -51,6 +54,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
         private ushort _hostPort;
         private string _address;
         private SettingsWindow _settingsWindow;
+        private LocationConfig _locationConfigWindow;
         
         private string _versionInfo;
         private const string _placeholderText = "Enter a SIP URI";
@@ -72,6 +76,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
             ProviderList = new ObservableCollection<VATRPServiceProvider>();
             HostnameBox.LostFocus += new RoutedEventHandler(ServerAddressEntered);
             HostnameBox.KeyDown += new KeyEventHandler(handle_keydown);
+            _locationConfigWindow = new CustomControls.LocationConfig();
 
             Initialize();
         }
@@ -143,7 +148,7 @@ namespace com.vtcsecure.ace.windows.CustomControls
         private string GetVersion()
         {
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            var version = assembly.GetName().Version;
+            var version = assembly.GetName().Version; 
             return string.Format("Version {0}.{1}.{2}", version.Major, version.Minor, version.Build);
             //return string.Format("Version {0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
         }
@@ -867,6 +872,22 @@ namespace com.vtcsecure.ace.windows.CustomControls
             }
             catch (Exception ex)
             {
+                return;
+            }
+        }
+
+        public void LocationConfig_Click(object sender, RoutedEventArgs e)
+        {
+            string xmlContents = "";
+            try
+            {
+                _locationConfigWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                string caption = "Load failed";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBox.Show(ex.Message, caption, button, MessageBoxImage.Error);
                 return;
             }
         }

@@ -198,6 +198,7 @@ Default value = 1
             DownloadBandwidthTextBox.Text = App.CurrentAccount.DownloadBandwidth.ToString();
             QoSCheckbox.IsChecked = App.CurrentAccount.EnableQualityOfService;
             IPv6Checkbox.IsChecked = App.CurrentAccount.EnableIPv6;
+            DisableUserPhoneTagCheckbox.IsChecked = App.CurrentAccount.DisableUserPhoneTag;
         }
         #endregion
 
@@ -904,6 +905,15 @@ Default value = 1
             {
                 App.CurrentAccount.EnableQualityOfService = enabled;
                 OnAccountChangeRequested(Enums.ACEMenuSettingsUpdateType.NetworkSettingsChanged);
+            }
+        }
+
+        private void OnDisableUserPhoneTagCheckbox(object sender, RoutedEventArgs e)
+        {
+            bool enabled = DisableUserPhoneTagCheckbox.IsChecked ?? false;
+            if (enabled != App.CurrentAccount.DisableUserPhoneTag)
+            {
+                App.CurrentAccount.DisableUserPhoneTag = enabled;
             }
         }
 

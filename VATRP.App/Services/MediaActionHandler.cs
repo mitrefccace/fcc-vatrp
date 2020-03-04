@@ -97,11 +97,6 @@ namespace com.vtcsecure.ace.windows.Services
             int port;
             VATRPCall.ParseSipAddress(remoteUri, out un, out host, out port);
 
-            // https://www.twilio.com/docs/glossary/what-e164
-            // https://en.wikipedia.org/wiki/E.164
-            Regex rE164 = new Regex(@"^(\+|00)?[1-9]\d{4,14}$");
-            bool isE164 = rE164.IsMatch(un);
-
             if (!host.NotBlank())
             {
                 // set proxy to selected provider
@@ -137,13 +132,21 @@ namespace com.vtcsecure.ace.windows.Services
                 }
             }
 
-            if (isE164)
+            if(!App.CurrentAccount.DisableUserPhoneTag)
             {
-                target += ";user=phone";
-            }
-            else
-            {
-                target += ";user=dialstring";
+                // https://www.twilio.com/docs/glossary/what-e164
+                // https://en.wikipedia.org/wiki/E.164
+                Regex rE164 = new Regex(@"^(\+|00)?[1-9]\d{4,14}$");
+                bool isE164 = rE164.IsMatch(un);
+
+                if (isE164)
+                {
+                    target += ";user=phone";
+                }
+                else
+                {
+                    target += ";user=dialstring";
+                }
             }
 
             var privacyMask = VATRP.Core.Enums.LinphonePrivacy.LinphonePrivacyDefault;

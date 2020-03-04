@@ -1,0 +1,38 @@
+﻿<Window x:Class="com.vtcsecure.ace.windows.LocationCivic"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:com.vtcsecure.ace.windows"
+        mc:Ignorable="d"
+        Title="LocationCivic" Height="300" Width="300" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="Street number" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Height="30" Width="150" VerticalContentAlignment="Center" Name="StreetNumberTextBox"/>
+        <Label Grid.Row="1" Content="Street name" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Height="30" Width="150" VerticalContentAlignment="Center" Name="StreetNameTextBox"/>
+        <Label Grid.Row="2" Content="Type (ave, rd, etc)" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <TextBox Grid.Row="2" Grid.Column="1" Height="30" Width="150" VerticalContentAlignment="Center" Name="StreetTypeTextBox"/>
+        <Label Grid.Row="3" Content="City" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <TextBox Grid.Row="3" Grid.Column="1" Height="30" Width="150" VerticalContentAlignment="Center" Name="CityTextBox"/>
+        <Label Grid.Row="4" Content="State" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <TextBox Grid.Row="4" Grid.Column="1" Height="30" Width="150" VerticalContentAlignment="Center" Name="StateTextBox"/>
+        <Label Grid.Row="5" Content="ZIP/Postal Code" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <TextBox Grid.Row="5" Grid.Column="1" Height="30" Width="150" VerticalContentAlignment="Center" Name="ZIPTextBox"/>
+        <Button Content="Submit" Click="UploadCoordinate_Click" Grid.Row="6" Margin="5"/>
+        <Button Content="Close" Click="OnClose" Grid.Row="6" Grid.Column="1" Margin="30,5"/>
+    </Grid>
+</Window>
