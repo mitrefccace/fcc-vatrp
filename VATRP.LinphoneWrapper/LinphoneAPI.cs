@@ -195,6 +195,9 @@ namespace VATRP.LinphoneWrapper
         public static extern void linphone_call_params_enable_video(IntPtr cp, bool enabled);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void linphone_call_params_enable_audio(IntPtr cp, bool enabled);
+
+        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void linphone_call_params_set_audio_bandwidth_limit(IntPtr cp, int kbit);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
@@ -1027,6 +1030,9 @@ namespace VATRP.LinphoneWrapper
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte linphone_core_ipv6_enabled(IntPtr lc);
+
+        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void linphone_core_add_supported_tag(IntPtr lc, string tag);
         /**
  * Returns the list of available audio codecs.
  * @param[in] lc The LinphoneCore object

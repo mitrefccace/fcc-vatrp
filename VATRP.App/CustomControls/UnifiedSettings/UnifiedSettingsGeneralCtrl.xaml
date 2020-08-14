@@ -35,8 +35,8 @@ This (software/technical data) was produced for the U. S. Government under Contr
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="240"/>
-                <ColumnDefinition Width="120*"/>
-                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="80*"/>
+                <ColumnDefinition Width="80*"/>
             </Grid.ColumnDefinitions>
             <!-- Row 0: Mute Speaker -->
             <Label Grid.Column="0" Grid.Row="0" Content="Mute Speaker" VerticalContentAlignment="Center" 
@@ -74,6 +74,8 @@ This (software/technical data) was produced for the U. S. Government under Contr
                    HorizontalAlignment="Left" Name="SipEncrptionLabel">
             </Label>
             <CheckBox Grid.Column="2" Grid.Row="5" Checked="OnSipEncryption" Unchecked="OnSipEncryption" HorizontalAlignment="Center" VerticalAlignment="Center" Name="SipEncryptionCheckbox"/>
+            <Label Grid.Column="2" Grid.Row="5" Content="" VerticalContentAlignment="Center" HorizontalAlignment="Center" Name="SipEncryptionValueLabel" Visibility="Hidden">
+            </Label>
 
             <!-- Row 6: Wifi Only -->
             <Label Grid.Column="0" Grid.Row="6" Content="Wifi Only" VerticalContentAlignment="Center" 

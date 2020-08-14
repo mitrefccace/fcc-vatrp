@@ -83,12 +83,14 @@ namespace com.vtcsecure.ace.windows.Services
             
             bool muteMicrophone = false;
             bool muteSpeaker = false;
-//            bool enableVideo = true;
+            bool enableVideo = true;
+            bool enableAudio = true;
             if (App.CurrentAccount != null)
             {
                 muteMicrophone = App.CurrentAccount.MuteMicrophone;
                 muteSpeaker = App.CurrentAccount.MuteSpeaker;
-//                enableVideo = App.CurrentAccount.EnableVideo;
+                enableVideo = App.CurrentAccount.VideoAutomaticallyStart;
+                enableAudio = App.CurrentAccount.AudioAutomaticallyStart;
             }
 
             var target = string.Empty;
@@ -96,11 +98,6 @@ namespace com.vtcsecure.ace.windows.Services
             string un, host;
             int port;
             VATRPCall.ParseSipAddress(remoteUri, out un, out host, out port);
-
-            // https://www.twilio.com/docs/glossary/what-e164
-            // https://en.wikipedia.org/wiki/E.164
-            Regex rE164 = new Regex(@"^(\+|00)?[1-9]\d{4,14}$");
-            bool isE164 = rE164.IsMatch(un);
 
             if (!host.NotBlank())
             {
@@ -137,13 +134,21 @@ namespace com.vtcsecure.ace.windows.Services
                 }
             }
 
-            if (isE164)
+            if(!App.CurrentAccount.DisableUserPhoneTag)
             {
-                target += ";user=phone";
-            }
-            else
-            {
-                target += ";user=dialstring";
+                // https://www.twilio.com/docs/glossary/what-e164
+                // https://en.wikipedia.org/wiki/E.164
+                Regex rE164 = new Regex(@"^(\+|00)?[1-9]\d{4,14}$");
+                bool isE164 = rE164.IsMatch(un);
+
+                if (isE164)
+                {
+                    target += ";user=phone";
+                }
+                else
+                {
+                    target += ";user=dialstring";
+                }
             }
 
             var privacyMask = VATRP.Core.Enums.LinphonePrivacy.LinphonePrivacyDefault;
@@ -159,7 +164,8 @@ namespace com.vtcsecure.ace.windows.Services
                                         Configuration.ConfEntry.USE_RTT, true), /* rttEnabled */
                                       muteMicrophone, /* muteMicrophone */
                                       muteSpeaker, /* muteSpeaker */
-                                      true, /* enableVideo */
+                                      enableVideo, /* enableVideo */
+                                      enableAudio,
                                       App.CurrentAccount.GeolocationURI, /* geolocation */
                                       privacyMask); /* privacyMask */
             return true;

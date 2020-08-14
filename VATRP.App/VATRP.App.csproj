@@ -193,6 +193,12 @@
     <Compile Include="CustomControls\CallViewCtrl.xaml.cs">
       <DependentUpon>CallViewCtrl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\LocationConfig.xaml.cs">
+      <DependentUpon>LocationConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\LocationGPS.xaml.cs">
+      <DependentUpon>LocationGPS.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\MoreMenuCtrl.xaml.cs">
       <DependentUpon>MoreMenuCtrl.xaml</DependentUpon>
     </Compile>
@@ -273,6 +279,9 @@
     <Compile Include="CustomControls\Enums\ACEMenuSettings.cs" />
     <Compile Include="CustomControls\Enums\VATRPSettings.cs" />
     <Compile Include="Json\JsonFactoryConfig.cs" />
+    <Compile Include="LocationCivic.xaml.cs">
+      <DependentUpon>LocationCivic.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\ActionCommand.cs" />
     <Compile Include="Model\GifImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -406,6 +415,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CustomControls\LocationConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\LocationGPS.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomControls\MoreMenuCtrl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -510,6 +527,10 @@
     <Page Include="CustomControls\UnifiedSettings\UnifiedSettingsVideoCtrl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LocationCivic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SampleData\ContactViewSampleData.xaml">
       <SubType>Designer</SubType>

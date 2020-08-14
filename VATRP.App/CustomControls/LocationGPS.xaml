@@ -1,0 +1,38 @@
+﻿<Window x:Class="com.vtcsecure.ace.windows.CustomControls.LocationGPS"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:com.vtcsecure.ace.windows.CustomControls"
+        mc:Ignorable="d"
+        Title="Location GPS" Height="230" Width="300"  Loaded="LocationGPS_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="ColumnDefinition0"/>
+            <ColumnDefinition x:Name="ColumnDefinition1"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" x:Name="RowDefinition0"/>
+            <RowDefinition Height="*" x:Name="RowDefinition1"/>
+            <RowDefinition Height="*" x:Name="RowDefinition2"/>
+            <RowDefinition Height="*" x:Name="RowDefinition3"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" Content="X Coordinate" VerticalContentAlignment="Center"
+                   HorizontalAlignment="Left" Name="XCoordLabel">
+        </Label>
+        <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Width="120px"
+   Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Center" Foreground="Blue" Name="XCoordTextBox" />
+        <Label Grid.Column="0" Grid.Row="1" Content="Y Coordinate" VerticalContentAlignment="Center"
+                   HorizontalAlignment="Left" Name="YCoordLabel">
+        </Label>
+        <TextBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Width="120px"
+   Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Center" Foreground="Blue" Name="YCoordTextBox" />
+        <Label Grid.Column="0" Grid.Row="2" Content="EPSG" VerticalContentAlignment="Center"
+                   HorizontalAlignment="Left" Name="EPSGLabel">
+        </Label>
+        <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Width="120px"
+   Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text="4326"  VerticalAlignment="Center" Foreground="Blue" Name="EPSGTextBox" />
+        <Button Grid.Column="0" Grid.Row="3" Width="120px" Height="32px" Content="Upload Coordinate" Name="UploadButton" Click="UploadCoordinate_Click"/>
+        <Button Grid.Column="1" Grid.Row="3" Width="120px" Height="32px" Content="Close" Name="CloseButton" Click="OnClose"/>
+    </Grid>
+</Window>

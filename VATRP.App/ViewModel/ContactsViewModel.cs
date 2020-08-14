@@ -265,7 +265,7 @@ namespace com.vtcsecure.ace.windows.ViewModel
                 CheckFileExists = true,
                 CheckPathExists = true,
 
-                Filter = "vCard Files (*.VCF, *.vcard)|*.VCF;*vcard | xCard Files (*.xml, *.xml)|*.xml;*xml",
+                Filter = "xCard Files (*.xml, *.xml)|*.xml;*xml",
                 FilterIndex = 0,
 
                 ShowReadOnly = false,

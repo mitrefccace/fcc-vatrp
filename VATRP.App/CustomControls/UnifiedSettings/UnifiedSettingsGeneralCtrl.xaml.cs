@@ -83,13 +83,15 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
             if (App.CurrentAccount == null)
                 return;
             string transport = App.CurrentAccount.Transport;
-            if (!string.IsNullOrEmpty(transport) && transport.Equals("TCP"))  // unencrypted, tls = encrypted
+            if (!string.IsNullOrEmpty(transport) && !transport.Equals("TLS"))  // unencrypted, tls = encrypted
             {
                 SipEncryptionCheckbox.IsChecked = false;
+                SipEncryptionValueLabel.Content = "Disabled";
             }
             else
             {
                 SipEncryptionCheckbox.IsChecked = true;
+                SipEncryptionValueLabel.Content = "Enabled";
             }
 
             MuteMicrophoneCheckBox.IsChecked = App.CurrentAccount.MuteMicrophone;
@@ -186,7 +188,7 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
                 if (!App.CurrentAccount.Transport.Equals("TLS"))
                 {
                     App.CurrentAccount.Transport = "TLS";
-                    App.CurrentAccount.HostPort = 25061;
+                    App.CurrentAccount.HostPort = 5061;
                     changed = true;
                 }
             }
@@ -352,6 +354,8 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
             EchoCancelCheckBox.IsEnabled = false;
             ShowSelfViewCheckBox.IsEnabled = false;
             SipEncryptionCheckbox.IsEnabled = false;
+            SipEncryptionCheckbox.Visibility = Visibility.Hidden;
+            SipEncryptionValueLabel.Visibility = Visibility.Visible;
         }
     }
 }

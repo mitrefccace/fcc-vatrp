@@ -125,6 +125,7 @@ This (software/technical data) was produced for the U. S. Government under Contr
             
             <Button Margin="20,10" x:Name="LoginCmd" FontSize="14" Height="25" Width="150" Content="Login" Click="LoginCmd_Click" IsDefault="True"/>
             <Button Margin="20,10" x:Name="ProviderConfig" FontSize="14" Height="25" Width="150" Content="Load Configuration" Click="ProviderConfig_Click"/>
+            <Button Margin="20,10" x:Name="LocationConfig" FontSize="14" Height="25" Width="150" Content="Upload Location" Click="LocationConfig_Click"/>
             <Button Margin="20,10" x:Name="SettingsCmd" FontSize="14" Height="25" Width="150" Content="Advanced Setup" Click="AdvancedSetup_Click" Background="#ed5c5c"/>
             <StackPanel Width="150" HorizontalAlignment="Center" Margin="20,5">
                 <CheckBox Margin="5,5" Foreground="{StaticResource AppMainBorderBrush}" Content="Remember Password" x:Name="RememberPasswordBox" Visibility="Hidden"/>
