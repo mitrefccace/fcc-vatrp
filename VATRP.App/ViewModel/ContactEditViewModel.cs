@@ -42,6 +42,7 @@ namespace com.vtcsecure.ace.windows.ViewModel
         private ProviderViewModel _selectedProvider;
         private ProviderViewModel _currentProvider;
         private ProviderViewModel _nologoProvider;
+
         
         public ContactEditViewModel(bool addMode, string address, string avatar)
         {
@@ -112,12 +113,12 @@ namespace com.vtcsecure.ace.windows.ViewModel
             get { return _contactSipAddress; }
             set
             {
-                var host = "unknown.host";
+                var host = SelectedProvider?.Provider?.Address;
                 if (App.CurrentAccount != null)
                 {
-                    host = App.CurrentAccount.ProxyHostname;
+                    _contactSipAddress = string.Format("{0}@{1}", value, host);
                 }
-                _contactSipAddress = string.Format("{0}@{1}", value, host);
+               
                 OnPropertyChanged("ContactSipAddress");
             }
         }
@@ -188,7 +189,7 @@ namespace com.vtcsecure.ace.windows.ViewModel
             ProviderViewModel selectedProvider = null;
             foreach (var s in providersList)
             {
-                if (s.Address == "_nologo")
+                if (s.Label == "_nologo")
                     continue;
                 var providerModel = new ProviderViewModel(s);
                 Providers.Add(providerModel);

@@ -1266,7 +1266,7 @@ namespace VATRP.Core.Services
          *
          * @return Void.
          */
-        public void MakeCall(string destination, bool videoOn, bool rttEnabled, bool muteMicrophone, bool muteSpeaker, bool enableVideo, string geolocationURI, LinphonePrivacy privacyMask)
+        public void MakeCall(string destination, bool videoOn, bool rttEnabled, bool muteMicrophone, bool muteSpeaker, bool enableVideo, bool enableAudio, string geolocationURI, LinphonePrivacy privacyMask)
 		{
             if (callsList.Count > 0)
 		    {
@@ -1292,6 +1292,7 @@ namespace VATRP.Core.Services
 		    LinphoneAPI.linphone_call_params_set_audio_bandwidth_limit(callParams, 0);
             LinphoneAPI.linphone_call_params_enable_early_media_sending(callParams, true);
             LinphoneAPI.linphone_call_params_set_privacy(callParams, (int) privacyMask);
+            LinphoneAPI.linphone_call_params_enable_audio(callParams, enableAudio);
 
             FactoryConfigManager.LoadAppConfiguration();
             string un, host;
@@ -1300,8 +1301,8 @@ namespace VATRP.Core.Services
 
             if (FactoryConfigManager.EmergencyNumbers.Contains(un))
             {
-                LinphoneAPI.linphone_call_params_add_custom_header(callParams, "INVITE", "urn:service:sos;user=dialstring SIP/2.0");
-                LinphoneAPI.linphone_call_params_add_custom_header(callParams, "To", "<urn:service:sos;user=dialstring>");
+                LinphoneAPI.linphone_call_params_add_custom_header(callParams, "To", "<null>");
+                LinphoneAPI.linphone_core_add_supported_tag(linphoneCore, "geolocation-http");
                 if (geolocationURI.NotBlank())
                 {
                     LinphoneAPI.linphone_call_params_add_custom_header(callParams, "Geolocation", $"<{geolocationURI}> ;purpose=geolocation");
@@ -2201,8 +2202,8 @@ namespace VATRP.Core.Services
             _audioCodecs.Clear();
 
             // remove
-		    string[] primaryCodecs = {"G722", "PCMU", "PCMA", "speex", "speex"};
-            int[] rate = { LinphoneAPI.LINPHONE_FIND_PAYLOAD_IGNORE_RATE, LinphoneAPI.LINPHONE_FIND_PAYLOAD_IGNORE_RATE, LinphoneAPI.LINPHONE_FIND_PAYLOAD_IGNORE_RATE, 28000, 8000 };
+		    string[] primaryCodecs = {"G722", "PCMU", "PCMA", "speex", "speex", "speex"};
+            int[] rate = { LinphoneAPI.LINPHONE_FIND_PAYLOAD_IGNORE_RATE, LinphoneAPI.LINPHONE_FIND_PAYLOAD_IGNORE_RATE, LinphoneAPI.LINPHONE_FIND_PAYLOAD_IGNORE_RATE, 16000, 8000, 32000 };
 
             _linphoneAudioCodecsList = IntPtr.Zero;
 		    int i;
@@ -3250,7 +3251,11 @@ namespace VATRP.Core.Services
                         stat.upnp_state = LinphoneAPI.linphone_call_stats_get_upnp_state(statsPtr);
                         stat.total_late_packets = LinphoneAPI.linphone_call_stats_get_late_packets_cumulative_number(statsPtr, callPtr);
                         stat.rtp_stats = LinphoneAPI.linphone_call_stats_get_rtp_stats(statsPtr);
-	                }
+                        stat.receiver_loss_rate = LinphoneAPI.linphone_call_stats_get_receiver_loss_rate(statsPtr);
+                        stat.sender_loss_rate = LinphoneAPI.linphone_call_stats_get_sender_loss_rate(statsPtr);
+                        stat.receiver_interarrival_jitter = LinphoneAPI.linphone_call_stats_get_receiver_interarrival_jitter(statsPtr, callPtr);
+                        stat.sender_interarrival_jitter = LinphoneAPI.linphone_call_stats_get_sender_interarrival_jitter(statsPtr, callPtr);
+                    }
 	            }
 	        }
         }
@@ -3273,6 +3278,10 @@ namespace VATRP.Core.Services
                         stat.upnp_state = LinphoneAPI.linphone_call_stats_get_upnp_state(statsPtr);
                         stat.total_late_packets = LinphoneAPI.linphone_call_stats_get_late_packets_cumulative_number(statsPtr, callPtr);
                         stat.rtp_stats = LinphoneAPI.linphone_call_stats_get_rtp_stats(statsPtr);
+                        stat.receiver_loss_rate = LinphoneAPI.linphone_call_stats_get_receiver_loss_rate(statsPtr);
+                        stat.sender_loss_rate = LinphoneAPI.linphone_call_stats_get_sender_loss_rate(statsPtr);
+                        stat.receiver_interarrival_jitter = LinphoneAPI.linphone_call_stats_get_receiver_interarrival_jitter(statsPtr, callPtr);
+                        stat.sender_interarrival_jitter = LinphoneAPI.linphone_call_stats_get_sender_interarrival_jitter(statsPtr, callPtr);
                     }
                 }
             }

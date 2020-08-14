@@ -266,9 +266,10 @@ namespace com.vtcsecure.ace.windows
                         ctrlCall.ctrlOverlay.SetCallerInfo(callViewModel.CallerInfo);
                         ctrlCall.ctrlOverlay.SetCallState("Ringing");
                         if (callViewModel.Contact == null)
+                        {
                             callViewModel.Contact =
     ServiceManager.Instance.ContactService.FindContact(new ContactID(string.Format("{0}@{1}", call.To.Username, call.To.HostAddress), IntPtr.Zero));
-
+                        }
                         if (callViewModel.Avatar == null && callViewModel.Contact != null)
                         {
                             callViewModel.LoadAvatar(callViewModel.Contact.Avatar);

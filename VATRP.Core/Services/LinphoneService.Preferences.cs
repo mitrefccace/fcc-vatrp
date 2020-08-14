@@ -59,6 +59,8 @@ namespace VATRP.Core.Services
             public bool EnableICE { get; set; }
 			
             public bool EnableAVPF { get; set; }
+
+            public bool DisableUserPhoneTag { get; set; }
 			
             public LinphoneWrapper.Enums.LinphoneMediaEncryption MediaEncryption { get; set; }
 			

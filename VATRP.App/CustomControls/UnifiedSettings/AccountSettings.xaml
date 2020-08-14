@@ -59,7 +59,7 @@ This (software/technical data) was produced for the U. S. Government under Contr
                 </Button>
 
                 <!-- Row 2: User Name text box -->
-            <Label Grid.Column="0" Grid.Row="2" Content="User Name" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+            <Label Grid.Column="0" Grid.Row="2" Content="Username/Phone #" VerticalAlignment="Center" VerticalContentAlignment="Center" 
                    HorizontalAlignment="Left">
                 </Label>
                 <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
@@ -67,7 +67,7 @@ This (software/technical data) was produced for the U. S. Government under Contr
                      VerticalContentAlignment="Center" FontSize="12" Foreground="Blue" Name="UserNameTextBox"  LostFocus="OnUserNameChanged" IsEnabled="false"/>
 
                 <!-- Row 3: User Id text box -->
-            <Label Grid.Column="0" Grid.Row="3" Content="User Id" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+            <Label Grid.Column="0" Grid.Row="3" Content="Auth-ID" VerticalAlignment="Center" VerticalContentAlignment="Center" 
                    HorizontalAlignment="Left" Visibility="Collapsed" Name="UserIdLabel">
                 </Label>
                 <TextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
@@ -84,7 +84,7 @@ This (software/technical data) was produced for the U. S. Government under Contr
                      Foreground="Blue" Name="PasswordTextBox" LostFocus="OnPasswordChanged"/>
 
                 <!-- Row 5: Domain button -->
-            <Label Grid.Column="0" Grid.Row="5" Content="Domain" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+            <Label Grid.Column="0" Grid.Row="5" Content="VRS Server" VerticalAlignment="Center" VerticalContentAlignment="Center" 
                    HorizontalAlignment="Left">
                 </Label>
                 <TextBox Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
@@ -92,7 +92,7 @@ This (software/technical data) was produced for the U. S. Government under Contr
                      VerticalContentAlignment="Center" FontSize="12" Foreground="Blue" Name="DomainTextBox" LostFocus="OnDomainChanged" IsEnabled="false"/>
 
                 <!-- Row 6: Proxy Domain Text box -->
-            <Label Grid.Column="0" Grid.Row="6" Content="Port" VerticalAlignment="Center" VerticalContentAlignment="Center" 
+            <Label Grid.Column="0" Grid.Row="6" Content="VRS Port" VerticalAlignment="Center" VerticalContentAlignment="Center" 
                    HorizontalAlignment="Left" Visibility="Collapsed" Name="ProxyLabel">
                 </Label>
                 <TextBox Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" 
@@ -106,6 +106,7 @@ This (software/technical data) was produced for the U. S. Government under Contr
                            VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontSize="12" SelectionChanged="OnTransportChanged" Visibility="Collapsed">
                 <TextBlock >TCP</TextBlock>
                 <TextBlock >TLS</TextBlock>
+                <TextBlock >UDP</TextBlock>
             </ComboBox>
 
             <!-- Row 8: Video Main URI checkbox -->

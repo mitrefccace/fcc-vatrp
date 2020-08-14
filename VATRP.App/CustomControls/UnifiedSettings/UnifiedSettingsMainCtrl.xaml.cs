@@ -423,7 +423,7 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
                 }
                 else if (transportString.ToUpper().Equals("TLS"))
                 {
-                    App.CurrentAccount.HostPort = 25061;
+                    App.CurrentAccount.HostPort = 5061;
                 }
                 OnAccountChangeRequested(Enums.ACEMenuSettingsUpdateType.RegistrationChanged);
             }

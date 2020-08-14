@@ -91,6 +91,7 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
         private void InitializeAudio()
         {
             AudioCodecsListView.ItemsSource = App.CurrentAccount.AudioCodecsList;
+            AudioAutomaticallyStartCheckBox.IsChecked = App.CurrentAccount.AudioAutomaticallyStart;
             _codecsView = (CollectionView)CollectionViewSource.GetDefaultView(AudioCodecsListView.ItemsSource);
             if (_codecsView != null)
             {
@@ -101,7 +102,7 @@ namespace com.vtcsecure.ace.windows.CustomControls.UnifiedSettings
 
         private void InitializeVideo()
         {
-            AutomaticallyStartCheckBox.IsChecked = App.CurrentAccount.VideoAutomaticallyStart;
+            VideoAutomaticallyStartCheckBox.IsChecked = App.CurrentAccount.VideoAutomaticallyStart;
             AutomaticallyAcceptCheckBox.IsChecked = App.CurrentAccount.VideoAutomaticallyAccept;
 
             ShowSelfViewCheckBox.IsChecked = App.CurrentAccount.ShowSelfView;
@@ -198,6 +199,7 @@ Default value = 1
             DownloadBandwidthTextBox.Text = App.CurrentAccount.DownloadBandwidth.ToString();
             QoSCheckbox.IsChecked = App.CurrentAccount.EnableQualityOfService;
             IPv6Checkbox.IsChecked = App.CurrentAccount.EnableIPv6;
+            DisableUserPhoneTagCheckbox.IsChecked = App.CurrentAccount.DisableUserPhoneTag;
         }
         #endregion
 
@@ -401,6 +403,19 @@ Default value = 1
         }
         #endregion
 
+        private void OnAudioAutomaticallyStart(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Automatically Start Video Clicked");
+            if (App.CurrentAccount == null)
+                return;
+            bool enable = AudioAutomaticallyStartCheckBox.IsChecked ?? false;
+            if (enable != App.CurrentAccount.VideoAutomaticallyStart)
+            {
+                App.CurrentAccount.AudioAutomaticallyStart = enable;
+                ServiceManager.Instance.SaveAccountSettings();
+            }
+        }
+
         //==================== Video Settings
         #region General Video Settings
         private void OnAutomaticallyStart(object sender, RoutedEventArgs e)
@@ -408,7 +423,7 @@ Default value = 1
             Console.WriteLine("Automatically Start Video Clicked");
             if (App.CurrentAccount == null)
                 return;
-            bool enable = AutomaticallyStartCheckBox.IsChecked ?? false;
+            bool enable = VideoAutomaticallyStartCheckBox.IsChecked ?? false;
             if (enable != App.CurrentAccount.VideoAutomaticallyStart)
             {
                 App.CurrentAccount.VideoAutomaticallyStart = enable;
@@ -904,6 +919,15 @@ Default value = 1
             {
                 App.CurrentAccount.EnableQualityOfService = enabled;
                 OnAccountChangeRequested(Enums.ACEMenuSettingsUpdateType.NetworkSettingsChanged);
+            }
+        }
+
+        private void OnDisableUserPhoneTagCheckbox(object sender, RoutedEventArgs e)
+        {
+            bool enabled = DisableUserPhoneTagCheckbox.IsChecked ?? false;
+            if (enabled != App.CurrentAccount.DisableUserPhoneTag)
+            {
+                App.CurrentAccount.DisableUserPhoneTag = enabled;
             }
         }
 

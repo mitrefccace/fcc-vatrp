@@ -72,7 +72,7 @@ namespace VATRP.Core.Interfaces
         bool Unregister(bool deferred);
         void ClearProxyInformation();
         void ClearAccountInformation();
-        void MakeCall(string destination, bool videoOn, bool rttEnabled, bool muteMicrophone, bool muteSpeaker, bool enableVideo, string geolocationURI, LinphonePrivacy privacyMask);
+        void MakeCall(string destination, bool videoOn, bool rttEnabled, bool muteMicrophone, bool muteSpeaker, bool enableVideo, bool enableAudio, string geolocationURI, LinphonePrivacy privacyMask);
         void AcceptCall(IntPtr callPtr, bool rttEnabled, bool muteMicrophone, bool muteSpaker, bool enableVideo);
         void DeclineCall(IntPtr callPtr);
         bool TerminateCall(IntPtr callPtr, string message);

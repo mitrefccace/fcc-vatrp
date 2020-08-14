@@ -128,7 +128,7 @@ This (software/technical data) was produced for the U. S. Government under Contr
                      Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Foreground="Blue" Name="UserNameTextBox"  LostFocus="OnUserNameChanged" IsEnabled="false"/>
 
                 <!-- Row 10: User Id text box -->
-                <Label Grid.Column="0" Grid.Row="10" Content="User Id" VerticalContentAlignment="Center" 
+            <Label Grid.Column="0" Grid.Row="10" Content="Auth-ID" VerticalContentAlignment="Center" 
                    HorizontalAlignment="Left" Visibility="Collapsed" Name="UserIdLabel">
                 </Label>
                 <TextBox Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
@@ -170,7 +170,8 @@ This (software/technical data) was produced for the U. S. Government under Contr
                            VerticalAlignment="Center" HorizontalAlignment="Left" SelectionChanged="OnTransportChanged" Visibility="Collapsed">
                     <TextBlock >TCP</TextBlock>
                     <TextBlock >TLS</TextBlock>
-                </ComboBox>
+                <TextBlock >UDP</TextBlock>
+            </ComboBox>
 
             <!-- Row 16: CardDAV server Text box -->
             <Label Grid.Column="0" Grid.Row="16" Content="CardDAV URI" VerticalContentAlignment="Center" 

@@ -184,6 +184,9 @@ namespace VATRP.Core.Model
         [Column]
         public bool VideoAutomaticallyAccept { get; set; }
 
+        [Column]
+        public bool AudioAutomaticallyStart { get; set; }
+
         private bool enableVideo;
         [Column]
         public bool EnableVideo 
@@ -314,6 +317,8 @@ namespace VATRP.Core.Model
         [Column]
         public bool EnablePrivacy { get; set; }
 
+        [Column]
+        public bool DisableUserPhoneTag { get; set; }
         #endregion
 
         #region Methods
@@ -342,6 +347,7 @@ namespace VATRP.Core.Model
             DisplayName = string.Empty;
             VideoAutomaticallyStart = true;
             VideoAutomaticallyAccept = true;
+            AudioAutomaticallyStart = true;
             EnableVideo = true;
             ShowSelfView = true;
             PreferredVideoId = string.Empty;
@@ -380,6 +386,7 @@ namespace VATRP.Core.Model
             EnableSTUN = true;
             EnableICE = false;
             EnablePrivacy = false;
+            DisableUserPhoneTag = false;
         }
 		
         public void StorePassword(string filePath)

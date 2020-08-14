@@ -94,47 +94,52 @@ This (software/technical data) was produced for the U. S. Government under Contr
                             <ColumnDefinition Width="120*"/>
                             <ColumnDefinition Width="40"/>
                         </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Content="Audio Automatically Start" VerticalContentAlignment="Center" 
+                               HorizontalAlignment="Left" Name="AudioAutomaticallyStartLabel">
+                        </Label>
+                        <CheckBox Grid.Column="2" Grid.Row="0" Checked="OnAudioAutomaticallyStart"  Unchecked="OnAudioAutomaticallyStart" HorizontalAlignment="Center" VerticalAlignment="Center" Name="AudioAutomaticallyStartCheckBox"/>
+
                         <!-- Row 0: General Video Settings Label (in call) -->
-                        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"  Content="General Video Settings" VerticalContentAlignment="Center"  Background="Gray">
+                        <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"  Content="General Video Settings" VerticalContentAlignment="Center"  Background="Gray">
                         </Label>
                         <!-- Row 1: Automatically Start checkbox -->
-                        <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="Automatically Start" VerticalContentAlignment="Center" 
+                        <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="Automatically Start" VerticalContentAlignment="Center" 
                    HorizontalAlignment="Left" Name="AutomaticallyStartLabel">
                         </Label>
-                        <CheckBox Grid.Column="2" Grid.Row="1" Checked="OnAutomaticallyStart"  Unchecked="OnAutomaticallyStart" HorizontalAlignment="Center" VerticalAlignment="Center" Name="AutomaticallyStartCheckBox"/>
+                        <CheckBox Grid.Column="2" Grid.Row="2" Checked="OnAutomaticallyStart"  Unchecked="OnAutomaticallyStart" HorizontalAlignment="Center" VerticalAlignment="Center" Name="VideoAutomaticallyStartCheckBox"/>
 
                         <!-- Row 2: Automatically Accept checkbox -->
-                        <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="Automatically Accept" VerticalContentAlignment="Center" 
+                        <Label Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="Automatically Accept" VerticalContentAlignment="Center" 
                    HorizontalAlignment="Left" Name="AutomaticallyAcceptLabel">
                         </Label>
-                        <CheckBox Grid.Column="2" Grid.Row="2" Checked="OnAutomaticallyAccept" Unchecked="OnAutomaticallyAccept" HorizontalAlignment="Center" VerticalAlignment="Center" Name="AutomaticallyAcceptCheckBox"/>
+                        <CheckBox Grid.Column="2" Grid.Row="3" Checked="OnAutomaticallyAccept" Unchecked="OnAutomaticallyAccept" HorizontalAlignment="Center" VerticalAlignment="Center" Name="AutomaticallyAcceptCheckBox"/>
 
                         <!-- Row 3: Show Self Preview checkbox -->
-                        <Label Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="Show Self View" VerticalContentAlignment="Center" 
+                        <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="Show Self View" VerticalContentAlignment="Center" 
                    HorizontalAlignment="Left" Name="ShowSelfViewLabel">
                         </Label>
-                        <CheckBox Grid.Column="2" Grid.Row="3" Checked="OnShowSelfView" Unchecked="OnShowSelfView" HorizontalAlignment="Center" VerticalAlignment="Center" Name="ShowSelfViewCheckBox"/>
+                        <CheckBox Grid.Column="2" Grid.Row="4" Checked="OnShowSelfView" Unchecked="OnShowSelfView" HorizontalAlignment="Center" VerticalAlignment="Center" Name="ShowSelfViewCheckBox"/>
 
                         <!-- Row 4: Preferred FPS -->
-                        <Label Grid.Column="0" Grid.Row="4" Content="Preferred FPS" VerticalContentAlignment="Center" 
+                        <Label Grid.Column="0" Grid.Row="5" Content="Preferred FPS" VerticalContentAlignment="Center" 
                    HorizontalAlignment="Left" Name="PreferredFPSLabels">
                         </Label>
-                        <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
+                        <TextBox Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
                      Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Foreground="Blue" Name="PreferredFPSTextBox"  LostFocus="OnPreferredFPS" />
                         <!-- this row hidden-->
-                        <Label Grid.Column="0" Grid.Row="4" Content="Video Preset" VerticalContentAlignment="Center" 
+                        <Label Grid.Column="0" Grid.Row="5" Content="Video Preset" VerticalContentAlignment="Center" 
                    HorizontalAlignment="Left" Name="VideoPresetLabel" Visibility="Collapsed">
                         </Label>
-                        <ComboBox  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" x:Name="VideoPresetComboBox" FontSize="14" Margin="0,3,0,3" Width="120" Height="24" 
+                        <ComboBox  Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" x:Name="VideoPresetComboBox" FontSize="14" Margin="0,3,0,3" Width="120" Height="24" 
                        VerticalAlignment="Center" HorizontalAlignment="Left" SelectionChanged="OnVideoPreset" Visibility="Collapsed">
                             <TextBlock >default</TextBlock>
                             <TextBlock >high-fps</TextBlock>
                         </ComboBox>
                         <!-- Row 6: RTCP Feedback -->
-                        <Label Grid.Column="0" Grid.Row="5" Content="RTCP Feedback" VerticalContentAlignment="Center" 
+                        <Label Grid.Column="0" Grid.Row="6" Content="RTCP Feedback" VerticalContentAlignment="Center" 
                    HorizontalAlignment="Left" Name="RtcpFeedbackLabel">
                         </Label>
-                        <ComboBox  Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" x:Name="RtcpFeedbackComboBox" FontSize="14" Margin="0,3,0,3" Width="120" Height="24" 
+                        <ComboBox  Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" x:Name="RtcpFeedbackComboBox" FontSize="14" Margin="0,3,0,3" Width="120" Height="24" 
                        VerticalAlignment="Center" HorizontalAlignment="Left" SelectionChanged="OnRtcpFeedback" >
                             <TextBlock >Off</TextBlock>
                             <TextBlock >Explicit</TextBlock>
@@ -142,10 +147,10 @@ This (software/technical data) was produced for the U. S. Government under Contr
                         </ComboBox>
 
                         <!-- Row 7: Video Codecs Label -->
-                        <Label Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3"  Content="Video Codecs" VerticalContentAlignment="Center"  Background="Gray">
+                        <Label Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3"  Content="Video Codecs" VerticalContentAlignment="Center"  Background="Gray">
                         </Label>
 
-                        <ListView Background="{StaticResource RecentsPageMainBg}" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3" Height="120" Width="370" HorizontalAlignment="Left"
+                        <ListView Background="{StaticResource RecentsPageMainBg}" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3" Height="120" Width="370" HorizontalAlignment="Left"
                       x:Name="VideoCodecsListView" SelectionMode="Single" SelectionChanged="VideoCodecsListView_SelectionChanged">
                             <ListView.View>
                                 <GridView>
@@ -361,7 +366,12 @@ This (software/technical data) was produced for the U. S. Government under Contr
                                  Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Center" 
                                  Name="VideoDscpTextBox"  LostFocus="OnVideoDscpChanged" />
 
-                    </Grid>
+                        <!-- Row 22: Video Bandwidth -->
+                        <Label Grid.Column="0" Grid.Row="22" Grid.ColumnSpan="1" Content="Disable 'User=Phone' Tag" VerticalContentAlignment="Center"
+                                           HorizontalAlignment="Left" Name="DisableUserPhoneTagLabel"/>
+                        <CheckBox Grid.Column="2" Grid.Row="22" Checked="OnDisableUserPhoneTagCheckbox" Unchecked="OnDisableUserPhoneTagCheckbox" HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center"  Name="DisableUserPhoneTagCheckbox"/>
+        </Grid>
 
                     <!-- Row 3: Debug Settings Label -->
                     <Label Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Content="Debug" VerticalContentAlignment="Center"  Background="Gray">

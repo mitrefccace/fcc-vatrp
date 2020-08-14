@@ -474,6 +474,7 @@ namespace com.vtcsecure.ace.windows.Services
             LinphoneService.LinphoneConfig.STUNPort = App.CurrentAccount.STUNPort;
             LinphoneService.LinphoneConfig.MediaEncryption = GetMediaEncryptionText(App.CurrentAccount.MediaEncryption);
             LinphoneService.LinphoneConfig.EnableAVPF = App.CurrentAccount.EnableAVPF;
+            LinphoneService.LinphoneConfig.DisableUserPhoneTag = App.CurrentAccount.DisableUserPhoneTag;
             // cardDAV
             if (!String.IsNullOrEmpty(App.CurrentAccount.CardDavServerPath))
             {
